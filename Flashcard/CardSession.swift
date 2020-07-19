@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardSession: View {
-    @State private var cards = [Card]()
+    @State var cards: [Card]
     private let cardLimit = 3
     
     var body: some View {
@@ -25,14 +25,6 @@ struct CardSession: View {
             guard $0.count == 0 else { return }
             print("completion detected!")
         }
-        .onAppear{
-            (0..<10).forEach{
-                cards.append(Card(prompt: "\($0)", answer: "\($0)"))
-                print($0)
-            }
-            cards.shuffle()
-        }
-        
     }
     
     func remove(card: Card, correct: Bool) -> Void {

@@ -2,8 +2,8 @@
 //  ParseJSON.swift
 //  Flashcard
 //
-//  Created by Secret Asian Man Dev on 19/7/20.
-//
+//  Lifted From:
+//  https://www.hackingwithswift.com/example-code/system/how-to-decode-json-from-your-app-bundle-the-easy-way
 
 import Foundation
 

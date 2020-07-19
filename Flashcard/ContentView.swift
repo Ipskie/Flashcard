@@ -9,10 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        CardSession()
-            .onAppear {
-                let cards = Bundle.main.decode([Card].self, from: "Katakana.json")
-            }
+        CardSession(cards: Bundle.main.decode([Card].self, from: "Katakana.json"))
     }
     
 }

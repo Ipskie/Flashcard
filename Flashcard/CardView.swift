@@ -29,7 +29,7 @@ struct CardView: View {
                         .frame(maxWidth: geo.size.width / 2)
                         .blur(radius: showAnswer ? .zero : 10)
                         .font(.title)
-                }.background(RoundedRectangle(cornerRadius: geo.size.height / 8).fill(Color(UIColor.systemBackground)))
+                }.background(RoundedRectangle(cornerRadius: 20).fill(Color(UIColor.systemBackground)))
             } else {
                 VStack(spacing: .zero) {
                     Text(card.prompt)
@@ -41,7 +41,7 @@ struct CardView: View {
                         .frame(maxHeight: geo.size.height / 2)
                         .blur(radius: showAnswer ? .zero : 10)
                         .font(.title)
-                }.background(RoundedRectangle(cornerRadius: geo.size.height / 8).fill(Color(UIColor.systemBackground)))
+                }.background(RoundedRectangle(cornerRadius: 20).fill(Color(UIColor.systemBackground)))
             }
         }
         .shadow(radius: 10)
