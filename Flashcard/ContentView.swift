@@ -8,25 +8,38 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var cards = [Card](repeating: Card.example, count: 10)
+    @State private var cards = [Card]()
     private let cardLimit = 3
+    
     var body: some View {
         ZStack {
-            ForEach(0..<cards.count, id: \.self) { idx in
-                CardView(card: cards[idx]) {
-                    removeCard(at: idx)
+            ForEach(cards, id: \.id) { card in
+                CardView(card: card) {
+                    remove()
                 }
-                .stacked(at: idx, in: cards.count)
+                .stacked(at: cards.firstIndex(where: {$0.id == card.id})!, in: cards.count)
             }
+        }
+        .onAppear{
+            (0..<10).forEach{
+                cards.append(Card(prompt: "\($0)", answer: "\($0)"))
+                print($0)
+            }
+            cards.shuffle()
         }
     }
     
-    func removeCard(at index: Int) -> Void {
+    func remove() -> Void {
         withAnimation {
-            cards.remove(at: index)
+            let card = cards.removeLast()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
+                cards.insert(
+                    Card(prompt: card.prompt, answer: card.answer),
+                    at: Int.random(in: 1..<cards.count)
+                )
+            }
+            print("removed \(card.prompt)")
         }
-        
-        print("removed \(index)")
     }
     
     
