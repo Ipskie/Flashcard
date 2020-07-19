@@ -15,7 +15,7 @@ struct ContentView: View {
         ZStack {
             ForEach(cards, id: \.id) { card in
                 CardView(card: card) {
-                    remove()
+                    remove(card: card)
                 }
                 .stacked(at: cards.firstIndex(where: {$0.id == card.id})!, in: cards.count)
             }
@@ -29,9 +29,9 @@ struct ContentView: View {
         }
     }
     
-    func remove() -> Void {
+    func remove(card: Card) -> Void {
         withAnimation {
-            let card = cards.removeLast()
+            let card = cards.remove(at: cards.firstIndex(where: {$0.id == card.id})!)
             cards.insert(
                 Card(prompt: card.prompt, answer: card.answer),
                 at: Int.random(in: 1..<cards.count)
