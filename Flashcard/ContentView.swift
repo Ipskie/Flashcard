@@ -21,6 +21,10 @@ struct ContentView: View {
                     )
             }
         }
+        .onChange(of: cards){
+            guard $0.count == 0 else { return }
+            print("completion detected!")
+        }
         .onAppear{
             (0..<10).forEach{
                 cards.append(Card(prompt: "\($0)", answer: "\($0)"))
@@ -28,7 +32,7 @@ struct ContentView: View {
             }
             cards.shuffle()
         }
-        .onReceive(cards) {_ in }
+        
     }
     
     func remove(card: Card, correct: Bool) -> Void {

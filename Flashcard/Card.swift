@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Card: Identifiable {
+struct Card: Identifiable, Equatable {
     var id = UUID()
     var prompt: String
     var answer: String
