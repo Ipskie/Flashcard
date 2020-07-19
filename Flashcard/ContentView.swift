@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var cards = [Card](repeating: Card.example, count: 10)
     var body: some View {
-        Text("Hello, world!").padding()
+        CardView(card: Card(prompt: "Prompt", answer: "Answer"))
+            .padding()
+            .border(Color.red)
     }
 }
 
