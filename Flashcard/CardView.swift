@@ -10,6 +10,11 @@ import SwiftUI
 struct CardView: View {
     var card: Card
     @State var showAnswer = false
+    @State private var offset = CGSize.zero
+    @State var rotation = Angle.zero
+    
+    private let scaling = CGFloat(3)
+    var removal: (() -> Void)? = nil
     
     var body: some View {
         GeometryReader { geo in
@@ -29,9 +34,26 @@ struct CardView: View {
                     .fill(Color(UIColor.systemBackground))
                 )
             .shadow(radius: 10)
+            .rotationEffect(.degrees(Double(offset.width / scaling)))
+            .offset(x: offset.width * scaling, y: 0)
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        offset = gesture.translation
+                    }
+
+                    .onEnded { _ in
+                        if abs(offset.width) > 100 {
+                            removal?()
+                        } else {
+                            offset = .zero
+                        }
+                    }
+            )
             .onTapGesture {
                 withAnimation(.linear(duration: 0.1)) { showAnswer.toggle() }
             }
+            .padding()
         }
     }
     
