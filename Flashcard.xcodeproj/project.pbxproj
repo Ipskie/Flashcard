@@ -15,6 +15,7 @@
 		22B6FAE024C4A19D00DA4217 /* FlashcardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FADF24C4A19D00DA4217 /* FlashcardUITests.swift */; };
 		22B6FAEE24C4C18600DA4217 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAED24C4C18600DA4217 /* Card.swift */; };
 		22B6FAF024C4C1C200DA4217 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAEF24C4C1C200DA4217 /* CardView.swift */; };
+		22B6FAF224C5000B00DA4217 /* CardSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAF124C5000B00DA4217 /* CardSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		22B6FAE124C4A19D00DA4217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22B6FAED24C4C18600DA4217 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		22B6FAEF24C4C1C200DA4217 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		22B6FAF124C5000B00DA4217 /* CardSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				22B6FAC224C4A19B00DA4217 /* FlashcardApp.swift */,
 				22B6FAC424C4A19B00DA4217 /* ContentView.swift */,
+				22B6FAF124C5000B00DA4217 /* CardSession.swift */,
 				22B6FAED24C4C18600DA4217 /* Card.swift */,
 				22B6FAEF24C4C1C200DA4217 /* CardView.swift */,
 				22B6FAC624C4A19D00DA4217 /* Assets.xcassets */,
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22B6FAC524C4A19B00DA4217 /* ContentView.swift in Sources */,
+				22B6FAF224C5000B00DA4217 /* CardSession.swift in Sources */,
 				22B6FAEE24C4C18600DA4217 /* Card.swift in Sources */,
 				22B6FAF024C4C1C200DA4217 /* CardView.swift in Sources */,
 				22B6FAC324C4A19B00DA4217 /* FlashcardApp.swift in Sources */,
