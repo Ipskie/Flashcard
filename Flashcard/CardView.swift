@@ -14,7 +14,7 @@ struct CardView: View {
     @State var rotation = Angle.zero
     
     private let scaling = CGFloat(3)
-    var removal: (() -> Void)? = nil
+    var removal: ((Card, Bool) -> Void)? = nil
     
     var body: some View {
         GeometryReader { geo in
@@ -44,7 +44,7 @@ struct CardView: View {
 
                     .onEnded { _ in
                         if abs(offset.width) > 100 {
-                            removal?()
+                            removal?(card, offset.width > 0)
                         } else {
                             withAnimation{ offset = .zero }   
                         }

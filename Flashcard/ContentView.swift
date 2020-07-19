@@ -14,10 +14,11 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             ForEach(cards, id: \.id) { card in
-                CardView(card: card) {
-                    remove(card: card)
-                }
-                .stacked(at: cards.firstIndex(where: {$0.id == card.id})!, in: cards.count)
+                CardView(card: card, removal: remove)
+                    .stacked(
+                        at: cards.firstIndex(where: {$0.id == card.id})!,
+                        in: cards.count
+                    )
             }
         }
         .onAppear{
@@ -27,28 +28,30 @@ struct ContentView: View {
             }
             cards.shuffle()
         }
+        .onReceive(cards) {_ in }
     }
     
-    func remove(card: Card) -> Void {
+    func remove(card: Card, correct: Bool) -> Void {
         withAnimation {
             let card = cards.remove(at: cards.firstIndex(where: {$0.id == card.id})!)
-            cards.insert(
-                Card(prompt: card.prompt, answer: card.answer),
-                at: Int.random(in: 1..<cards.count)
-            )
-            print("removed \(card.prompt)")
+            if !correct {
+                /// if it was the last card, just stop
+                guard cards.count > 1 else { return }
+                /// re-insert the card at a random index
+                cards.insert(
+                    Card(prompt: card.prompt, answer: card.answer),
+                    at: Int.random(in: 1..<cards.count)
+                )
+            }
         }
     }
-    
-    
 }
 
 
 extension View {
     func stacked(at position: Int, in total: Int) -> some View {
-        let offset = CGFloat(total - position)
+        /// add 1 due to zero indexing, so front card is always 100% of size
         return self
-            .offset(CGSize(width: 0, height: offset * -3))
-            .scaleEffect(CGFloat(position) / CGFloat(total))
+            .scaleEffect(CGFloat(position + 1) / CGFloat(total))
     }
 }
