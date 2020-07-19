@@ -16,6 +16,7 @@
 		22B6FAEE24C4C18600DA4217 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAED24C4C18600DA4217 /* Card.swift */; };
 		22B6FAF024C4C1C200DA4217 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAEF24C4C1C200DA4217 /* CardView.swift */; };
 		22B6FAF224C5000B00DA4217 /* CardSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAF124C5000B00DA4217 /* CardSession.swift */; };
+		22B6FAF424C5009F00DA4217 /* Katakana.json in Resources */ = {isa = PBXBuildFile; fileRef = 22B6FAF324C5009F00DA4217 /* Katakana.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		22B6FAED24C4C18600DA4217 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		22B6FAEF24C4C1C200DA4217 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		22B6FAF124C5000B00DA4217 /* CardSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSession.swift; sourceTree = "<group>"; };
+		22B6FAF324C5009F00DA4217 /* Katakana.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Katakana.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				22B6FAC124C4A19B00DA4217 /* Flashcard */,
+				22B6FAF524C500C800DA4217 /* JSON */,
 				22B6FAD324C4A19D00DA4217 /* FlashcardTests */,
 				22B6FADE24C4A19D00DA4217 /* FlashcardUITests */,
 				22B6FAC024C4A19B00DA4217 /* Products */,
@@ -137,6 +140,14 @@
 				22B6FAE124C4A19D00DA4217 /* Info.plist */,
 			);
 			path = FlashcardUITests;
+			sourceTree = "<group>";
+		};
+		22B6FAF524C500C800DA4217 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				22B6FAF324C5009F00DA4217 /* Katakana.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B6FAF424C5009F00DA4217 /* Katakana.json in Resources */,
 				22B6FACA24C4A19D00DA4217 /* Preview Assets.xcassets in Resources */,
 				22B6FAC724C4A19D00DA4217 /* Assets.xcassets in Resources */,
 			);
