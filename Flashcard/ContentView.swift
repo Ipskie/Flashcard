@@ -32,12 +32,10 @@ struct ContentView: View {
     func remove() -> Void {
         withAnimation {
             let card = cards.removeLast()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
-                cards.insert(
-                    Card(prompt: card.prompt, answer: card.answer),
-                    at: Int.random(in: 1..<cards.count)
-                )
-            }
+            cards.insert(
+                Card(prompt: card.prompt, answer: card.answer),
+                at: Int.random(in: 1..<cards.count)
+            )
             print("removed \(card.prompt)")
         }
     }
@@ -49,6 +47,8 @@ struct ContentView: View {
 extension View {
     func stacked(at position: Int, in total: Int) -> some View {
         let offset = CGFloat(total - position)
-        return self.offset(CGSize(width: 0, height: offset * 10))
+        return self
+            .offset(CGSize(width: 0, height: offset * -3))
+            .scaleEffect(CGFloat(position) / CGFloat(total))
     }
 }
