@@ -35,7 +35,7 @@ struct CardSession: View {
                 guard cards.count > 1 else { return }
                 /// re-insert the card at a random index
                 cards.insert(
-                    FlashCard(prompt: card.prompt, answer: card.answer),
+                    card.copy(),
                     at: Int.random(in: 1..<cards.count)
                 )
             }

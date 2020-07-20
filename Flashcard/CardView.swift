@@ -20,24 +20,24 @@ struct CardView: View {
         GeometryReader { geo in
             if geo.size.width > geo.size.height {
                 HStack(spacing: .zero) {
-                    Text(card.prompt)
+                    Text(card.katakana)
                         .frame(maxWidth: geo.size.width / 2)
                         .font(.title)
                     Divider()
                         .padding([.top, .bottom])
-                    Text(card.answer)
+                    Text(card.romanji)
                         .frame(maxWidth: geo.size.width / 2)
                         .blur(radius: showAnswer ? .zero : 10)
                         .font(.title)
                 }.background(RoundedRectangle(cornerRadius: 20).fill(Color(UIColor.systemBackground)))
             } else {
                 VStack(spacing: .zero) {
-                    Text(card.prompt)
+                    Text(card.katakana)
                         .frame(maxHeight: geo.size.height / 2)
                         .font(.title)
                     Divider()
                         .padding([.leading, .trailing])
-                    Text(card.answer)
+                    Text(card.romanji)
                         .frame(maxHeight: geo.size.height / 2)
                         .blur(radius: showAnswer ? .zero : 10)
                         .font(.title)
@@ -64,19 +64,5 @@ struct CardView: View {
             withAnimation(.linear(duration: 0.1)) { showAnswer.toggle() }
         }
         .padding()
-    }
-    
-    func stack(geo: GeometryProxy) -> some View {
-        Group {
-            Text(card.prompt)
-                .frame(maxWidth: geo.size.width / 2)
-                .font(.title)
-            Divider()
-                .padding(geo.size.width > geo.size.height ? [.top, .bottom] : [.leading, .trailing])
-            Text(card.answer)
-                .frame(maxWidth: geo.size.width / 2)
-                .blur(radius: showAnswer ? .zero : 10)
-                .font(.title)
-        }
     }
 }

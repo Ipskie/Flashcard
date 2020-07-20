@@ -6,6 +6,7 @@
         <attribute name="hiragana" optional="YES" attributeType="String"/>
         <attribute name="history" optional="YES" attributeType="Transformable"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="kanji" optional="YES" attributeType="String"/>
         <attribute name="katakana" optional="YES" attributeType="String"/>
         <attribute name="romanji" optional="YES" attributeType="String"/>
         <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="cards" inverseEntity="Deck"/>
@@ -26,7 +27,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Card" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="Card" positionX="-63" positionY="-18" width="128" height="178"/>
         <element name="Deck" positionX="-54" positionY="45" width="128" height="88"/>
     </elements>
 </model>
