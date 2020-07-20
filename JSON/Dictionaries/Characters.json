@@ -3,5 +3,25 @@
         "Katakana": "ア",
         "Hiragana": "あ",
         "Romaji": "a"
+    },
+    {
+        "Katakana": "イ",
+        "Hiragana": "い",
+        "Romaji": "i"
+    },
+    {
+        "Katakana": "ウ",
+        "Hiragana": "う",
+        "Romaji": "u"
+    },
+    {
+        "Katakana": "エ",
+        "Hiragana": "え",
+        "Romaji": "e"
+    },
+    {
+        "Katakana": "オ",
+        "Hiragana": "お",
+        "Romaji": "o"
     }
 ]
