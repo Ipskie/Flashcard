@@ -19,7 +19,7 @@ extension Card {
     @NSManaged public var comfortable: Bool
     @NSManaged public var english: String?
     @NSManaged public var hiragana: String?
-    @NSManaged public var history: NSArray?
+    @NSManaged public var history: String?
     @NSManaged public var id: UUID?
     @NSManaged public var katakana: String?
     @NSManaged public var romanji: String?

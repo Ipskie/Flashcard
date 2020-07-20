@@ -13,7 +13,7 @@ struct FlashcardApp: App {
     
     var persistentContainer: NSPersistentContainer
 
-    init(){
+    init() {
         let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores { description, error in
             if let error = error { fatalError("\(error)") }

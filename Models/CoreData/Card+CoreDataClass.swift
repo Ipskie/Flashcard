@@ -27,7 +27,7 @@ public class Card: NSManagedObject {
         romanji = flash.romanji
         kanji = flash.kanji
         english = flash.english
-        history = flash.history as NSArray
+        history = flash.history.toString()
         comfortable = flash.comfortable
     }
 }

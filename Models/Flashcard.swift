@@ -72,7 +72,7 @@ struct FlashCard: Identifiable, Equatable, Decodable {
         romanji = card.romanji ?? " – "
         kanji = card.kanji ?? " – "
         english = card.english ?? " – "
-        history = card.history as? [Bool] ?? []
+        history = [Bool](from: card.history ?? "")
         comfortable = card.comfortable
     }
     
