@@ -11,6 +11,7 @@
 		221D16F824C533BE00C989FE /* Deck+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D16F424C533BE00C989FE /* Deck+CoreDataProperties.swift */; };
 		221D16F924C533BE00C989FE /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D16F524C533BE00C989FE /* Card+CoreDataClass.swift */; };
 		221D16FA24C533BE00C989FE /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D16F624C533BE00C989FE /* Card+CoreDataProperties.swift */; };
+		221D16FD24C5473200C989FE /* BoolTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D16FC24C5473200C989FE /* BoolTransformer.swift */; };
 		226A975D24C52CD900E3EA6F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 226A975B24C52CD900E3EA6F /* Model.xcdatamodeld */; };
 		22B6FAC324C4A19B00DA4217 /* FlashcardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAC224C4A19B00DA4217 /* FlashcardApp.swift */; };
 		22B6FAC524C4A19B00DA4217 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAC424C4A19B00DA4217 /* ContentView.swift */; };
@@ -46,6 +47,7 @@
 		221D16F424C533BE00C989FE /* Deck+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		221D16F524C533BE00C989FE /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataClass.swift"; sourceTree = "<group>"; };
 		221D16F624C533BE00C989FE /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		221D16FC24C5473200C989FE /* BoolTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolTransformer.swift; sourceTree = "<group>"; };
 		226A975C24C52CD900E3EA6F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		22B6FABF24C4A19B00DA4217 /* Flashcard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashcard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B6FAC224C4A19B00DA4217 /* FlashcardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardApp.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				221D16F424C533BE00C989FE /* Deck+CoreDataProperties.swift */,
 				221D16F524C533BE00C989FE /* Card+CoreDataClass.swift */,
 				221D16F624C533BE00C989FE /* Card+CoreDataProperties.swift */,
+				221D16FC24C5473200C989FE /* BoolTransformer.swift */,
 				226A975B24C52CD900E3EA6F /* Model.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -317,6 +320,7 @@
 				226A975D24C52CD900E3EA6F /* Model.xcdatamodeld in Sources */,
 				221D16FA24C533BE00C989FE /* Card+CoreDataProperties.swift in Sources */,
 				22B6FAF024C4C1C200DA4217 /* CardView.swift in Sources */,
+				221D16FD24C5473200C989FE /* BoolTransformer.swift in Sources */,
 				22B6FAC324C4A19B00DA4217 /* FlashcardApp.swift in Sources */,
 				221D16F724C533BE00C989FE /* Deck+CoreDataClass.swift in Sources */,
 				221D16F824C533BE00C989FE /* Deck+CoreDataProperties.swift in Sources */,

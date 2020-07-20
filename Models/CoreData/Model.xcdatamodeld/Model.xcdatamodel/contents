@@ -4,7 +4,7 @@
         <attribute name="comfortable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="english" optional="YES" attributeType="String"/>
         <attribute name="hiragana" optional="YES" attributeType="String"/>
-        <attribute name="history" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer"/>
+        <attribute name="history" optional="YES" attributeType="String" valueTransformerName="BoolTransformer" maxValueString="50" customClassName="[Bool]"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="kanji" optional="YES" attributeType="String"/>
         <attribute name="katakana" optional="YES" attributeType="String"/>

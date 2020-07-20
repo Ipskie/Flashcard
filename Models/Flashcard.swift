@@ -24,6 +24,7 @@ struct FlashCard: Identifiable, Equatable, Decodable {
     var kanji: String
     var english: String
     var history: [Bool]
+    var comfortable: Bool
     
     static let example = FlashCard(
         hiragana: "ひらがな",
@@ -31,16 +32,26 @@ struct FlashCard: Identifiable, Equatable, Decodable {
         romanji: "Romanji",
         kanji: "日本語",
         english: "English",
-        history: []
+        history: [],
+        comfortable: false
     )
     
-    init(hiragana: String, katakana: String, romanji: String, kanji: String, english: String, history: [Bool]){
+    init(
+        hiragana: String,
+        katakana: String,
+        romanji: String,
+        kanji: String,
+        english: String,
+        history: [Bool],
+        comfortable: Bool
+    ) {
         self.hiragana = hiragana
         self.katakana = katakana
         self.romanji = romanji
         self.kanji = kanji
         self.english = english
         self.history = history
+        self.comfortable = comfortable
     }
     
     init(from decoder: Decoder) throws {
@@ -52,6 +63,7 @@ struct FlashCard: Identifiable, Equatable, Decodable {
         kanji = rawCard.kanji
         english = rawCard.english
         history = []
+        comfortable = false /// when decoding new deck, default to not comfortable
     }
     
     init(from card: Card){
@@ -60,7 +72,8 @@ struct FlashCard: Identifiable, Equatable, Decodable {
         romanji = card.romanji ?? " – "
         kanji = card.kanji ?? " – "
         english = card.english ?? " – "
-        history = card.history
+        history = card.history as? [Bool] ?? []
+        comfortable = card.comfortable
     }
     
     func copy(with zone: NSZone? = nil) -> FlashCard {
@@ -70,7 +83,8 @@ struct FlashCard: Identifiable, Equatable, Decodable {
                 romanji: romanji,
                 kanji: kanji,
                 english: english,
-                history: []
+                history: [],
+                comfortable: comfortable
             )
             return copy
         }
