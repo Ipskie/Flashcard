@@ -6,12 +6,26 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct FlashcardApp: App {
+    
+    var persistentContainer: NSPersistentContainer
+
+    init(){
+        let container = NSPersistentContainer(name: "Model")
+        container.loadPersistentStores { description, error in
+            if let error = error { fatalError("\(error)") }
+        }
+        persistentContainer = container
+        container.viewContext.mergePolicy = NSOverwriteMergePolicy
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, persistentContainer.viewContext)
         }
     }
 }
