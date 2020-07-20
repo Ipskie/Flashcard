@@ -6,10 +6,21 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
+    
+    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
+    
     var body: some View {
-        CardSession(cards: [FlashCard.example])
+        HStack {
+            CardSession(cards: [FlashCard.example])
+            Text("Testing Button")
+                .onTapGesture {
+                    
+                }
+        }
+        
     }
     
 }
