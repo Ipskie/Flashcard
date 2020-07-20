@@ -8,7 +8,7 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="kanji" optional="YES" attributeType="String"/>
         <attribute name="katakana" optional="YES" attributeType="String"/>
-        <attribute name="romanji" optional="YES" attributeType="String"/>
+        <attribute name="romaji" optional="YES" attributeType="String"/>
         <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="cards" inverseEntity="Deck"/>
         <uniquenessConstraints>
             <uniquenessConstraint>

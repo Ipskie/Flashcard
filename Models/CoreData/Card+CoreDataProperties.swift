@@ -22,7 +22,7 @@ extension Card {
     @NSManaged public var history: String?
     @NSManaged public var id: UUID?
     @NSManaged public var katakana: String?
-    @NSManaged public var romanji: String?
+    @NSManaged public var romaji: String?
     @NSManaged public var kanji: String?
     @NSManaged public var deck: Deck?
 

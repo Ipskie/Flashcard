@@ -10,7 +10,7 @@ import Foundation
 fileprivate struct RawCard: Decodable {
     var hiragana: String
     var katakana: String
-    var romanji: String
+    var romaji: String
     var kanji: String
     var english: String
     // no history for first time de-serialization
@@ -20,7 +20,7 @@ struct FlashCard: Identifiable, Equatable, Decodable {
     var id = UUID()
     var hiragana: String
     var katakana: String
-    var romanji: String
+    var romaji: String
     var kanji: String
     var english: String
     var history: [Bool]
@@ -29,7 +29,7 @@ struct FlashCard: Identifiable, Equatable, Decodable {
     static let example = FlashCard(
         hiragana: "ひらがな",
         katakana: "カタカナ",
-        romanji: "Romanji",
+        romaji: "Romaji",
         kanji: "日本語",
         english: "English",
         history: [],
@@ -39,7 +39,7 @@ struct FlashCard: Identifiable, Equatable, Decodable {
     init(
         hiragana: String,
         katakana: String,
-        romanji: String,
+        romaji: String,
         kanji: String,
         english: String,
         history: [Bool],
@@ -47,7 +47,7 @@ struct FlashCard: Identifiable, Equatable, Decodable {
     ) {
         self.hiragana = hiragana
         self.katakana = katakana
-        self.romanji = romanji
+        self.romaji = romaji
         self.kanji = kanji
         self.english = english
         self.history = history
@@ -59,7 +59,7 @@ struct FlashCard: Identifiable, Equatable, Decodable {
         id = UUID()
         hiragana = rawCard.hiragana
         katakana = rawCard.katakana
-        romanji = rawCard.romanji
+        romaji = rawCard.romaji
         kanji = rawCard.kanji
         english = rawCard.english
         history = []
@@ -69,7 +69,7 @@ struct FlashCard: Identifiable, Equatable, Decodable {
     init(from card: Card){
         hiragana = card.hiragana ?? " – "
         katakana = card.katakana ?? " – "
-        romanji = card.romanji ?? " – "
+        romaji = card.romaji ?? " – "
         kanji = card.kanji ?? " – "
         english = card.english ?? " – "
         history = [Bool](from: card.history ?? "")
@@ -80,7 +80,7 @@ struct FlashCard: Identifiable, Equatable, Decodable {
             let copy = FlashCard(
                 hiragana: hiragana,
                 katakana: katakana,
-                romanji: romanji,
+                romaji: romaji,
                 kanji: kanji,
                 english: english,
                 history: [],

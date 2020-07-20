@@ -24,7 +24,7 @@ public class Card: NSManagedObject {
         id = flash.id
         hiragana = flash.hiragana
         katakana = flash.katakana
-        romanji = flash.romanji
+        romaji = flash.romaji
         kanji = flash.kanji
         english = flash.english
         history = flash.history.toString()
