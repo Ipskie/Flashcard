@@ -12,12 +12,12 @@ fileprivate struct RawCard: Decodable {
     var answer: String
 }
 
-struct Card: Identifiable, Equatable, Decodable {
+struct FlashCard: Identifiable, Equatable, Decodable {
     var id = UUID()
     var prompt: String
     var answer: String
     
-    static let example = Card (prompt: "Prompt", answer: "Answer")
+    static let example = FlashCard (prompt: "Prompt", answer: "Answer")
     
     init(prompt: String, answer: String) {
         id = UUID()

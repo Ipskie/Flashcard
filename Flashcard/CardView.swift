@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct CardView: View {
-    var card: Card
+    var card: FlashCard
     @State var showAnswer = false
     @State private var offset = CGSize.zero
     
     /// magnifies the movement of the user's swipe, so small gestures can dismiss the view
     private let scaling = CGFloat(3)
-    var removal: ((Card, Bool) -> Void)? = nil
+    var removal: ((FlashCard, Bool) -> Void)? = nil
     
     var body: some View {
         GeometryReader { geo in

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardSession: View {
-    @State var cards: [Card]
+    @State var cards: [FlashCard]
     private let cardLimit = 3
     
     var body: some View {
@@ -27,7 +27,7 @@ struct CardSession: View {
         }
     }
     
-    func remove(card: Card, correct: Bool) -> Void {
+    func remove(card: FlashCard, correct: Bool) -> Void {
         withAnimation {
             let card = cards.remove(at: cards.firstIndex(where: {$0.id == card.id})!)
             if !correct {
@@ -35,7 +35,7 @@ struct CardSession: View {
                 guard cards.count > 1 else { return }
                 /// re-insert the card at a random index
                 cards.insert(
-                    Card(prompt: card.prompt, answer: card.answer),
+                    FlashCard(prompt: card.prompt, answer: card.answer),
                     at: Int.random(in: 1..<cards.count)
                 )
             }
