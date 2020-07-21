@@ -18,8 +18,15 @@ extension Deck {
 
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
-    @NSManaged public var cards: NSSet?
+    @NSManaged public var cards: Set<Card>
 
+    /// deck name should ALWAYS be set
+    var _name: String {
+        name ?? "Unknown Deck"
+    }
+    var shuffledCards: [FlashCard] {
+        cards.map{FlashCard(from: $0)}.shuffled()
+    }
 }
 
 // MARK: Generated accessors for cards

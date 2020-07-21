@@ -11,15 +11,30 @@ import CoreData
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    
+    @FetchRequest(
+        entity: Deck.entity(),
+        sortDescriptors: []
+    ) var decks: FetchedResults<Deck>
     var body: some View {
-        HStack {
-            CardSession(cards: [FlashCard.example])
+        VStack {
+            NavigationView {
+                List(decks, id: \.id) { deck in
+                    NavigationLink(
+                        deck._name,
+                        destination: CardSession(cards: deck.shuffledCards)
+                    )
+                }
+                .navigationTitle(Text("Decks"))
+            }
+            
+        
+//            CardSession(cards: [FlashCard.example])
             Text("Testing Button")
                 .onTapGesture {
                     
                     let deck = try! Deck(filename: "Characters.json", context: moc)
                     print(deck)
+                    try! moc.save()
 //                    var flash = FlashCard.example.copy()
 //                    flash.history.append(true)
 //                    flash.history.append(false)

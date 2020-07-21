@@ -19,6 +19,11 @@ public class Deck: NSManagedObject {
     
     static let entityName = "Deck" /// for making entity calls
     
+    @objc
+    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
+    
     /// create a Core Data deck by unpacking it from a bundled JSON file
     init(filename: String, context: NSManagedObjectContext) throws {
         super.init(entity: Deck.entity(), insertInto: context)
