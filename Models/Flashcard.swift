@@ -8,21 +8,21 @@
 import Foundation
 
 fileprivate struct RawCard: Decodable {
-    var hiragana: String
-    var katakana: String
-    var romaji: String
-    var kanji: String
-    var english: String
+    var hiragana: String?
+    var katakana: String?
+    var romaji: String?
+    var kanji: String?
+    var english: String?
     // no history for first time de-serialization
 }
 
 struct FlashCard: Identifiable, Equatable, Decodable {
     var id = UUID()
-    var hiragana: String
-    var katakana: String
-    var romaji: String
-    var kanji: String
-    var english: String
+    var hiragana: String?
+    var katakana: String?
+    var romaji: String?
+    var kanji: String?
+    var english: String?
     var history: [Bool]
     var comfortable: Bool
     
@@ -37,11 +37,11 @@ struct FlashCard: Identifiable, Equatable, Decodable {
     )
     
     init(
-        hiragana: String,
-        katakana: String,
-        romaji: String,
-        kanji: String,
-        english: String,
+        hiragana: String?,
+        katakana: String?,
+        romaji: String?,
+        kanji: String?,
+        english: String?,
         history: [Bool],
         comfortable: Bool
     ) {

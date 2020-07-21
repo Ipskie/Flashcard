@@ -20,24 +20,24 @@ struct CardView: View {
         GeometryReader { geo in
             if geo.size.width > geo.size.height {
                 HStack(spacing: .zero) {
-                    Text(card.katakana)
+                    Text(card.katakana ?? " – ")
                         .frame(maxWidth: geo.size.width / 2)
                         .font(.title)
                     Divider()
                         .padding([.top, .bottom])
-                    Text(card.romaji)
+                    Text(card.romaji ?? " – ")
                         .frame(maxWidth: geo.size.width / 2)
                         .blur(radius: showAnswer ? .zero : 10)
                         .font(.title)
                 }.background(RoundedRectangle(cornerRadius: 20).fill(Color(UIColor.systemBackground)))
             } else {
                 VStack(spacing: .zero) {
-                    Text(card.katakana)
+                    Text(card.katakana ?? " – ")
                         .frame(maxHeight: geo.size.height / 2)
                         .font(.title)
                     Divider()
                         .padding([.leading, .trailing])
-                    Text(card.romaji)
+                    Text(card.romaji ?? " – ")
                         .frame(maxHeight: geo.size.height / 2)
                         .blur(radius: showAnswer ? .zero : 10)
                         .font(.title)

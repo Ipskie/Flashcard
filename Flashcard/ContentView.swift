@@ -17,16 +17,19 @@ struct ContentView: View {
             CardSession(cards: [FlashCard.example])
             Text("Testing Button")
                 .onTapGesture {
-                    var flash = FlashCard.example.copy()
-                    flash.history.append(true)
-                    flash.history.append(false)
-                    flash.history.append(true)
-                    let card = Card(context: moc, flash: flash)
-                    try! moc.save()
-                    print("saved!")
-                    let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: Card.entityName)
-                    let cards = try! moc.fetch(fetch) as! [Card]
-                    print(FlashCard(from: cards.first!))
+                    
+                    let deck = try! Deck(filename: "Characters.json", context: moc)
+                    print(deck)
+//                    var flash = FlashCard.example.copy()
+//                    flash.history.append(true)
+//                    flash.history.append(false)
+//                    flash.history.append(true)
+//                    let card = Card(context: moc, flash: flash)
+//                    try! moc.save()
+//                    print("saved!")
+//                    let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: Card.entityName)
+//                    let cards = try! moc.fetch(fetch) as! [Card]
+//                    print(FlashCard(from: cards.first!))
                 }
         }
         

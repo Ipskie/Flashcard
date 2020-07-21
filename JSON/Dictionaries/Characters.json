@@ -1,27 +1,30 @@
-[
-    {
-        "Katakana": "ア",
-        "Hiragana": "あ",
-        "Romaji": "a"
-    },
-    {
-        "Katakana": "イ",
-        "Hiragana": "い",
-        "Romaji": "i"
-    },
-    {
-        "Katakana": "ウ",
-        "Hiragana": "う",
-        "Romaji": "u"
-    },
-    {
-        "Katakana": "エ",
-        "Hiragana": "え",
-        "Romaji": "e"
-    },
-    {
-        "Katakana": "オ",
-        "Hiragana": "お",
-        "Romaji": "o"
-    }
-]
+{
+    "name": "Characters",
+    "cards": [
+        {
+            "katakana": "ア",
+            "hiragana": "あ",
+            "romaji": "a"
+        },
+        {
+            "katakana": "イ",
+            "hiragana": "い",
+            "romaji": "i"
+        },
+        {
+            "katakana": "ウ",
+            "hiragana": "う",
+            "romaji": "u"
+        },
+        {
+            "katakana": "エ",
+            "hiragana": "え",
+            "romaji": "e"
+        },
+        {
+            "katakana": "オ",
+            "hiragana": "お",
+            "romaji": "o"
+        }
+    ]
+}

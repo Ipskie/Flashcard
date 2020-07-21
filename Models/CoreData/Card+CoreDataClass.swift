@@ -19,7 +19,7 @@ public class Card: NSManagedObject {
         super.init(entity: entity, insertInto: context)
     }
     
-    init(context: NSManagedObjectContext, flash: FlashCard) {
+    init(context: NSManagedObjectContext, flash: FlashCard, deck: Deck) {
         super.init(entity: Card.entity(), insertInto: context)
         id = flash.id
         hiragana = flash.hiragana
@@ -29,5 +29,6 @@ public class Card: NSManagedObject {
         english = flash.english
         history = flash.history.toString()
         comfortable = flash.comfortable
+        self.deck = deck
     }
 }
