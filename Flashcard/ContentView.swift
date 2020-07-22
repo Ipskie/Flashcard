@@ -21,7 +21,7 @@ struct ContentView: View {
                 List(decks, id: \.id) { deck in
                     NavigationLink(
                         deck._name,
-                        destination: CardSession(cards: deck.shuffledCards)
+                        destination: DeckView(deck: deck)
                     )
                 }
                 .navigationTitle(Text("Decks"))

@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct DeckView: View {
+    
+    var deck: Deck
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            NavigationLink("10 Pull", destination: CardSession(cards: deck.shuffledCards))
+        }
+        .listStyle(GroupedListStyle())
+        .navigationBarTitle(Text(deck._name))
     }
 }
 
-struct DeckView_Previews: PreviewProvider {
-    static var previews: some View {
-        DeckView()
-    }
-}
