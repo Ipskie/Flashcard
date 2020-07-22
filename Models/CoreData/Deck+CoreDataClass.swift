@@ -34,6 +34,11 @@ public class Deck: NSManagedObject {
             /// initialize each decoded card with this as the deck
             _ = Card.init(context: context, flash: $0, deck: self)
         }
+        
+        /// default prompt: hiragana
+        prompt = Int16(FlashCard.contents.hiragana.rawValue)
+        /// default answer: romaji
+        answer = Int16(FlashCard.contents.romaji.rawValue)
     }
 }
 
