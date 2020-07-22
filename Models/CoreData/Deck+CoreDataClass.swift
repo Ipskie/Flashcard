@@ -36,9 +36,21 @@ public class Deck: NSManagedObject {
         }
         
         /// default prompt: hiragana
-        prompt = Int16(FlashCard.contents.hiragana.rawValue)
+        prompt = Int16(FlashCard.Snippet.hiragana.rawValue)
         /// default answer: romaji
-        answer = Int16(FlashCard.contents.romaji.rawValue)
+        answer = Int16(FlashCard.Snippet.romaji.rawValue)
+    }
+    
+    /// return the types of snippet this deck contains (e.g. it's cards might be only Hiragana & English)
+    var snippetTypes: [FlashCard.Snippet] {
+        let cards = flashcards /// request computed property only once
+        return FlashCard.Snippet.allCases.filter({ type in
+            cards.contains(where: {
+                $0.contents[type] != nil
+            })
+        })
+        /// ensure a consistent ordering
+        .sorted(by: {$0.rawValue < $1.rawValue})
     }
 }
 

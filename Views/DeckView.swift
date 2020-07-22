@@ -14,12 +14,11 @@ struct DeckView: View {
     var body: some View {
         List {
             Section(header: Text("Practice")) {
-                NavigationLink("10 Pull", destination: CardSession(cards: deck.shuffledCards))
+                NavigationLink("10 Pull", destination: CardSession(cards: deck.flashcards.shuffled()))
             }
             Section(header: Text("Deck Information")) {
                 NavigationLink("Cards", destination: CardGallery(deck: deck))
             }
-            
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle(Text(deck._name))

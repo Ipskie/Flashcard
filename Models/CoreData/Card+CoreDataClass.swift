@@ -22,11 +22,13 @@ public class Card: NSManagedObject {
     init(context: NSManagedObjectContext, flash: FlashCard, deck: Deck) {
         super.init(entity: Card.entity(), insertInto: context)
         id = flash.id
-        hiragana = flash.hiragana
-        katakana = flash.katakana
-        romaji = flash.romaji
-        kanji = flash.kanji
-        english = flash.english
+        
+        hiragana = flash.contents[.hiragana, default: nil]
+        katakana = flash.contents[.katakana, default: nil]
+        romaji = flash.contents[.romaji, default: nil]
+        kanji = flash.contents[.kanji, default: nil]
+        english = flash.contents[.english, default: nil]
+        
         history = flash.history.toString()
         comfortable = flash.comfortable
         self.deck = deck

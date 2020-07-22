@@ -22,28 +22,29 @@ extension Deck {
     @NSManaged public var name: String?
     @NSManaged public var cards: Set<Card>
 
+    /// transient property of flashcards derived from Core Data Cards
+    var flashcards: [FlashCard] {
+        cards.map{FlashCard(from: $0)}
+    }
     /// deck name should ALWAYS be set
     var _name: String {
         name ?? "Unknown Deck"
     }
-    var shuffledCards: [FlashCard] {
-        cards.map{FlashCard(from: $0)}.shuffled()
-    }
     
     /// which string the deck should use to prompt the user
     /// defaults to hiragana
-    var promptType: FlashCard.contents {
-        return FlashCard.contents(rawValue: Int(prompt)) ?? .hiragana
+    var promptType: FlashCard.Snippet {
+        return FlashCard.Snippet(rawValue: Int(prompt)) ?? .hiragana
     }
     
     /// which string the deck should use as the answer
     /// defaults to romaji
-    var answerType: FlashCard.contents {
-        return FlashCard.contents(rawValue: Int(prompt)) ?? .romaji
+    var answerType: FlashCard.Snippet {
+        return FlashCard.Snippet(rawValue: Int(prompt)) ?? .romaji
     }
 }
 
-// MARK: Generated accessors for cards
+// MARK: - Generated accessors for cards
 extension Deck {
 
     @objc(addCardsObject:)

@@ -9,9 +9,10 @@ import Foundation
 
 extension FlashCard {
     
-    /// types of content that might be displayed on the flashcard
-    enum contents: Int {
-        case hiragana
+    /// snippets of content that could be displayed on a flashcard
+    enum Snippet: Int, CaseIterable {
+        /// NOTE: Order of appearance below should match ordering in menus etc.
+        case hiragana = 0
         case romaji
         case kanji
         case katakana
@@ -28,6 +29,4 @@ extension FlashCard {
             }
         }
     }
-    
-
 }
