@@ -10,7 +10,7 @@ import SwiftUI
 struct CardSession: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @State var cards = [FlashCard]()
+    @State private var cards: [FlashCard]
     
     enum SessionType {
         case nPull(Int) // pull only an integer number of cards. no repeats
@@ -25,7 +25,9 @@ struct CardSession: View {
         self.deck = deck
         self.sessionType = sessionType
         #warning("variable here for whether or not to cycle cards")
-        self.cards = deck.flashcards
+        _cards = State(initialValue: deck.flashcards)
+        print(deck.flashcards)
+        print(self.cards)
     }
     
     var body: some View {
