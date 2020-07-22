@@ -25,9 +25,9 @@ struct CardSession: View {
         self.deck = deck
         self.sessionType = sessionType
         #warning("variable here for whether or not to cycle cards")
+        
+        /// NOTE: this direct binding was undocumented and hacky. Only here because this view does NOT need to update the parent.
         _cards = State(initialValue: deck.flashcards)
-        print(deck.flashcards)
-        print(self.cards)
     }
     
     var body: some View {

@@ -91,13 +91,13 @@ struct CardView: View {
     
     var PromptText: Text {
         Text(prompt ?? "blank")
-            .foregroundColor((prompt == nil) ? .primary : Color(UIColor.placeholderText))
+            .foregroundColor((answer == nil) ? Color(UIColor.placeholderText) : .primary)
             .font(.title)
     }
     
     var AnswerText: Text {
         Text(answer ?? "blank")
-            .foregroundColor((answer == nil) ? .primary : Color(UIColor.placeholderText))
+            .foregroundColor((answer == nil) ? Color(UIColor.placeholderText) : .primary)
             .font(.title)
     }
 }
