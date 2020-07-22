@@ -14,7 +14,10 @@ struct DeckView: View {
     var body: some View {
         List {
             Section(header: Text("Practice")) {
-                NavigationLink("10 Pull", destination: CardSession(cards: deck.flashcards.shuffled()))
+                NavigationLink(
+                    "10 Pull",
+                    destination: CardSession(deck: deck, sessionType: .nPull(10))
+                )
             }
             Section(header: Text("Deck Information")) {
                 NavigationLink("Cards", destination: CardGallery(deck: deck))

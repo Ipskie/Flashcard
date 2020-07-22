@@ -10,13 +10,33 @@ import SwiftUI
 struct CardSession: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @State var cards: [FlashCard]
-    #warning("variable here for whether or not to cycle cards")
+    @State var cards = [FlashCard]()
+    
+    enum SessionType {
+        case nPull(Int) // pull only an integer number of cards. no repeats
+        case marathon // pull every card in the deck
+        case training // pull any card in the deck, but allow repeats of wrong cards
+    }
+    
+    var deck: Deck
+    var sessionType: SessionType
+    
+    init(deck: Deck, sessionType: SessionType) {
+        self.deck = deck
+        self.sessionType = sessionType
+        #warning("variable here for whether or not to cycle cards")
+        self.cards = deck.flashcards
+    }
     
     var body: some View {
         ZStack {
             ForEach(cards, id: \.id) { card in
-                CardView(card: card, removal: remove)
+                CardView(
+                    card: card,
+                    prompt: deck.promptType,
+                    answer: deck.answerType,
+                    removal: remove
+                )
                     .stacked(
                         at: cards.firstIndex(where: {$0.id == card.id})!,
                         in: cards.count
