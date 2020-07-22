@@ -17,9 +17,15 @@ struct CardGallery: View {
         ScrollView {
             LazyVGrid (columns: columns, spacing: 20) {
                 ForEach(deck.cards.sortedBy(.romaji), id: \.id) { card in
-                    Text(card.romaji ?? " – ")
+                    GalleryCard(
+                        card: FlashCard(from: card),
+                        prompt: deck.promptType,
+                        answer: deck.answerType
+                    )
                 }
             }
+            .padding()
         }
+        .navigationTitle("Cards")
     }
 }

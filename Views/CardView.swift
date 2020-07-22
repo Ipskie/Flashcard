@@ -37,10 +37,10 @@ struct CardView: View {
         GeometryReader { geo in
             if geo.size.width > geo.size.height {
                 HCard(geo: geo)
-                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(UIColor.systemBackground)))
+                    .background(CardBG())
             } else {
                 VCard(geo: geo)
-                    .background(RoundedRectangle(cornerRadius: 20).fill(Color(UIColor.systemBackground)))
+                    .background(CardBG())
             }
         }
         .shadow(radius: 10)
@@ -90,13 +90,13 @@ struct CardView: View {
     }
     
     var PromptText: Text {
-        Text(prompt ?? "blank")
+        Text(prompt ?? placeholder)
             .foregroundColor((answer == nil) ? Color(UIColor.placeholderText) : .primary)
             .font(.title)
     }
     
     var AnswerText: Text {
-        Text(answer ?? "blank")
+        Text(answer ?? placeholder)
             .foregroundColor((answer == nil) ? Color(UIColor.placeholderText) : .primary)
             .font(.title)
     }
