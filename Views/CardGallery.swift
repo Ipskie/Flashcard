@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct CardGallery: View {
+    
+    var deck: Deck
+    
+    let columns = [GridItem(.adaptive(minimum: 80))]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct CardGallery_Previews: PreviewProvider {
-    static var previews: some View {
-        CardGallery()
+        ScrollView {
+            LazyVGrid (columns: columns, spacing: 20) {
+                ForEach(deck.cards.sortedBy(.romaji), id: \.id) { card in
+                    Text(card.romaji ?? " – ")
+                }
+            }
+        }
     }
 }

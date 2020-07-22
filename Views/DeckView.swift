@@ -17,7 +17,7 @@ struct DeckView: View {
                 NavigationLink("10 Pull", destination: CardSession(cards: deck.shuffledCards))
             }
             Section(header: Text("Deck Information")) {
-                NavigationLink("Cards", destination: CardGallery())
+                NavigationLink("Cards", destination: CardGallery(deck: deck))
             }
             
         }
