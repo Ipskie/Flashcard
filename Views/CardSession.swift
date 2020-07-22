@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct CardSession: View {
+    
+    @Environment(\.presentationMode) var presentationMode
     @State var cards: [FlashCard]
-    private let cardLimit = 3
+    #warning("variable here for whether or not to cycle cards")
     
     var body: some View {
         ZStack {
@@ -23,7 +25,7 @@ struct CardSession: View {
         }
         .onChange(of: cards){
             guard $0.count == 0 else { return }
-            print("completion detected!")
+            presentationMode.wrappedValue.dismiss()
         }
     }
     

@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct CardView: View {
-    var card: FlashCard
+    
     @State var showAnswer = false
     @State private var offset = CGSize.zero
+    var card: FlashCard
     
     /// magnifies the movement of the user's swipe, so small gestures can dismiss the view
     private let scaling = CGFloat(3)
