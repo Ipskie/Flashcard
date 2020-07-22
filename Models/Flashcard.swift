@@ -36,6 +36,15 @@ struct FlashCard: Identifiable, Equatable, Decodable {
         comfortable: false
     )
     
+    /// types of content that might be displayed on the flashcard
+    enum contents: Int {
+        case hiragana
+        case romaji
+        case kanji
+        case katakana
+        case english
+    }
+    
     init(
         hiragana: String?,
         katakana: String?,

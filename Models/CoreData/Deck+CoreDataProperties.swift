@@ -16,6 +16,8 @@ extension Deck {
         return NSFetchRequest<Deck>(entityName: "Deck")
     }
 
+    @NSManaged public var prompt: Int16
+    @NSManaged public var answer: Int16
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
     @NSManaged public var cards: Set<Card>
@@ -26,6 +28,18 @@ extension Deck {
     }
     var shuffledCards: [FlashCard] {
         cards.map{FlashCard(from: $0)}.shuffled()
+    }
+    
+    /// which string the deck should use to prompt the user
+    /// defaults to hiragana
+    var promptType: FlashCard.contents {
+        return FlashCard.contents(rawValue: Int(prompt)) ?? .hiragana
+    }
+    
+    /// which string the deck should use as the answer
+    /// defaults to romaji
+    var answerType: FlashCard.contents {
+        return FlashCard.contents(rawValue: Int(prompt)) ?? .romaji
     }
 }
 

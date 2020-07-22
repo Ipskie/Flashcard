@@ -17,8 +17,10 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Deck" representedClassName="Deck" syncable="YES">
+        <attribute name="answer" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="prompt" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="deck" inverseEntity="Card"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -28,6 +30,6 @@
     </entity>
     <elements>
         <element name="Card" positionX="-63" positionY="-18" width="128" height="178"/>
-        <element name="Deck" positionX="-54" positionY="45" width="128" height="88"/>
+        <element name="Deck" positionX="-54" positionY="45" width="128" height="118"/>
     </elements>
 </model>
