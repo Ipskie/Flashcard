@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220A6F9F24C8AAD000132B9C /* CardGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6F9E24C8AAD000132B9C /* CardGallery.swift */; };
 		221D16F724C533BE00C989FE /* Deck+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D16F324C533BE00C989FE /* Deck+CoreDataClass.swift */; };
 		221D16F824C533BE00C989FE /* Deck+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D16F424C533BE00C989FE /* Deck+CoreDataProperties.swift */; };
 		221D16F924C533BE00C989FE /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D16F524C533BE00C989FE /* Card+CoreDataClass.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		220A6F9E24C8AAD000132B9C /* CardGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGallery.swift; sourceTree = "<group>"; };
 		221D16F324C533BE00C989FE /* Deck+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataClass.swift"; sourceTree = "<group>"; };
 		221D16F424C533BE00C989FE /* Deck+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		221D16F524C533BE00C989FE /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				22ED237B24C66F0300ABFFE8 /* DeckView.swift */,
 				22B6FAEF24C4C1C200DA4217 /* CardView.swift */,
 				22B6FAF124C5000B00DA4217 /* CardSession.swift */,
+				220A6F9E24C8AAD000132B9C /* CardGallery.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			files = (
 				22B6FAC524C4A19B00DA4217 /* ContentView.swift in Sources */,
 				221D16F924C533BE00C989FE /* Card+CoreDataClass.swift in Sources */,
+				220A6F9F24C8AAD000132B9C /* CardGallery.swift in Sources */,
 				22B6FAF224C5000B00DA4217 /* CardSession.swift in Sources */,
 				22B6FAEE24C4C18600DA4217 /* Flashcard.swift in Sources */,
 				226A975D24C52CD900E3EA6F /* Model.xcdatamodeld in Sources */,
