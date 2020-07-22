@@ -27,4 +27,14 @@ extension Array where Element == Bool {
             }
         }
     }
+    
+    /// count number of "wrong" answers, or falses
+    var wrongs: Int {
+        self.filter{!$0}.count
+    }
+    
+    /// count number of "right" answers, or trues
+    var corrects: Int {
+        self.filter{$0}.count
+    }
 }
