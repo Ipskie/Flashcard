@@ -23,31 +23,16 @@ struct ContentView: View {
                         deck._name,
                         destination: DeckView(deck: deck)
                     )
+                    Text("Testing Button")
+                        .onTapGesture {
+                            let deck = try! Deck(filename: "Characters.json", context: moc)
+                            print(deck)
+                            try! moc.save()
+                        }
                 }
                 .navigationTitle(Text("Decks"))
             }
             
-        
-//            CardSession(cards: [FlashCard.example])
-            Text("Testing Button")
-                .onTapGesture {
-                    
-                    let deck = try! Deck(filename: "Characters.json", context: moc)
-                    print(deck)
-                    try! moc.save()
-//                    var flash = FlashCard.example.copy()
-//                    flash.history.append(true)
-//                    flash.history.append(false)
-//                    flash.history.append(true)
-//                    let card = Card(context: moc, flash: flash)
-//                    try! moc.save()
-//                    print("saved!")
-//                    let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: Card.entityName)
-//                    let cards = try! moc.fetch(fetch) as! [Card]
-//                    print(FlashCard(from: cards.first!))
-                }
         }
-        
     }
-    
 }

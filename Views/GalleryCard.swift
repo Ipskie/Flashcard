@@ -17,6 +17,7 @@ struct GalleryCard: View {
         VStack(spacing: .zero) {
             Text(card.contents[prompt, default: nil] ?? placeholder)
             Divider()
+                .padding([.leading, .trailing])
             Text(card.contents[answer, default: nil] ?? placeholder)
         }
         .background(CardBG())

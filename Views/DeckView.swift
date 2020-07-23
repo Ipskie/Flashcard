@@ -6,15 +6,13 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct DeckView: View {
     
-    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
+    var deck: Deck
+    
     @State private var prompt: FlashCard.Snippet
     @State private var answer: FlashCard.Snippet
-    
-    var deck: Deck
     
     init(deck: Deck) {
         self.deck = deck
@@ -24,6 +22,15 @@ struct DeckView: View {
     
     var body: some View {
         List {
+            Section(header: Text("Card Type: ")) {
+                NavigationLink(destination: SnippetPicker(deck: deck, prompt: $prompt, answer: $answer)) {
+                    HStack {
+                        Text(deck.promptType.name)
+                        Image(systemName: "arrow.right")
+                        Text(deck.answerType.name)
+                    }
+                }
+            }
             Section(header: Text("Practice")) {
                 NavigationLink(
                     "10 Pull",
@@ -33,30 +40,6 @@ struct DeckView: View {
             Section(header: Text("Deck Information")) {
                 NavigationLink("Cards", destination: CardGallery(deck: deck))
             }
-            Section(header: Text("Shown Prompt")) {
-                Picker("Shown Prompt", selection: $prompt) {
-                    ForEach(FlashCard.Snippet.allCases, id: \.self) {
-                        Text($0.name)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-            }
-            .onChange(of: prompt, perform: {
-                deck.promptType = $0
-                try! moc.save()
-            })
-            Section(header: Text("Hidden Answer")) {
-                Picker("Hidden Answer", selection: $answer) {
-                    ForEach(FlashCard.Snippet.allCases, id: \.self) {
-                        Text($0.name)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-            }
-            .onChange(of: answer, perform: {
-                deck.answerType = $0
-                try! moc.save()
-            })
         }
         .listStyle(GroupedListStyle())
         .navigationBarTitle(Text(deck._name))
