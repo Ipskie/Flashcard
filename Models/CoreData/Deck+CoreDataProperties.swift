@@ -16,11 +16,12 @@ extension Deck {
         return NSFetchRequest<Deck>(entityName: "Deck")
     }
 
-    @NSManaged public var prompt: Int16
-    @NSManaged public var answer: Int16
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
     @NSManaged public var cards: Set<Card>
+    @NSManaged public var tests: Set<Test>
+    /// the Object ID of the chosen test
+    @NSManaged public var testID: NSManagedObjectID
 
     /// transient property of flashcards derived from Core Data Cards
     var flashcards: [FlashCard] {
@@ -31,26 +32,20 @@ extension Deck {
         name ?? "Unknown Deck"
     }
     
-    /// which string the deck should use to prompt the user
-    /// defaults to hiragana
-    var promptType: Snippet {
-        get {
-            return Snippet(rawValue: Int(prompt)) ?? .romaji
-        }
-        set {
-            prompt = Int16(newValue.rawValue)
-        }
+    /// which strings the deck should use to prompt the user
+    func getPromptTypes(context: NSManagedObjectContext) -> [Snippet] {
+        (context.object(with: testID) as! Test)._prompts
+    }
+    func setPromptTypes(_ prompts: [Snippet], context: NSManagedObjectContext) -> Void {
+        (context.object(with: testID) as! Test)._prompts = prompts
     }
     
-    /// which string the deck should use as the answer
-    /// defaults to romaji
-    var answerType: Snippet {
-        get {
-            return Snippet(rawValue: Int(answer)) ?? .romaji
-        }
-        set {
-            answer = Int16(newValue.rawValue)
-        }
+    /// which strings the deck should use as the answer
+    func getAnswerTypes(context: NSManagedObjectContext) -> [Snippet] {
+        (context.object(with: testID) as! Test)._answers
+    }
+    func setAnswerTypes(_ answers: [Snippet], context: NSManagedObjectContext) -> Void {
+        (context.object(with: testID) as! Test)._answers = answers
     }
 }
 
