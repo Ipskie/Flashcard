@@ -23,11 +23,21 @@ extension Test {
     
     /// force unwrap stored enums
     var _prompts: [Snippet] {
-        prompts.map{Snippet(rawValue: $0)!}
+        get {
+            prompts.map{Snippet(rawValue: $0)!}
+        }
+        set {
+            prompts = newValue.map{$0.rawValue}
+        }
     }
     
     /// force unwrap stored enums
     var _answers: [Snippet] {
-        answers.map{Snippet(rawValue: $0)!}
+        get {
+            answers.map{Snippet(rawValue: $0)!}
+        }
+        set {
+            answers = newValue.map{$0.rawValue}
+        }
     }
 }
