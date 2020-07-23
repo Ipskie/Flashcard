@@ -45,7 +45,7 @@ struct DeckView: View {
                 NavigationLink("Cards", destination: CardGallery(deck: deck))
             }
         }
-        .listStyle(GroupedListStyle())
+        .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(Text(deck._name))
     }
 }

@@ -30,6 +30,7 @@ struct ContentView: View {
                             try! moc.save()
                         }
                 }
+                .listStyle(InsetGroupedListStyle())
                 .navigationTitle(Text("Decks"))
             }
             
