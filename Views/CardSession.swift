@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct CardSession: View {
     
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
     @State private var cards: [FlashCard]
     
@@ -47,12 +49,18 @@ struct CardSession: View {
         }
         .onChange(of: cards){
             guard $0.count == 0 else { return }
+            /// on exit, save changes to card history
+            try! moc.save()
             presentationMode.wrappedValue.dismiss()
         }
         .navigationBarHidden(true)
     }
     
     func remove(card: FlashCard, correct: Bool) -> Void {
+        /// fetch corresponding card from core data
+        var CDcard = moc.object(with: card.objID!) as! Card
+        CDcard.history?.append(correct ? "T" : "F")
+        
         withAnimation {
             let card = cards.remove(at: cards.firstIndex(where: {$0.id == card.id})!)
             if !correct {

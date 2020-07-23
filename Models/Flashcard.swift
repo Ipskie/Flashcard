@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 fileprivate struct RawCard: Decodable {
     var hiragana: String?
@@ -18,6 +19,7 @@ fileprivate struct RawCard: Decodable {
 
 struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
     var id = UUID()
+    var objID: NSManagedObjectID? = nil
     var contents: [Snippet: String?]
     var history: [Bool]
     var comfortable: Bool
@@ -63,6 +65,8 @@ struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
     }
     
     init(from card: Card){
+        /// copy the card's object ID so that we can update the object
+        objID = card.objectID
         contents = [.hiragana: card.hiragana,
                     .katakana: card.katakana,
                     .romaji: card.romaji,

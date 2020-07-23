@@ -19,6 +19,8 @@ struct GalleryCard: View {
             Divider()
                 .padding([.leading, .trailing])
             Text(card.contents[answer, default: nil] ?? placeholder)
+            Text("\(card.history.corrects) correct")
+            Text("\(card.history.wrongs) wrong")
         }
         .background(CardBG())
         .shadow(radius: 5)
