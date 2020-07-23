@@ -18,13 +18,11 @@ public class Test: NSManagedObject {
     }
     
     /// create a Core Data deck by unpacking it from a bundled JSON file
-    init(prompts: [Snippet], answers: [Snippet], context: NSManagedObjectContext) throws {
+    init(prompts: [Snippet], answers: [Snippet], context: NSManagedObjectContext) {
         super.init(entity: Test.entity(), insertInto: context)
         self.prompts = prompts.map{$0.rawValue}
         self.answers = answers.map{$0.rawValue}
-        
-        // TEST
-        history = [true, false, true, false]
+        history = [Bool]()
     }
     
 }
