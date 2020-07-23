@@ -35,10 +35,13 @@ public class Deck: NSManagedObject {
             _ = Card.init(context: context, flash: $0, deck: self)
         }
         
-        /// default prompt: hiragana
-        prompt = Int16(Snippet.hiragana.rawValue)
-        /// default answer: romaji
-        answer = Int16(Snippet.romaji.rawValue)
+        #warning("should make tests based on decoded types!")
+        let test = Test(
+            prompts: [Snippet.hiragana],
+            answers: [Snippet.romaji],
+            context: context
+        )
+        self.testID = test.objectID
     }
     
     /// return the types of snippet this deck contains (e.g. it's cards might be only Hiragana & English)
