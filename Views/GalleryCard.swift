@@ -10,8 +10,8 @@ import SwiftUI
 struct GalleryCard: View {
     
     var card: FlashCard
-    var prompt: FlashCard.Snippet
-    var answer: FlashCard.Snippet
+    var prompt: Snippet
+    var answer: Snippet
     
     var body: some View {
         VStack(spacing: .zero) {

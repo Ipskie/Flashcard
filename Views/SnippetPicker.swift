@@ -13,14 +13,14 @@ struct SnippetPicker: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     
     var deck: Deck
-    @Binding var prompt: FlashCard.Snippet
-    @Binding var answer: FlashCard.Snippet
+    @Binding var prompt: Snippet
+    @Binding var answer: Snippet
     
     var body: some View {
         List {
             Section(header: Text("Shown Prompt")) {
                 Picker("Shown Prompt", selection: $prompt) {
-                    ForEach(FlashCard.Snippet.allCases, id: \.self) {
+                    ForEach(Snippet.allCases, id: \.self) {
                         Text($0.name)
                     }
                 }
@@ -32,7 +32,7 @@ struct SnippetPicker: View {
             })
             Section(header: Text("Hidden Answer")) {
                 Picker("Hidden Answer", selection: $answer) {
-                    ForEach(FlashCard.Snippet.allCases, id: \.self) {
+                    ForEach(Snippet.allCases, id: \.self) {
                         Text($0.name)
                     }
                 }

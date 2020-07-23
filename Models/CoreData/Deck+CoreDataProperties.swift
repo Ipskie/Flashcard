@@ -33,9 +33,9 @@ extension Deck {
     
     /// which string the deck should use to prompt the user
     /// defaults to hiragana
-    var promptType: FlashCard.Snippet {
+    var promptType: Snippet {
         get {
-            return FlashCard.Snippet(rawValue: Int(prompt)) ?? .romaji
+            return Snippet(rawValue: Int(prompt)) ?? .romaji
         }
         set {
             prompt = Int16(newValue.rawValue)
@@ -44,9 +44,9 @@ extension Deck {
     
     /// which string the deck should use as the answer
     /// defaults to romaji
-    var answerType: FlashCard.Snippet {
+    var answerType: Snippet {
         get {
-            return FlashCard.Snippet(rawValue: Int(answer)) ?? .romaji
+            return Snippet(rawValue: Int(answer)) ?? .romaji
         }
         set {
             answer = Int16(newValue.rawValue)

@@ -7,26 +7,23 @@
 
 import Foundation
 
-extension FlashCard {
+/// snippets of content that could be displayed on a flashcard
+enum Snippet: Int, CaseIterable {
+    /// NOTE: Order of appearance below should match ordering in menus etc.
+    case hiragana = 0
+    case romaji
+    case kanji
+    case katakana
+    case english
     
-    /// snippets of content that could be displayed on a flashcard
-    enum Snippet: Int, CaseIterable {
-        /// NOTE: Order of appearance below should match ordering in menus etc.
-        case hiragana = 0
-        case romaji
-        case kanji
-        case katakana
-        case english
-        
-        /// return the name of the content type
-        var name: String {
-            switch self {
-            case .hiragana: return "Hiragana"
-            case .romaji: return "Romaji"
-            case .kanji: return "Kanji"
-            case .english: return "English"
-            case .katakana: return "Katakana"
-            }
+    /// return the name of the content type
+    var name: String {
+        switch self {
+        case .hiragana: return "Hiragana"
+        case .romaji: return "Romaji"
+        case .kanji: return "Kanji"
+        case .english: return "English"
+        case .katakana: return "Katakana"
         }
     }
 }

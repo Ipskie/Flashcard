@@ -11,8 +11,8 @@ struct DeckView: View {
     
     var deck: Deck
     
-    @State private var prompt: FlashCard.Snippet
-    @State private var answer: FlashCard.Snippet
+    @State private var prompt: Snippet
+    @State private var answer: Snippet
     
     init(deck: Deck) {
         self.deck = deck

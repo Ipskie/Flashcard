@@ -22,8 +22,8 @@ struct CardView: View {
     
     init(
         card: FlashCard,
-        prompt: FlashCard.Snippet,
-        answer: FlashCard.Snippet,
+        prompt: Snippet,
+        answer: Snippet,
         removal: ((FlashCard, Bool) -> Void)? = nil
     ) {
         self.card = card

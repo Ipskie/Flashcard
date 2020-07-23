@@ -36,15 +36,15 @@ public class Deck: NSManagedObject {
         }
         
         /// default prompt: hiragana
-        prompt = Int16(FlashCard.Snippet.hiragana.rawValue)
+        prompt = Int16(Snippet.hiragana.rawValue)
         /// default answer: romaji
-        answer = Int16(FlashCard.Snippet.romaji.rawValue)
+        answer = Int16(Snippet.romaji.rawValue)
     }
     
     /// return the types of snippet this deck contains (e.g. it's cards might be only Hiragana & English)
-    var snippetTypes: [FlashCard.Snippet] {
+    var snippetTypes: [Snippet] {
         let cards = flashcards /// request computed property only once
-        return FlashCard.Snippet.allCases.filter({ type in
+        return Snippet.allCases.filter({ type in
             cards.contains(where: {
                 $0.contents[type] != nil
             })
