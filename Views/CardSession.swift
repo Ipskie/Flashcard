@@ -58,7 +58,7 @@ struct CardSession: View {
     
     func remove(card: FlashCard, correct: Bool) -> Void {
         /// fetch corresponding card from core data
-        var CDcard = moc.object(with: card.objID!) as! Card
+        let CDcard = moc.object(with: card.objID!) as! Card
         CDcard.history?.append(correct ? "T" : "F")
         
         withAnimation {
