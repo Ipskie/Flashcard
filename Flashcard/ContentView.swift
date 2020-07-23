@@ -23,16 +23,19 @@ struct ContentView: View {
                         deck._name,
                         destination: DeckView(deck: deck)
                     )
-                    Text("Testing Button")
-                        .onTapGesture {
-                            let deck = try! Deck(filename: "Characters.json", context: moc)
-                            print(deck)
-                            try! moc.save()
-                        }
+                    
                 }
                 .listStyle(InsetGroupedListStyle())
                 .navigationTitle(Text("Decks"))
             }
+            Text("Testing Button")
+                .onTapGesture {
+//                    let deck = try! Deck(filename: "Characters.json", context: moc)
+//                    print(deck)
+                    let test = try! Test(prompts: [.english, .romaji], answers: [.kanji], context: moc)
+                    print(test)
+                    try! moc.save()
+                }
         }
     }
 }

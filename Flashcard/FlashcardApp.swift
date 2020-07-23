@@ -14,6 +14,8 @@ struct FlashcardApp: App {
     var persistentContainer: NSPersistentContainer
 
     init() {
+        ValueTransformer.setValueTransformer(SnippetTransformer(), forName: .snippetTransformerName)
+        
         let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores { description, error in
             if let error = error { fatalError("\(error)") }

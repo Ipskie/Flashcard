@@ -4,7 +4,6 @@
         <attribute name="comfortable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="english" optional="YES" attributeType="String"/>
         <attribute name="hiragana" optional="YES" attributeType="String"/>
-        <attribute name="history" optional="YES" attributeType="String" valueTransformerName="BoolTransformer" maxValueString="50" customClassName="[Bool]"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="kanji" optional="YES" attributeType="String"/>
         <attribute name="katakana" optional="YES" attributeType="String"/>
@@ -22,14 +21,22 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="prompt" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="deck" inverseEntity="Card"/>
+        <relationship name="tests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Test" inverseName="deck" inverseEntity="Test"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="Test" representedClassName="Test" syncable="YES">
+        <attribute name="answers" attributeType="Transformable" valueTransformerName="SnippetTransformer" customClassName="[Snippet]"/>
+        <attribute name="history" optional="YES" attributeType="String"/>
+        <attribute name="prompts" attributeType="Transformable" valueTransformerName="SnippetTransformer" customClassName="[Snippet]"/>
+        <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="tests" inverseEntity="Deck"/>
+    </entity>
     <elements>
-        <element name="Card" positionX="-63" positionY="-18" width="128" height="178"/>
-        <element name="Deck" positionX="-54" positionY="45" width="128" height="118"/>
+        <element name="Card" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="Deck" positionX="-423.08984375" positionY="210.640625" width="128" height="133"/>
+        <element name="Test" positionX="-37.60546875" positionY="352.4609375" width="128" height="103"/>
     </elements>
 </model>

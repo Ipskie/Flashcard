@@ -16,7 +16,7 @@ enum Snippet: Int, CaseIterable {
     case katakana
     case english
     
-    /// return the name of the content type
+    /// return the name of the snippet type
     var name: String {
         switch self {
         case .hiragana: return "Hiragana"
@@ -27,3 +27,4 @@ enum Snippet: Int, CaseIterable {
         }
     }
 }
+
