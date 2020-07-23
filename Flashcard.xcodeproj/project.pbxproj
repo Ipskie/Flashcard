@@ -137,11 +137,19 @@
 			children = (
 				22B6FAED24C4C18600DA4217 /* Flashcard.swift */,
 				220A6FA224C8D89000132B9C /* Snippet.swift */,
-				22ABF3BB24C9FAF90040CE0A /* SnippetTransformer.swift */,
-				22ABF3C124CA09030040CE0A /* HistoryTransformer.swift */,
+				22ABF3C324CA11B40040CE0A /* Transformers */,
 				221D16FB24C533E600C989FE /* CoreData */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		22ABF3C324CA11B40040CE0A /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				22ABF3BB24C9FAF90040CE0A /* SnippetTransformer.swift */,
+				22ABF3C124CA09030040CE0A /* HistoryTransformer.swift */,
+			);
+			path = Transformers;
 			sourceTree = "<group>";
 		};
 		22B6FAB624C4A19B00DA4217 = {

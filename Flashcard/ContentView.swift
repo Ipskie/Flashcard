@@ -32,7 +32,7 @@ struct ContentView: View {
                 .onTapGesture {
                     let req = NSFetchRequest<NSManagedObject>(entityName: "Test")
                     let result = try! moc.fetch(req) as! [Test]
-                    print(result.first?.prompts)
+                    print(result.first?.history)
 //                    let deck = try! Deck(filename: "Characters.json", context: moc)
 //                    print(deck)
                     let test = try! Test(prompts: [.english, .romaji], answers: [.kanji], context: moc)
