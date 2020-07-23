@@ -49,6 +49,7 @@ struct CardSession: View {
             guard $0.count == 0 else { return }
             presentationMode.wrappedValue.dismiss()
         }
+        .navigationBarHidden(true)
     }
     
     func remove(card: FlashCard, correct: Bool) -> Void {
