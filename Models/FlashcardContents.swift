@@ -19,7 +19,7 @@ extension FlashCard {
         case english
         
         /// return the name of the content type
-        func name() -> String {
+        var name: String {
             switch self {
             case .hiragana: return "Hiragana"
             case .romaji: return "Romaji"
