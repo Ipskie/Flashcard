@@ -91,4 +91,9 @@ struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
             comfortable: comfortable
         )
     }
+    
+    /// shorthand for getting text of a particular type
+    func snippet(_ type: Snippet) -> String? {
+        return contents[type, default: nil]
+    }
 }
