@@ -11,7 +11,17 @@ struct CardGallery: View {
     
     var deck: Deck
     
+    @Environment(\.managedObjectContext) var moc
+    private var promptTypes = [Snippet]()
+    private var answerTypes = [Snippet]()
+    
     let columns = [GridItem(.adaptive(minimum: 80))]
+    
+    init(deck: Deck) {
+        self.deck = deck
+        promptTypes = deck.getPromptTypes(context: moc)
+        answerTypes = deck.getAnswerTypes(context: moc)
+    }
     
     var body: some View {
         ScrollView {
@@ -19,8 +29,8 @@ struct CardGallery: View {
                 ForEach(deck.cards.sortedBy(.romaji), id: \.id) { card in
                     GalleryCard(
                         card: FlashCard(from: card),
-                        prompt: deck.promptType,
-                        answer: deck.answerType
+                        promptTypes: promptTypes,
+                        answerTypes: answerTypes
                     )
                 }
             }

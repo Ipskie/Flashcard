@@ -23,6 +23,9 @@ struct CardSession: View {
     var deck: Deck
     var sessionType: SessionType
     
+    private var promptTypes = [Snippet]()
+    private var answerTypes = [Snippet]()
+    
     init(deck: Deck, sessionType: SessionType) {
         self.deck = deck
         self.sessionType = sessionType
@@ -30,6 +33,8 @@ struct CardSession: View {
         
         /// NOTE: this direct binding was undocumented and hacky. Only here because this view does NOT need to update the parent.
         _cards = State(initialValue: deck.flashcards)
+        promptTypes = deck.getPromptTypes(context: moc)
+        answerTypes = deck.getAnswerTypes(context: moc)
     }
     
     var body: some View {
@@ -37,8 +42,8 @@ struct CardSession: View {
             ForEach(cards, id: \.id) { card in
                 CardView(
                     card: card,
-                    prompt: deck.promptType,
-                    answer: deck.answerType,
+                    promptTypes: promptTypes,
+                    answerTypes: answerTypes,
                     removal: remove
                 )
                     .stacked(

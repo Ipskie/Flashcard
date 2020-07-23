@@ -10,24 +10,28 @@ import SwiftUI
 struct DeckView: View {
     
     var deck: Deck
-    
-    @State private var prompt: Snippet
-    @State private var answer: Snippet
+    @Environment(\.managedObjectContext) var moc
+    @State private var promptTypes = [Snippet]()
+    @State private var answerTypes = [Snippet]()
     
     init(deck: Deck) {
         self.deck = deck
-        self._prompt = State(initialValue: deck.promptType)
-        self._answer = State(initialValue: deck.answerType)
+        self._promptTypes = State(initialValue: deck.getPromptTypes(context: moc))
+        self._answerTypes = State(initialValue: deck.getAnswerTypes(context: moc))
     }
     
     var body: some View {
         List {
             Section(header: Text("Card Type: ")) {
-                NavigationLink(destination: SnippetPicker(deck: deck, prompt: $prompt, answer: $answer)) {
+                NavigationLink(destination: SnippetPicker(deck: deck, promptTypes: $promptTypes, answerTypes: $answerTypes)) {
                     HStack {
-                        Text(deck.promptType.name)
+                        ForEach(promptTypes, id: \.self) { type in
+                            Text(type.name)
+                        }
                         Image(systemName: "arrow.right")
-                        Text(deck.answerType.name)
+                        ForEach(answerTypes, id: \.self) { type in
+                            Text(type.name)
+                        }
                     }
                 }
             }

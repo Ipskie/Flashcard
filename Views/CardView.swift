@@ -16,22 +16,9 @@ struct CardView: View {
     @State private var offset = CGSize.zero
     
     var card: FlashCard
-    var prompt: String?
-    var answer: String?
+    var promptTypes: [Snippet]
+    var answerTypes: [Snippet]
     var removal: ((FlashCard, Bool) -> Void)? = nil
-    
-    init(
-        card: FlashCard,
-        prompt: Snippet,
-        answer: Snippet,
-        removal: ((FlashCard, Bool) -> Void)? = nil
-    ) {
-        self.card = card
-        self.removal = removal
-        self.prompt = card.contents[prompt, default: nil]
-        self.answer = card.contents[answer, default: nil]
-    }
-    
     
     var body: some View {
         GeometryReader { geo in
@@ -67,11 +54,11 @@ struct CardView: View {
     
     func VCard(geo: GeometryProxy) -> some View {
         VStack(spacing: .zero) {
-            PromptText
+            Prompt
                 .frame(maxHeight: geo.size.height / 2)
             Divider()
                 .padding([.leading, .trailing])
-            AnswerText
+            Answer
                 .frame(maxHeight: geo.size.height / 2)
                 .blur(radius: showAnswer ? .zero : 10)
         }
@@ -79,25 +66,33 @@ struct CardView: View {
     
     func HCard(geo: GeometryProxy) -> some View {
         HStack(spacing: .zero) {
-            PromptText
+            Prompt
                 .frame(maxWidth: geo.size.width / 2)
             Divider()
                 .padding([.top, .bottom])
-            AnswerText
+            Answer
                 .frame(maxWidth: geo.size.width / 2)
                 .blur(radius: showAnswer ? .zero : 10)
         }
     }
     
-    var PromptText: Text {
-        Text(prompt ?? placeholder)
-            .foregroundColor((answer == nil) ? Color(UIColor.placeholderText) : .primary)
-            .font(.title)
+    var Prompt: some View {
+        VStack {
+            ForEach(promptTypes, id: \.self) { type in
+                return Text(card.snippet(type) ?? placeholder)
+                    .foregroundColor((card.snippet(type) == nil) ? Color(UIColor.placeholderText) : .primary)
+                    .font(.title)
+            }
+        }
     }
     
-    var AnswerText: Text {
-        Text(answer ?? placeholder)
-            .foregroundColor((answer == nil) ? Color(UIColor.placeholderText) : .primary)
-            .font(.title)
+    var Answer: some View {
+        VStack {
+            ForEach(answerTypes, id: \.self) { type in
+                return Text(card.snippet(type) ?? placeholder)
+                    .foregroundColor((card.snippet(type) == nil) ? Color(UIColor.placeholderText) : .primary)
+                    .font(.title)
+            }
+        }
     }
 }
