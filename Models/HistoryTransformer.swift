@@ -1,5 +1,5 @@
 //
-//  SnippetTransformer.swift
+//  HistoryTransformer.swift
 //  Flashcard
 //
 //  Created by Secret Asian Man Dev on 23/7/20.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SnippetTransformer: ValueTransformer {
+class HistoryTransformer: ValueTransformer {
     /// archive as Data
     override func transformedValue(_ value: Any?) -> Any? {
         try! NSKeyedArchiver.archivedData(withRootObject: value!, requiringSecureCoding: true)
@@ -19,10 +19,10 @@ class SnippetTransformer: ValueTransformer {
     }
     
     override func reverseTransformedValue(_ value: Any?) -> Any? {
-        return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(value as! Data) as? [Int]
+        return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(value as! Data) as? [Bool]
     }
 }
 
 extension NSValueTransformerName {
-    static let snippetTransformerName = NSValueTransformerName(rawValue: "SnippetTransformer")
+    static let historyTransformerName = NSValueTransformerName(rawValue: "HistoryTransformer")
 }

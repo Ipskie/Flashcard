@@ -30,11 +30,17 @@ struct ContentView: View {
             }
             Text("Testing Button")
                 .onTapGesture {
+                    let req = NSFetchRequest<NSManagedObject>(entityName: "Test")
+                    let result = try! moc.fetch(req) as! [Test]
+                    print(result.first?.prompts)
 //                    let deck = try! Deck(filename: "Characters.json", context: moc)
 //                    print(deck)
                     let test = try! Test(prompts: [.english, .romaji], answers: [.kanji], context: moc)
-                    print(test)
+                    let id = test.objectID
                     try! moc.save()
+                    let _test = moc.object(with: id) as! Test
+                    
+                    print(_test.prompts)
                 }
         }
     }

@@ -23,6 +23,7 @@
 		22ABF3BC24C9FAF90040CE0A /* SnippetTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABF3BB24C9FAF90040CE0A /* SnippetTransformer.swift */; };
 		22ABF3BF24C9FF4F0040CE0A /* Test+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABF3BD24C9FF4E0040CE0A /* Test+CoreDataClass.swift */; };
 		22ABF3C024C9FF4F0040CE0A /* Test+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABF3BE24C9FF4E0040CE0A /* Test+CoreDataProperties.swift */; };
+		22ABF3C224CA09030040CE0A /* HistoryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABF3C124CA09030040CE0A /* HistoryTransformer.swift */; };
 		22B6FAC324C4A19B00DA4217 /* FlashcardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAC224C4A19B00DA4217 /* FlashcardApp.swift */; };
 		22B6FAC524C4A19B00DA4217 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAC424C4A19B00DA4217 /* ContentView.swift */; };
 		22B6FAC724C4A19D00DA4217 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22B6FAC624C4A19D00DA4217 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		22ABF3BB24C9FAF90040CE0A /* SnippetTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetTransformer.swift; sourceTree = "<group>"; };
 		22ABF3BD24C9FF4E0040CE0A /* Test+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test+CoreDataClass.swift"; sourceTree = "<group>"; };
 		22ABF3BE24C9FF4E0040CE0A /* Test+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		22ABF3C124CA09030040CE0A /* HistoryTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTransformer.swift; sourceTree = "<group>"; };
 		22B6FABF24C4A19B00DA4217 /* Flashcard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashcard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22B6FAC224C4A19B00DA4217 /* FlashcardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashcardApp.swift; sourceTree = "<group>"; };
 		22B6FAC424C4A19B00DA4217 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				22B6FAED24C4C18600DA4217 /* Flashcard.swift */,
 				220A6FA224C8D89000132B9C /* Snippet.swift */,
 				22ABF3BB24C9FAF90040CE0A /* SnippetTransformer.swift */,
+				22ABF3C124CA09030040CE0A /* HistoryTransformer.swift */,
 				221D16FB24C533E600C989FE /* CoreData */,
 			);
 			path = Models;
@@ -370,6 +373,7 @@
 				221D16FA24C533BE00C989FE /* Card+CoreDataProperties.swift in Sources */,
 				22ABF3B824C9E2A40040CE0A /* SnippetPicker.swift in Sources */,
 				220A6FA324C8D89000132B9C /* Snippet.swift in Sources */,
+				22ABF3C224CA09030040CE0A /* HistoryTransformer.swift in Sources */,
 				22B6FAF024C4C1C200DA4217 /* CardView.swift in Sources */,
 				221D16FD24C5473200C989FE /* BoolTransformer.swift in Sources */,
 				22B6FAC324C4A19B00DA4217 /* FlashcardApp.swift in Sources */,

@@ -18,7 +18,16 @@ extension Test {
 
     @NSManaged var prompts: [Int]
     @NSManaged var answers: [Int]
-    @NSManaged var history: String?
+    @NSManaged var history: [Bool]
     @NSManaged var deck: Deck?
-
+    
+    /// force unwrap stored enums
+    var _prompts: [Snippet] {
+        prompts.map{Snippet(rawValue: $0)!}
+    }
+    
+    /// force unwrap stored enums
+    var _answers: [Snippet] {
+        answers.map{Snippet(rawValue: $0)!}
+    }
 }

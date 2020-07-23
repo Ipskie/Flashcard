@@ -15,6 +15,7 @@ struct FlashcardApp: App {
 
     init() {
         ValueTransformer.setValueTransformer(SnippetTransformer(), forName: .snippetTransformerName)
+        ValueTransformer.setValueTransformer(HistoryTransformer(), forName: .historyTransformerName)
         
         let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores { description, error in

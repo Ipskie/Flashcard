@@ -8,7 +8,7 @@
 import Foundation
 
 /// snippets of content that could be displayed on a flashcard
-enum Snippet: Int, CaseIterable {
+@objc enum Snippet: Int, CaseIterable {
     /// NOTE: Order of appearance below should match ordering in menus etc.
     case hiragana = 0
     case romaji
