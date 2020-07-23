@@ -10,15 +10,19 @@ import SwiftUI
 struct GalleryCard: View {
     
     var card: FlashCard
-    var prompt: Snippet
-    var answer: Snippet
+    var promptTypes: [Snippet]
+    var answerTypes: [Snippet]
     
     var body: some View {
         VStack(spacing: .zero) {
-            Text(card.contents[prompt, default: nil] ?? placeholder)
+            ForEach(promptTypes, id: \.self) { prompt in
+                Text(card.contents[prompt, default: nil] ?? placeholder)
+            }
             Divider()
                 .padding([.leading, .trailing])
-            Text(card.contents[answer, default: nil] ?? placeholder)
+            ForEach(answerTypes, id: \.self) { answer in
+                Text(card.contents[answer, default: nil] ?? placeholder)
+            }
             Text("\(card.history.corrects) correct")
             Text("\(card.history.wrongs) wrong")
         }
