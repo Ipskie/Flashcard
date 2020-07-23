@@ -22,6 +22,9 @@ public class Test: NSManagedObject {
         super.init(entity: Test.entity(), insertInto: context)
         self.prompts = prompts.map{$0.rawValue}
         self.answers = answers.map{$0.rawValue}
+        
+        // TEST
+        history = [true, false, true, false]
     }
     
 }
