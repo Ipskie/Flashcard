@@ -34,13 +34,23 @@ extension Deck {
     /// which string the deck should use to prompt the user
     /// defaults to hiragana
     var promptType: FlashCard.Snippet {
-        return FlashCard.Snippet(rawValue: Int(prompt)) ?? .hiragana
+        get {
+            return FlashCard.Snippet(rawValue: Int(prompt)) ?? .romaji
+        }
+        set {
+            prompt = Int16(newValue.rawValue)
+        }
     }
     
     /// which string the deck should use as the answer
     /// defaults to romaji
     var answerType: FlashCard.Snippet {
-        return FlashCard.Snippet(rawValue: Int(prompt)) ?? .romaji
+        get {
+            return FlashCard.Snippet(rawValue: Int(answer)) ?? .romaji
+        }
+        set {
+            answer = Int16(newValue.rawValue)
+        }
     }
 }
 
