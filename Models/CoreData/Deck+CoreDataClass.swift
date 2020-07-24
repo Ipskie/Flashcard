@@ -41,7 +41,9 @@ public class Deck: NSManagedObject {
             answers: [Snippet.romaji],
             context: context
         )
-        self.testID = test.objectID
+        /// need to save here so that test's ID is permanent, not temporary
+        try! context.save()
+        self.testID = test.objectID.uriRepresentation()
     }
     
     /// return the types of snippet this deck contains (e.g. it's cards might be only Hiragana & English)
