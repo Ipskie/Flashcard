@@ -29,7 +29,6 @@ public class Card: NSManagedObject {
         kanji = flash.contents[.kanji, default: nil]
         english = flash.contents[.english, default: nil]
         
-        history = flash.history.toString()
         comfortable = flash.comfortable
         self.deck = deck
     }

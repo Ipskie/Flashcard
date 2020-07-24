@@ -21,7 +21,6 @@ struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
     var id = UUID()
     var objID: NSManagedObjectID? = nil
     var contents: [Snippet: String?]
-    var history: [Bool]
     var comfortable: Bool
     
     static let example = FlashCard(
@@ -30,7 +29,6 @@ struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
         romaji: "Romaji",
         kanji: "日本語",
         english: "English",
-        history: [],
         comfortable: false
     )
     
@@ -40,7 +38,6 @@ struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
         romaji: String?,
         kanji: String?,
         english: String?,
-        history: [Bool],
         comfortable: Bool
     ) {
         contents = [.hiragana: hiragana,
@@ -48,7 +45,6 @@ struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
                     .romaji: romaji,
                     .kanji: kanji,
                     .english: english]
-        self.history = history
         self.comfortable = comfortable
     }
     
@@ -60,7 +56,6 @@ struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
                     .romaji: rawCard.romaji,
                     .kanji: rawCard.kanji,
                     .english: rawCard.english]
-        history = []
         comfortable = false /// when decoding new deck, default to not comfortable
     }
     
@@ -72,7 +67,6 @@ struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
                     .romaji: card.romaji,
                     .kanji: card.kanji,
                     .english: card.english]
-        history = [Bool](from: card.history ?? "")
         comfortable = card.comfortable
     }
     
@@ -87,7 +81,6 @@ struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
             romaji: contents[.romaji, default: nil],
             kanji: contents[.kanji, default: nil],
             english: contents[.english, default: nil],
-            history: [],
             comfortable: comfortable
         )
     }

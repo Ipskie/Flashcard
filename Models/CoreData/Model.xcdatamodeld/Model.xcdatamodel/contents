@@ -29,7 +29,7 @@
     </entity>
     <entity name="Test" representedClassName="Test" syncable="YES">
         <attribute name="answers" attributeType="Transformable" valueTransformerName="SnippetTransformer"/>
-        <attribute name="history" attributeType="Transformable" valueTransformerName="HistoryTransformer"/>
+        <attribute name="history" attributeType="Transformable" valueTransformerName="HistoryTransformer" customClassName="[NSManagedObectID:[Bool]]"/>
         <attribute name="prompts" attributeType="Transformable" valueTransformerName="SnippetTransformer"/>
         <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="tests" inverseEntity="Deck"/>
     </entity>
