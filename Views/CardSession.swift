@@ -63,8 +63,12 @@ struct CardSession: View {
     
     func remove(card: FlashCard, correct: Bool) -> Void {
         /// fetch corresponding card from core data
-        let CDcard = moc.object(with: card.objID!) as! Card
-        CDcard.history?.append(correct ? "T" : "F")
+        let test = deck.getChosenTest(context: moc)
+        if test.history[card.objID!] != nil {
+            test.history[card.objID!]!.append(correct)
+        } else {
+            test.history[card.objID!] = [correct]
+        }
         
         withAnimation {
             let card = cards.remove(at: cards.firstIndex(where: {$0.id == card.id})!)

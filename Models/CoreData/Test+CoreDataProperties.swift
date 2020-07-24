@@ -18,7 +18,7 @@ extension Test {
 
     @NSManaged var prompts: [Int]
     @NSManaged var answers: [Int]
-    @NSManaged var history: [Bool]
+    @NSManaged var history: [NSManagedObjectID:[Bool]]
     @NSManaged var deck: Deck?
     
     /// force unwrap stored enums

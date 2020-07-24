@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 class HistoryTransformer: ValueTransformer {
     /// archive as Data
@@ -19,7 +20,7 @@ class HistoryTransformer: ValueTransformer {
     }
     
     override func reverseTransformedValue(_ value: Any?) -> Any? {
-        return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(value as! Data) as? [Bool]
+        return try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(value as! Data) as? [NSManagedObjectID:[Bool]]
     }
 }
 
