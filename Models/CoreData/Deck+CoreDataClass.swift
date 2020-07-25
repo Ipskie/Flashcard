@@ -18,4 +18,12 @@ public class Deck: NSManagedObject {
     private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
     }
+    
+    init(moc: NSManagedObjectContext) {
+        super.init(entity: Deck.entity(), insertInto: moc)
+        id = UUID()
+        name = "placeholder name"; #warning("placeholder")
+        cards = []
+        tests = []
+    }
 }
