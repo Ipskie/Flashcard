@@ -24,6 +24,17 @@ public class Test: NSManagedObject {
         self.id = UUID()
         self.prompts = prompts.map{$0.rawValue}
         self.answers = answers.map{$0.rawValue}
+        
+        /// initializes with no history
         self.history = []
+    }
+    
+    /// initialize a simple Test, defaulting to Hiragana -> Romaji
+    convenience init (moc: NSManagedObjectContext) {
+        self.init(
+            moc: moc,
+            prompts: [.hiragana],
+            answers: [.romaji]
+        )
     }
 }

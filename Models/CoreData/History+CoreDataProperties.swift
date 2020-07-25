@@ -16,7 +16,8 @@ extension History {
         return NSFetchRequest<History>(entityName: "History")
     }
 
-    @NSManaged public var history: NSObject?
+    @NSManaged public var history: Bool
+    @NSManaged public var date: Date
     @NSManaged public var test: Test?
     @NSManaged public var card: Card?
 

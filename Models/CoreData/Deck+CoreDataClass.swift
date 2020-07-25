@@ -19,11 +19,11 @@ public class Deck: NSManagedObject {
         super.init(entity: entity, insertInto: context)
     }
     
-    init(moc: NSManagedObjectContext) {
+    init(moc: NSManagedObjectContext, name: String, cards: Set<Card>, tests: Set<Test>) {
         super.init(entity: Deck.entity(), insertInto: moc)
-        id = UUID()
-        name = "placeholder name"; #warning("placeholder")
-        cards = []
-        tests = []
+        self.id = UUID()
+        self.name = name
+        self.cards = cards as NSSet
+        self.tests = tests as NSSet
     }
 }
