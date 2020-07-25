@@ -25,15 +25,10 @@ struct DeckView: View {
         List {
             Section(header: Text("Card Type: ")) {
                 NavigationLink(destination: SnippetPicker(deck: deck)) {
-                    HStack {
-                        ForEach(prompts, id: \.self) { type in
-                            Text(type.name)
-                        }
-                        Image(systemName: "arrow.right")
-                        ForEach(answers, id: \.self) { type in
-                            Text(type.name)
-                        }
-                    }
+                    Text(prompts.map{$0.name}.joined(separator: " + ")
+                         + " ➜ "
+                         + answers.map{$0.name}.joined(separator: " + ")
+                    )
                 }
             }
             Section(header: Text("Practice")) {
