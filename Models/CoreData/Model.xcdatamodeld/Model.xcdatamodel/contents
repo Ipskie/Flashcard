@@ -19,7 +19,7 @@
     <entity name="Deck" representedClassName="Deck" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="testID" optional="YES" attributeType="URI"/>
+        <attribute name="testID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="deck" inverseEntity="Card"/>
         <relationship name="tests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Test" inverseName="deck" inverseEntity="Test"/>
         <uniquenessConstraints>
