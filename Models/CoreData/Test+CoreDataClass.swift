@@ -33,8 +33,8 @@ public class Test: NSManagedObject {
     convenience init (moc: NSManagedObjectContext) {
         self.init(
             moc: moc,
-            prompts: [.hiragana],
-            answers: [.romaji]
+            prompts: defaultPrompt,
+            answers: defaultAnswer
         )
     }
 }
