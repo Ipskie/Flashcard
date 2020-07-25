@@ -11,5 +11,12 @@ import CoreData
 
 @objc(History)
 public class History: NSManagedObject {
+    
+    static let entityName = "History" /// for making entity calls
+    
+    @objc
+    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
 
 }

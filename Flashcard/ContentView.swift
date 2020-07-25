@@ -39,11 +39,14 @@ struct ContentView: View {
     }
 }
 
+/// for testing my data layer
 struct TestView: View {
     var body: some View {
         Text("TEST")
             .onTapGesture {
-                print("tested")
+                /// create and save a new deck from JSON
+                
+                /// store and retrieve card histories for specific tests
             }
     }
 }

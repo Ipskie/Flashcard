@@ -11,5 +11,12 @@ import CoreData
 
 @objc(Test)
 public class Test: NSManagedObject {
+    
+    static let entityName = "Test" /// for making entity calls
+    
+    @objc
+    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
 
 }

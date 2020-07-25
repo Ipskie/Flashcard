@@ -11,5 +11,11 @@ import CoreData
 
 @objc(Deck)
 public class Deck: NSManagedObject {
-
+    
+    static let entityName = "Deck" /// for making entity calls
+    
+    @objc
+    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
 }

@@ -11,5 +11,12 @@ import CoreData
 
 @objc(Card)
 public class Card: NSManagedObject {
+    
+    static let entityName = "Card" /// for making entity calls
+    
+    @objc
+    private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+    }
 
 }
