@@ -18,7 +18,7 @@ extension Deck {
 
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
-    @NSManaged public var testID: URL?
+    @NSManaged public var testID: UUID?
     @NSManaged public var cards: NSSet?
     @NSManaged public var tests: NSSet?
 
