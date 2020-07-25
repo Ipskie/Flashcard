@@ -19,4 +19,33 @@ public class Card: NSManagedObject {
         super.init(entity: entity, insertInto: context)
     }
 
+    init(moc: NSManagedObjectContext, contents: [Snippet: String], deck: Deck) {
+        super.init(entity: Card.entity(), insertInto: moc)
+        id = UUID()
+        
+        /// initialize with un-comfortable and no history
+        history = []
+        comfortable = false
+        
+        english = contents[.english]
+        romaji = contents[.romaji]
+        kanji = contents[.kanji]
+        hiragana = contents[.hiragana]
+        katakana = contents[.katakana]
+    }
+    
+    init(from flash: FlashCard, moc: NSManagedObjectContext) {
+        super.init(entity: Card.entity(), insertInto: moc)
+        id = UUID()
+        
+        /// initialize with un-comfortable and no history
+        history = []
+        comfortable = false
+        
+        english = flash.contents[.english] ?? nil
+        romaji = flash.contents[.romaji] ?? nil
+        kanji = flash.contents[.kanji] ?? nil
+        hiragana = flash.contents[.hiragana] ?? nil
+        katakana = flash.contents[.katakana] ?? nil
+    }
 }

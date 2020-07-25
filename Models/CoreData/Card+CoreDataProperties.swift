@@ -17,12 +17,14 @@ extension Card {
     }
 
     @NSManaged public var comfortable: Bool
+    
     @NSManaged public var english: String?
     @NSManaged public var hiragana: String?
-    @NSManaged public var id: UUID?
     @NSManaged public var kanji: String?
     @NSManaged public var katakana: String?
     @NSManaged public var romaji: String?
+    
+    @NSManaged public var id: UUID?
     @NSManaged public var deck: Deck?
     @NSManaged public var history: NSSet?
 
