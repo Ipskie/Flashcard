@@ -16,8 +16,8 @@ struct CardView: View {
     @State private var offset = CGSize.zero
     
     var card: FlashCard
-    var promptTypes: [Snippet]
-    var answerTypes: [Snippet]
+    var prompts: [Snippet]
+    var answers: [Snippet]
     var removal: ((FlashCard, Bool) -> Void)? = nil
     
     var body: some View {
@@ -54,11 +54,11 @@ struct CardView: View {
     
     func VCard(geo: GeometryProxy) -> some View {
         VStack(spacing: .zero) {
-            Prompt
+            CardContents(for: prompts)
                 .frame(maxHeight: geo.size.height / 2)
             Divider()
                 .padding([.leading, .trailing])
-            Answer
+            CardContents(for: answers)
                 .frame(maxHeight: geo.size.height / 2)
                 .blur(radius: showAnswer ? .zero : 10)
         }
@@ -66,30 +66,20 @@ struct CardView: View {
     
     func HCard(geo: GeometryProxy) -> some View {
         HStack(spacing: .zero) {
-            Prompt
+            CardContents(for: prompts)
                 .frame(maxWidth: geo.size.width / 2)
             Divider()
                 .padding([.top, .bottom])
-            Answer
+            CardContents(for: answers)
                 .frame(maxWidth: geo.size.width / 2)
                 .blur(radius: showAnswer ? .zero : 10)
         }
     }
     
-    var Prompt: some View {
+    func CardContents(for snippets: [Snippet]) -> some View {
         VStack {
-            ForEach(promptTypes, id: \.self) { type in
-                return Text(card.snippet(type) ?? placeholder)
-                    .foregroundColor((card.snippet(type) == nil) ? Color(UIColor.placeholderText) : .primary)
-                    .font(.title)
-            }
-        }
-    }
-    
-    var Answer: some View {
-        VStack {
-            ForEach(answerTypes, id: \.self) { type in
-                return Text(card.snippet(type) ?? placeholder)
+            ForEach(snippets, id: \.self) { type in
+                Text(card.snippet(type) ?? placeholder)
                     .foregroundColor((card.snippet(type) == nil) ? Color(UIColor.placeholderText) : .primary)
                     .font(.title)
             }
