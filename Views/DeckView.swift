@@ -11,25 +11,26 @@ struct DeckView: View {
     
     var deck: Deck
     @Environment(\.managedObjectContext) var moc
-    @State private var promptTypes = [Snippet]()
-    @State private var answerTypes = [Snippet]()
+    @State private var prompts = [Snippet]()
+    @State private var answers = [Snippet]()
     
-    init(deck: Deck) {
-        self.deck = deck
-        self._promptTypes = State(initialValue: deck.getTest(moc: moc)._prompts)
-        self._answerTypes = State(initialValue: deck.getTest(moc: moc)._answers)
+    /// occasionally this would fail on init in the simulator due to nil store coordinator
+    func onAppear() {
+        precondition(moc.persistentStoreCoordinator != nil)
+        prompts = deck.getTest(moc: moc)?._prompts ?? defaultPrompt
+        answers = deck.getTest(moc: moc)?._answers ?? defaultAnswer
     }
     
     var body: some View {
         List {
             Section(header: Text("Card Type: ")) {
-                NavigationLink(destination: SnippetPicker(deck: deck, promptTypes: $promptTypes, answerTypes: $answerTypes)) {
+                NavigationLink(destination: SnippetPicker(deck: deck)) {
                     HStack {
-                        ForEach(promptTypes, id: \.self) { type in
+                        ForEach(prompts, id: \.self) { type in
                             Text(type.name)
                         }
                         Image(systemName: "arrow.right")
-                        ForEach(answerTypes, id: \.self) { type in
+                        ForEach(answers, id: \.self) { type in
                             Text(type.name)
                         }
                     }
@@ -51,6 +52,9 @@ struct DeckView: View {
         }
         .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(Text(deck._name))
+        .onAppear {
+            onAppear()
+        }
     }
 }
 
