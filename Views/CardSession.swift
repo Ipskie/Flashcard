@@ -12,7 +12,7 @@ struct CardSession: View {
     
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
-    @State private var cards: [FlashCard]
+    @State private var cards: [FlashCard] = []
     
     enum SessionType {
         case nPull(Int) // pull only an integer number of cards. no repeats
@@ -32,9 +32,9 @@ struct CardSession: View {
         #warning("variable here for whether or not to cycle cards")
         
         /// NOTE: this direct binding was undocumented and hacky. Only here because this view does NOT need to update the parent.
-        _cards = State(initialValue: deck.flashcards)
-        promptTypes = deck.getPromptTypes(context: moc)
-        answerTypes = deck.getAnswerTypes(context: moc)
+//        _cards = State(initialValue: deck.flashcards)
+//        promptTypes = deck.getPromptTypes(context: moc)
+//        answerTypes = deck.getAnswerTypes(context: moc)
     }
     
     var body: some View {
@@ -63,12 +63,12 @@ struct CardSession: View {
     
     func remove(card: FlashCard, correct: Bool) -> Void {
         /// fetch corresponding card from core data
-        let test = deck.getChosenTest(context: moc)
-        if test.history[card.objID!] != nil {
-            test.history[card.objID!]!.append(correct)
-        } else {
-            test.history[card.objID!] = [correct]
-        }
+//        let test = deck.getChosenTest(context: moc)
+//        if test.history[card.objID!] != nil {
+//            test.history[card.objID!]!.append(correct)
+//        } else {
+//            test.history[card.objID!] = [correct]
+//        }
         
         withAnimation {
             let card = cards.remove(at: cards.firstIndex(where: {$0.id == card.id})!)

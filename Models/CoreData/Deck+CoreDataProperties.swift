@@ -22,6 +22,7 @@ extension Deck {
     @NSManaged public var cards: NSSet?
     @NSManaged public var tests: NSSet?
 
+    
 }
 
 // MARK: Generated accessors for cards

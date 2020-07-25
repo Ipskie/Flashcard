@@ -19,20 +19,20 @@ struct CardGallery: View {
     
     init(deck: Deck) {
         self.deck = deck
-        promptTypes = deck.getPromptTypes(context: moc)
-        answerTypes = deck.getAnswerTypes(context: moc)
+//        promptTypes = deck.getPromptTypes(context: moc)
+//        answerTypes = deck.getAnswerTypes(context: moc)
     }
     
     var body: some View {
         ScrollView {
             LazyVGrid (columns: columns, spacing: 20) {
-                ForEach(deck.cards.sortedBy(.romaji), id: \.id) { card in
-                    GalleryCard(
-                        card: FlashCard(from: card),
-                        promptTypes: promptTypes,
-                        answerTypes: answerTypes
-                    )
-                }
+//                ForEach(deck.cards.sortedBy(.romaji), id: \.id) { card in
+//                    GalleryCard(
+//                        card: FlashCard(from: card),
+//                        promptTypes: promptTypes,
+//                        answerTypes: answerTypes
+//                    )
+//                }
             }
             .padding()
         }
