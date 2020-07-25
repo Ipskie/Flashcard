@@ -19,4 +19,11 @@ public class Test: NSManagedObject {
         super.init(entity: entity, insertInto: context)
     }
 
+    init(moc: NSManagedObjectContext, prompts: [Snippet], answers: [Snippet]) {
+        super.init(entity: Test.entity(), insertInto: moc)
+        self.id = UUID()
+        self.prompts = prompts.map{$0.rawValue}
+        self.answers = answers.map{$0.rawValue}
+        self.history = []
+    }
 }

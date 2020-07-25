@@ -16,8 +16,8 @@ extension Test {
         return NSFetchRequest<Test>(entityName: "Test")
     }
 
-    @NSManaged public var answers: NSObject?
-    @NSManaged public var prompts: NSObject?
+    @NSManaged public var answers: [Int]
+    @NSManaged public var prompts: [Int]
     @NSManaged public var id: UUID?
     @NSManaged public var deck: Deck?
     @NSManaged public var history: NSSet?
