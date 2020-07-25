@@ -9,6 +9,7 @@
         <attribute name="katakana" optional="YES" attributeType="String"/>
         <attribute name="romaji" optional="YES" attributeType="String"/>
         <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="cards" inverseEntity="Deck"/>
+        <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="History" inverseName="card" inverseEntity="History"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="id"/>
@@ -27,15 +28,21 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="class">
+        <attribute name="history" optional="YES" attributeType="Transformable" valueTransformerName="HistoryTransformer"/>
+        <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Card" inverseName="history" inverseEntity="Card"/>
+        <relationship name="test" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Test" inverseName="history" inverseEntity="Test"/>
+    </entity>
     <entity name="Test" representedClassName="Test" syncable="YES">
         <attribute name="answers" attributeType="Transformable" valueTransformerName="SnippetTransformer"/>
-        <attribute name="history" attributeType="Transformable" valueTransformerName="HistoryTransformer" customClassName="[NSManagedObectID:[Bool]]"/>
         <attribute name="prompts" attributeType="Transformable" valueTransformerName="SnippetTransformer"/>
         <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="tests" inverseEntity="Deck"/>
+        <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="History" inverseName="test" inverseEntity="History"/>
     </entity>
     <elements>
-        <element name="Card" positionX="-63" positionY="-18" width="128" height="163"/>
-        <element name="Deck" positionX="-423.08984375" positionY="210.640625" width="128" height="118"/>
-        <element name="Test" positionX="-37.60546875" positionY="352.4609375" width="128" height="103"/>
+        <element name="Card" positionX="-216" positionY="218.26953125" width="128" height="178"/>
+        <element name="Deck" positionX="-397.65234375" positionY="300.984375" width="128" height="118"/>
+        <element name="Test" positionX="-216.01953125" positionY="437.92578125" width="128" height="103"/>
+        <element name="History" positionX="31.0625" positionY="372.78515625" width="128" height="88"/>
     </elements>
 </model>
