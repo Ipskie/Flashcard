@@ -22,10 +22,12 @@ extension Deck {
     @NSManaged public var cards: NSSet?
     @NSManaged public var tests: NSSet?
 
-    func chosenTest(moc: NSManagedObjectContext) -> Test? {
-        let fetch = NSFetchRequest<Test>()
+    func chosenTest(moc: NSManagedObjectContext) -> Test {
+        let fetch = NSFetchRequest<Test>(entityName: Test.entityName)
         fetch.predicate = NSPredicate(format:"id == %@", testID! as CVarArg)
-        return nil
+        let result = try! moc.fetch(fetch)
+        precondition(result.count == 1, "Found \(result.count) results, expected exactly 1 chosen test!")
+        return result.first!
     }
 }
 
