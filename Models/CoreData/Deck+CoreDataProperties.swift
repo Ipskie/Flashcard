@@ -24,12 +24,12 @@ extension Deck {
 
     // MARK: - Accessors & Mutators
     
-    func getTest(moc: NSManagedObjectContext) -> Test {
+    func getTest(moc: NSManagedObjectContext) -> Test? {
+        guard moc.persistentStoreCoordinator != nil else { return nil }
         let fetch = NSFetchRequest<Test>(entityName: Test.entityName)
         fetch.predicate = NSPredicate(format:"id == %@", testID! as CVarArg)
-        let result = try! moc.fetch(fetch)
-        precondition(result.count == 1, "Found \(result.count) results, expected exactly 1 chosen test!")
-        return result.first!
+        guard let result = try? moc.fetch(fetch) else { return nil }
+        return result.first
     }
     
     func setTest(testID: UUID) -> Void {
