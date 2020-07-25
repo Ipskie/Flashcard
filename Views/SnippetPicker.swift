@@ -29,7 +29,6 @@ struct SnippetPicker: View {
         List {
             EditableList(snippets: $prompts, name: "Prompts")
             EditableList(snippets: $answers, name: "Answers")
-        
         }
         .navigationBarItems(trailing: EditButton())
         .listStyle(InsetGroupedListStyle())

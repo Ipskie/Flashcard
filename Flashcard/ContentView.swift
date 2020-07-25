@@ -10,43 +10,44 @@ import CoreData
 
 struct ContentView: View {
     
-    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-//    @FetchRequest(
-//        entity: Deck.entity(),
-//        sortDescriptors: []
-//    ) var decks: FetchedResults<Deck>
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(
+        entity: Deck.entity(),
+        sortDescriptors: []
+    ) var decks: FetchedResults<Deck>
+    
     var body: some View {
         VStack {
-            TestView()
-//            NavigationView {
-//                List(decks, id: \.id) { deck in
-//                    NavigationLink(
-//                        deck._name,
-//                        destination: DeckView(deck: deck)
-//                    )
-//
-//                }
-//                .listStyle(InsetGroupedListStyle())
-//                .navigationTitle(Text("Decks"))
-//            }
-//            Text("Testing Button")
-//                .onTapGesture {
-//                    let deck = try! Deck(filename: "Characters.json", context: moc)
-//                    print(deck)
-//                    try! moc.save()
-//                }
-        }
-    }
-}
-
-/// for testing my data layer
-struct TestView: View {
-    var body: some View {
-        Text("TEST")
-            .onTapGesture {
-                /// create and save a new deck from JSON
-                
-                /// store and retrieve card histories for specific tests
+            NavigationView {
+                List(decks, id: \.id) { deck in
+                    NavigationLink(
+                        deck._name,
+                        destination: DeckView(deck: deck)
+                            .environment(\.managedObjectContext, moc)
+                    )
+                }
+                .listStyle(InsetGroupedListStyle())
+                .navigationTitle(Text("Decks"))
             }
+            Text("TEST")
+                .onTapGesture {
+                    /// create and save a new deck from JSON
+                    
+                    
+                    let deck = Deck(
+                        moc: moc,
+                        name: "Test Deck",
+                        cards: Set<Card>(),
+                        tests: Set<Test>([Test(moc: moc)])
+                    )
+                    let card = Card(moc: moc, contents: [.hiragana: "hir", .romaji: "fake card"], deck: deck)
+                    try! moc.save()
+                    
+                    print(deck._cards.count)
+                    
+                    /// store and retrieve card histories for specific tests
+                    print("test ended")
+                }
+        }
     }
 }
