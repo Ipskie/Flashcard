@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17162" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Card" representedClassName="Card" syncable="YES">
-        <attribute name="comfortable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="comfortable" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="english" optional="YES" attributeType="String"/>
         <attribute name="hiragana" optional="YES" attributeType="String"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="kanji" optional="YES" attributeType="String"/>
         <attribute name="katakana" optional="YES" attributeType="String"/>
         <attribute name="romaji" optional="YES" attributeType="String"/>
@@ -29,7 +29,8 @@
         </uniquenessConstraints>
     </entity>
     <entity name="History" representedClassName="History" syncable="YES">
-        <attribute name="history" optional="YES" attributeType="Transformable" valueTransformerName="HistoryTransformer"/>
+        <attribute name="correct" attributeType="Boolean" valueTransformerName="HistoryTransformer" usesScalarValueType="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Card" inverseName="history" inverseEntity="Card"/>
         <relationship name="test" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Test" inverseName="history" inverseEntity="Test"/>
     </entity>
@@ -46,9 +47,9 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Card" positionX="-216" positionY="218.26953125" width="128" height="178"/>
+        <element name="Card" positionX="-214.8671875" positionY="218.49609375" width="128" height="178"/>
         <element name="Deck" positionX="-396.5234375" positionY="329.78125" width="128" height="118"/>
         <element name="Test" positionX="-215.0625" positionY="402.86328125" width="128" height="118"/>
-        <element name="History" positionX="-45.4140625" positionY="367.8515625" width="128" height="88"/>
+        <element name="History" positionX="-45.4140625" positionY="367.8515625" width="128" height="103"/>
     </elements>
 </model>
