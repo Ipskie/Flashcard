@@ -22,7 +22,11 @@ extension Deck {
     @NSManaged public var cards: NSSet?
     @NSManaged public var tests: NSSet?
 
-    
+    func chosenTest(moc: NSManagedObjectContext) -> Test? {
+        let fetch = NSFetchRequest<Test>()
+        fetch.predicate = NSPredicate(format:"id == %@", testID! as CVarArg)
+        return nil
+    }
 }
 
 // MARK: Generated accessors for cards
