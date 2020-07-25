@@ -13,35 +13,43 @@ struct SnippetPicker: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @State var editMode: EditMode = .inactive
     var deck: Deck
-    @State var prompts = [Snippet]()
-    @State var answers = [Snippet]()
-    
-    init(deck: Deck) {
-        self.deck = deck
-        
-    }
+    @State private var test: Test! = nil
+    @State private var prompts = [Snippet]()
+    @State private var answers = [Snippet]()
     
     /// store coordinator isn't present on init
     func onAppear() {
         precondition(moc.persistentStoreCoordinator != nil)
-        prompts = deck.getTest(moc: moc)!._prompts
-        answers = deck.getTest(moc: moc)!._answers
+        test = deck.getTest(moc: moc)!
+        prompts = test._prompts
+        answers = test._answers
     }
     
     var body: some View {
         List {
-            EditableList(snippets: $prompts)
+            EditableList(snippets: $prompts, name: "Prompts")
+            EditableList(snippets: $answers, name: "Answers")
+        
         }
-        .onAppear{ onAppear() }
         .navigationBarItems(trailing: EditButton())
         .listStyle(InsetGroupedListStyle())
         .navigationTitle("Card Type")
+        .onAppear{ onAppear() }
+        /// detect when editing
         .environment(\.editMode, self.$editMode)
+        .onChange(of: prompts) {
+            test._prompts = $0
+            try! moc.save()
+        }
+        .onChange(of: answers) {
+            test._answers = $0
+            try! moc.save()
+        }
     }
     
-    func EditableList(snippets: Binding<[Snippet]>) -> some View {
+    func EditableList(snippets: Binding<[Snippet]>, name: String) -> some View {
         Group {
-            Section(header: Text("Card Prompts")) {
+            Section(header: Text("Card \(name)")) {
                 ForEach(snippets.wrappedValue, id: \.self) { snippet in
                     Text(snippet.name)
                 }
@@ -53,7 +61,7 @@ struct SnippetPicker: View {
                 }
             }
             if editMode == .active {
-                Section (header: Text("Add Prompts")) {
+                Section (header: Text("Add \(name)")) {
                     ForEach(Snippet.allCases.filter{!snippets.wrappedValue.contains($0)}, id: \.self) { snippet in
                         Button {
                             withAnimation {
@@ -70,7 +78,6 @@ struct SnippetPicker: View {
                     }
                 }
             }
-
         }
     }
 }
