@@ -20,10 +20,12 @@ public class Deck: NSManagedObject {
     }
     
     init(moc: NSManagedObjectContext, name: String, cards: Set<Card>, tests: Set<Test>) {
+        precondition(tests.count > 0, "Deck needs at least 1 test!")
         super.init(entity: Deck.entity(), insertInto: moc)
         self.id = UUID()
         self.name = name
         self.cards = cards as NSSet
         self.tests = tests as NSSet
+        self.testID = tests.first!.id // choose the first test by default
     }
 }
