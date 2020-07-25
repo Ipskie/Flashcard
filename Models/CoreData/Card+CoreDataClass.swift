@@ -19,8 +19,13 @@ public class Card: NSManagedObject {
         super.init(entity: entity, insertInto: context)
     }
 
-    init(moc: NSManagedObjectContext, contents: [Snippet: String], deck: Deck) {
+    init(
+        moc: NSManagedObjectContext,
+        contents: [Snippet: String],
+        deck: Deck
+    ) {
         super.init(entity: Card.entity(), insertInto: moc)
+        self.deck = deck
         id = UUID()
         
         /// initialize with un-comfortable and no history
