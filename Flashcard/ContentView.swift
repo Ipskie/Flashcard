@@ -17,7 +17,8 @@ struct ContentView: View {
 //    ) var decks: FetchedResults<Deck>
     var body: some View {
         VStack {
-            NavigationView {
+            TestView()
+//            NavigationView {
 //                List(decks, id: \.id) { deck in
 //                    NavigationLink(
 //                        deck._name,
@@ -27,7 +28,7 @@ struct ContentView: View {
 //                }
 //                .listStyle(InsetGroupedListStyle())
 //                .navigationTitle(Text("Decks"))
-            }
+//            }
 //            Text("Testing Button")
 //                .onTapGesture {
 //                    let deck = try! Deck(filename: "Characters.json", context: moc)
@@ -35,5 +36,14 @@ struct ContentView: View {
 //                    try! moc.save()
 //                }
         }
+    }
+}
+
+struct TestView: View {
+    var body: some View {
+        Text("TEST")
+            .onTapGesture {
+                print("tested")
+            }
     }
 }
