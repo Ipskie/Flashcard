@@ -16,8 +16,8 @@ struct DeckView: View {
     
     init(deck: Deck) {
         self.deck = deck
-//        self._promptTypes = State(initialValue: deck.getPromptTypes(context: moc))
-//        self._answerTypes = State(initialValue: deck.getAnswerTypes(context: moc))
+        self._promptTypes = State(initialValue: deck.getTest(moc: moc)._prompts)
+        self._answerTypes = State(initialValue: deck.getTest(moc: moc)._answers)
     }
     
     var body: some View {
@@ -40,17 +40,17 @@ struct DeckView: View {
                     "10 Pull",
                     destination: CardSession(deck: deck, sessionType: .nPull(10))
                 )
-//                NavigationLink(
-//                    "Marathon \(deck.cards.count) cards",
-//                    destination: CardSession(deck: deck, sessionType: .marathon)
-//                )
+                NavigationLink(
+                    "Marathon \(deck._cards.count) cards",
+                    destination: CardSession(deck: deck, sessionType: .marathon)
+                )
             }
             Section(header: Text("Deck Information")) {
                 NavigationLink("Cards", destination: CardGallery(deck: deck))
             }
         }
         .listStyle(InsetGroupedListStyle())
-//        .navigationBarTitle(Text(deck._name))
+        .navigationBarTitle(Text(deck._name))
     }
 }
 

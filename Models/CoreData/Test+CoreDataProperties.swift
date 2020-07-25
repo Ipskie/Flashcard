@@ -16,12 +16,31 @@ extension Test {
         return NSFetchRequest<Test>(entityName: "Test")
     }
 
-    @NSManaged public var answers: [Int]
     @NSManaged public var prompts: [Int]
+    @NSManaged public var answers: [Int]
+    
     @NSManaged public var id: UUID?
     @NSManaged public var deck: Deck?
     @NSManaged public var history: NSSet?
 
+    // MARK: - Accessors & Mutators
+    var _prompts: [Snippet] {
+        get {
+            prompts.map{Snippet(rawValue: $0)!} /// force unwrap from raw values
+        }
+        set {
+            prompts = newValue.map{$0.rawValue}
+        }
+    }
+    
+    var _answers: [Snippet] {
+        get {
+            answers.map{Snippet(rawValue: $0)!} /// force unwrap from raw values
+        }
+        set {
+            answers = newValue.map{$0.rawValue}
+        }
+    }
 }
 
 // MARK: Generated accessors for history

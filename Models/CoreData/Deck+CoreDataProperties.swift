@@ -22,6 +22,8 @@ extension Deck {
     @NSManaged public var cards: NSSet?
     @NSManaged public var tests: NSSet?
 
+    // MARK: - Accessors & Mutators
+    
     func getTest(moc: NSManagedObjectContext) -> Test {
         let fetch = NSFetchRequest<Test>(entityName: Test.entityName)
         fetch.predicate = NSPredicate(format:"id == %@", testID! as CVarArg)
@@ -32,6 +34,14 @@ extension Deck {
     
     func setTest(testID: UUID) -> Void {
         self.testID = testID
+    }
+    
+    var _cards: Set<Card> {
+        (cards ?? []) as! Set<Card>
+    }
+    
+    var _name: String {
+        name ?? "Unnamed Deck"
     }
 }
 
