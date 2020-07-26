@@ -39,7 +39,6 @@ struct GalleryCard: View {
                 Text(flashcard.contents[prompt, default: nil] ?? placeholder)
             }
             Divider()
-                .padding([.leading, .trailing])
             ForEach(answers, id: \.self) { answer in
                 Text(flashcard.contents[answer, default: nil] ?? placeholder)
             }

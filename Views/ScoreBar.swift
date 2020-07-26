@@ -19,16 +19,13 @@ struct ScoreBar: View {
     
     var body: some View {
         VStack {
-            
             GeometryReader { geo in
-                HStack(spacing: .zero) {
+                ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: geo.size.height / 2)
                         .foregroundColor(.green)
                         .frame(width: geo.size.width * pCorrect)
-                    Divider()
                     RoundedRectangle(cornerRadius: geo.size.height / 2)
-                        .foregroundColor(.red)
-                        .frame(width: geo.size.width * pWrong)
+                        .stroke(Color.black)
                 }
             }
             Text("\(Int(pCorrect * 100))%")
