@@ -46,8 +46,8 @@ struct GalleryCard: View {
             ScoreBar(corrects: card.corrects, wrongs: card.wrongs)
         }
         .padding()
-        .background(CardBG())
-        .shadow(radius: 5)
+        .background(CardBG().shadow(radius: 5))
+        
         .rotationEffect(editMode == .active ? wiggle : .zero)
         .onChange(of: editMode, perform: wiggle)
     }
