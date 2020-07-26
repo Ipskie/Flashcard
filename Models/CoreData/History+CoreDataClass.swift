@@ -18,5 +18,13 @@ public class History: NSManagedObject {
     private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
     }
-
+    
+    init(moc: NSManagedObjectContext, test: Test, card: Card, correct: Bool) {
+        super.init(entity: History.entity(), insertInto: moc)
+        self.test = test
+        self.card = card
+        self.correct = correct
+        self.date = Date()
+    }
+    
 }
