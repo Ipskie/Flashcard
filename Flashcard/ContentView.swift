@@ -36,13 +36,17 @@ struct ContentView: View {
                         offsets.forEach { moc.delete(decks[$0]) }
                     }
                 }
-                
                 .listStyle(InsetGroupedListStyle())
                 .navigationTitle(Text("Decks"))
-                .navigationBarItems(trailing: EditButton())
-                
+                .navigationBarItems(
+                    leading: EditButton(),
+                    trailing: Button {
+                        loadDeck()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                )
             }
-            DeckSelect()
         }
     }
     
