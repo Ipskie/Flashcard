@@ -17,7 +17,7 @@ struct DeckView: View {
     init(deck: Deck) {
         self.deck = deck
         _prompts = State(initialValue: deck.chosenTest._prompts)
-        _answers = State(initialValue: deck.chosenTest._prompts)
+        _answers = State(initialValue: deck.chosenTest._answers)
     }
     
     var body: some View {
