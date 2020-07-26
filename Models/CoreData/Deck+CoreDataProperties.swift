@@ -34,7 +34,7 @@ extension Deck {
     }
     
     var _tests: Set<Test> {
-        tests as! Set<Test>
+        (tests ?? []) as! Set<Test>
     }
 }
 
