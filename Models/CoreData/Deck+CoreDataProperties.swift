@@ -32,6 +32,10 @@ extension Deck {
     var _name: String {
         name ?? "Unnamed Deck"
     }
+    
+    var _tests: Set<Test> {
+        tests as! Set<Test>
+    }
 }
 
 // MARK: Generated accessors for cards
