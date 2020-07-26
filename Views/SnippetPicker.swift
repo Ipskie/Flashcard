@@ -13,13 +13,13 @@ struct SnippetPicker: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @State var editMode: EditMode = .inactive
     var test: Test
-    @State private var prompts = [Snippet]()
-    @State private var answers = [Snippet]()
+    @State private var prompts: [Snippet]
+    @State private var answers: [Snippet]
     
     init(deck: Deck) {
         test = deck.chosenTest
-        prompts = test._prompts
-        answers = test._answers
+        _prompts = State(initialValue: test._prompts)
+        _answers = State(initialValue: test._answers)
     }
     
     var body: some View {

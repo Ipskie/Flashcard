@@ -23,8 +23,8 @@ struct CardSession: View {
     var deck: Deck
     var sessionType: SessionType
     
-    @State private var prompts = [Snippet]()
-    @State private var answers = [Snippet]()
+    private var prompts: [Snippet]
+    private var answers: [Snippet]
     
     init(deck: Deck, sessionType: SessionType) {
         self.deck = deck
