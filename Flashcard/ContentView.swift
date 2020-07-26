@@ -42,11 +42,7 @@ struct ContentView: View {
                 .navigationBarItems(trailing: EditButton())
                 
             }
-            Text("TEST")
-                .onTapGesture {
-                    importTest()
-                    exportTest()
-                }
+            DeckSelect()
         }
     }
     
