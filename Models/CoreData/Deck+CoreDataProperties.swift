@@ -25,25 +25,6 @@ extension Deck {
 
     // MARK: - Accessors & Mutators
     
-    func getTest(moc: NSManagedObjectContext) -> Test? {
-        /// sometimes when starting the app, the store coordinator is nil, causing a fatalError
-        /// prevent that from happeneing
-        guard moc.persistentStoreCoordinator != nil else {
-            print("null coordinator")
-            return nil
-        }
-        
-        let fetch = NSFetchRequest<Test>(entityName: Test.entityName)
-        fetch.predicate = NSPredicate(format:"id == %@", testID! as CVarArg)
-        
-        /// silence any failure to fetch
-        return try? moc.fetch(fetch).first
-    }
-    
-    func setTest(testID: UUID) -> Void {
-        self.testID = testID
-    }
-    
     var _cards: Set<Card> {
         (cards ?? []) as! Set<Card>
     }

@@ -12,15 +12,12 @@ struct SnippetPicker: View {
     
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @State var editMode: EditMode = .inactive
-    var deck: Deck
-    @State private var test: Test! = nil
+    var test: Test
     @State private var prompts = [Snippet]()
     @State private var answers = [Snippet]()
     
-    /// store coordinator isn't present on init
-    func onAppear() {
-        precondition(moc.persistentStoreCoordinator != nil)
-        test = deck.getTest(moc: moc)!
+    init(deck: Deck) {
+        test = deck.chosenTest
         prompts = test._prompts
         answers = test._answers
     }
@@ -33,7 +30,6 @@ struct SnippetPicker: View {
         .navigationBarItems(trailing: EditButton())
         .listStyle(InsetGroupedListStyle())
         .navigationTitle("Card Type")
-        .onAppear{ onAppear() }
         /// detect when editing
         .environment(\.editMode, self.$editMode)
         .onChange(of: prompts) {

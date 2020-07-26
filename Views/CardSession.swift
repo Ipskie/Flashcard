@@ -23,8 +23,8 @@ struct CardSession: View {
     var deck: Deck
     var sessionType: SessionType
     
-    private var promptTypes = [Snippet]()
-    private var answerTypes = [Snippet]()
+    @State private var prompts = [Snippet]()
+    @State private var answers = [Snippet]()
     
     init(deck: Deck, sessionType: SessionType) {
         self.deck = deck
@@ -32,18 +32,25 @@ struct CardSession: View {
         #warning("variable here for whether or not to cycle cards")
         
         /// NOTE: this direct binding was undocumented and hacky. Only here because this view does NOT need to update the parent.
-//        _cards = State(initialValue: deck.flashcards)
-//        promptTypes = deck.getPromptTypes(context: moc)
-//        answerTypes = deck.getAnswerTypes(context: moc)
+        _cards = State(initialValue: deck._cards.map{FlashCard(from: $0)})
+        
+        prompts = deck.chosenTest._prompts
+        answers = deck.chosenTest._answers
     }
+    
+    /// occasionally this would fail on init in the simulator due to nil store coordinator
+    func onAppear() {
+        
+    }
+    
     
     var body: some View {
         ZStack {
             ForEach(cards, id: \.id) { card in
                 CardView(
                     card: card,
-                    promptTypes: promptTypes,
-                    answerTypes: answerTypes,
+                    prompts: prompts,
+                    answers: answers,
                     removal: remove
                 )
                     .stacked(
@@ -52,13 +59,14 @@ struct CardSession: View {
                     )
             }
         }
+        .navigationBarHidden(true)
         .onChange(of: cards){
             guard $0.count == 0 else { return }
             /// on exit, save changes to card history
             try! moc.save()
             presentationMode.wrappedValue.dismiss()
         }
-        .navigationBarHidden(true)
+        .onAppear{ onAppear() }
     }
     
     func remove(card: FlashCard, correct: Bool) -> Void {

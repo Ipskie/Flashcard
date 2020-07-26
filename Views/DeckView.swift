@@ -11,14 +11,13 @@ struct DeckView: View {
     
     var deck: Deck
     @Environment(\.managedObjectContext) var moc
-    @State private var prompts = [Snippet]()
-    @State private var answers = [Snippet]()
+    @State private var prompts: [Snippet]
+    @State private var answers: [Snippet]
     
-    /// occasionally this would fail on init in the simulator due to nil store coordinator
-    func onAppear() {
-        precondition(moc.persistentStoreCoordinator != nil)
-        prompts = deck.getTest(moc: moc)?._prompts ?? defaultPrompt
-        answers = deck.getTest(moc: moc)?._answers ?? defaultAnswer
+    init(deck: Deck) {
+        self.deck = deck
+        _prompts = State(initialValue: deck.chosenTest._prompts)
+        _answers = State(initialValue: deck.chosenTest._prompts)
     }
     
     var body: some View {

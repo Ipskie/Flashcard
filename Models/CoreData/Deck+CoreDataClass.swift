@@ -26,6 +26,6 @@ public class Deck: NSManagedObject {
         self.name = name
         self.cards = cards as NSSet
         self.tests = tests as NSSet
-        self.testID = tests.first!.id // choose the first test by default
+        self.chosenTest = tests.first! // choose the first test by default
     }
 }
