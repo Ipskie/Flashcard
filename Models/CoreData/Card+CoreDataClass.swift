@@ -10,7 +10,12 @@ import Foundation
 import CoreData
 
 fileprivate struct RawCard: Decodable {
-    
+    var hiragana: String?
+    var katakana: String?
+    var romaji: String?
+    var kanji: String?
+    var english: String?
+    // no history for first time de-serialization
 }
 
 @objc(Card)
@@ -58,8 +63,20 @@ public class Card: NSManagedObject, Codable {
         katakana = flash.contents[.katakana] ?? nil
     }
     
-    init(from: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         guard let context = decoder.userInfo[.context] as? NSManagedObjectContext else { fatalError("NSManagedObjectContext is missing") }
         super.init(entity: Card.entity(), insertInto: context)
+        
+    }
+    
+    init(from decoder: Decoder) throws {
+        let rawCard = try RawCard(from: decoder)
+        id = UUID()
+        contents = [.hiragana: rawCard.hiragana,
+                    .katakana: rawCard.katakana,
+                    .romaji: rawCard.romaji,
+                    .kanji: rawCard.kanji,
+                    .english: rawCard.english]
+        comfortable = false /// when decoding new deck, default to not comfortable
     }
 }

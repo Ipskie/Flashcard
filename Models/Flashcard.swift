@@ -8,16 +8,9 @@
 import Foundation
 import CoreData
 
-fileprivate struct RawCard: Decodable {
-    var hiragana: String?
-    var katakana: String?
-    var romaji: String?
-    var kanji: String?
-    var english: String?
-    // no history for first time de-serialization
-}
 
-struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
+
+struct FlashCard: Identifiable, Equatable, Hashable {
     var id = UUID()
     var objID: NSManagedObjectID? = nil
     var contents: [Snippet: String?]
@@ -46,17 +39,6 @@ struct FlashCard: Identifiable, Equatable, Decodable, Hashable {
                     .kanji: kanji,
                     .english: english]
         self.comfortable = comfortable
-    }
-    
-    init(from decoder: Decoder) throws {
-        let rawCard = try RawCard(from: decoder)
-        id = UUID()
-        contents = [.hiragana: rawCard.hiragana,
-                    .katakana: rawCard.katakana,
-                    .romaji: rawCard.romaji,
-                    .kanji: rawCard.kanji,
-                    .english: rawCard.english]
-        comfortable = false /// when decoding new deck, default to not comfortable
     }
     
     init(from card: Card){
