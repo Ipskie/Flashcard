@@ -9,8 +9,13 @@
 import Foundation
 import CoreData
 
+fileprivate struct RawTest: Decodable {
+    let prompts: [Int]
+    let answers: [Int]
+}
+
 @objc(Test)
-public class Test: NSManagedObject {
+public class Test: NSManagedObject, Codable {
     
     static let entityName = "Test" /// for making entity calls
     
@@ -36,5 +41,20 @@ public class Test: NSManagedObject {
             prompts: defaultPrompt,
             answers: defaultAnswer
         )
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        /// get required context
+        guard let context = decoder.userInfo[.context] as? NSManagedObjectContext else { fatalError("NSManagedObjectContext is missing") }
+        super.init(entity: Test.entity(), insertInto: context)
+        
+        id = UUID()
+        
+        /// pipe through RawCard
+        let rawTest = try RawTest(from: decoder)
+        prompts = rawTest.prompts
+        answers = rawTest.answers
+        
+        /// Note: Tests should only be decoded when a RawDeck is decoded, hence a deck is always assigned
     }
 }

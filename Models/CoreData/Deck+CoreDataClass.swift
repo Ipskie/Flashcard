@@ -9,8 +9,14 @@
 import Foundation
 import CoreData
 
+fileprivate struct RawDeck: Decodable {
+    let name: String
+    let cards: Set<Card>
+    let tests: Set<Test>
+}
+
 @objc(Deck)
-public class Deck: NSManagedObject {
+public class Deck: NSManagedObject, Codable {
     
     static let entityName = "Deck" /// for making entity calls
     
@@ -27,5 +33,25 @@ public class Deck: NSManagedObject {
         self.cards = cards as NSSet
         self.tests = tests as NSSet
         self.chosenTest = tests.first! // choose the first test by default
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        /// get required context
+        guard let context = decoder.userInfo[.context] as? NSManagedObjectContext else { fatalError("NSManagedObjectContext is missing") }
+        super.init(entity: Deck.entity(), insertInto: context)
+        
+        id = UUID()
+    
+        /// pipe through RawCard
+        let rawDeck = try RawDeck(from: decoder)
+        name = rawDeck.name
+        cards = rawDeck.cards as NSSet /// note: should assign inverse card -> deck relationship
+        if rawDeck.tests.isEmpty {
+            #warning("add automatic test construction in future")
+            tests = [Test(moc: context)] /// throw it a simple test
+        } else {
+            tests = rawDeck.tests as NSSet
+        }
+        chosenTest = _tests.first!
     }
 }

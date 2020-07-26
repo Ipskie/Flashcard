@@ -80,7 +80,7 @@ public class Card: NSManagedObject, Codable {
         katakana = rawCard.katakana
         romaji = rawCard.romaji
         
-        /// Note: Must assign a deck!
+        /// Note: Cards should only be decoded when a RawDeck is decoded, hence a deck is always assigned
     }
 }
 
