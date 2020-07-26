@@ -16,6 +16,7 @@ struct DeckView: View {
     @State private var answers: [Snippet]
     
     init(deck: Deck) {
+        /// bind everything to State so that any changes are updated
         _deck = State(initialValue: deck)
         _test = State(initialValue: deck.chosenTest)
         _prompts = State(initialValue: deck.chosenTest._prompts)
@@ -34,7 +35,7 @@ struct DeckView: View {
                          + test._answers.map{$0.name}.joined(separator: " + ")
                     )
                 }
-                /// detect changes to state var
+                /// detect changes through binding
                 .onChange(of: prompts) {
                     test._prompts = $0
                     deck.chosenTest = test
