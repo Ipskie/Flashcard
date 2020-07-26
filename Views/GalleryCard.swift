@@ -34,7 +34,7 @@ struct GalleryCard: View {
     }
     
     var body: some View {
-        VStack(spacing: .zero) {
+        VStack {
             ForEach(prompts, id: \.self) { prompt in
                 Text(flashcard.contents[prompt, default: nil] ?? placeholder)
             }
@@ -43,9 +43,9 @@ struct GalleryCard: View {
             ForEach(answers, id: \.self) { answer in
                 Text(flashcard.contents[answer, default: nil] ?? placeholder)
             }
-            Text("\(card.corrects) correct")
-            Text("\(card.wrongs) wrong")
+            ScoreBar(corrects: card.corrects, wrongs: card.wrongs)
         }
+        .padding()
         .background(CardBG())
         .shadow(radius: 5)
         .rotationEffect(editMode == .active ? wiggle : .zero)
@@ -56,7 +56,7 @@ struct GalleryCard: View {
         .linear(duration: 0.25)
         .repeatForever(autoreverses: true)
     
-    static let wiggleSize = Angle(degrees: 3)
+    static let wiggleSize = Angle(degrees: 2)
     
     func wiggle(mode: EditMode) -> Void {
         /// causes wiggle direction to alternate, similar to Shortcuts
