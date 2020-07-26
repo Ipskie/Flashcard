@@ -18,7 +18,8 @@ extension Deck {
 
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
-    @NSManaged public var testID: UUID?
+    
+    @NSManaged public var chosenTest: Test
     @NSManaged public var cards: NSSet?
     @NSManaged public var tests: NSSet?
 
@@ -27,7 +28,10 @@ extension Deck {
     func getTest(moc: NSManagedObjectContext) -> Test? {
         /// sometimes when starting the app, the store coordinator is nil, causing a fatalError
         /// prevent that from happeneing
-        guard moc.persistentStoreCoordinator != nil else { return nil }
+        guard moc.persistentStoreCoordinator != nil else {
+            print("null coordinator")
+            return nil
+        }
         
         let fetch = NSFetchRequest<Test>(entityName: Test.entityName)
         fetch.predicate = NSPredicate(format:"id == %@", testID! as CVarArg)

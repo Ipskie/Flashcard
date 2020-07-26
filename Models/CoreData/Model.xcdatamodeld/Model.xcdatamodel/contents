@@ -19,8 +19,8 @@
     <entity name="Deck" representedClassName="Deck" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="testID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="deck" inverseEntity="Card"/>
+        <relationship name="chosenTest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Test"/>
         <relationship name="tests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Test" inverseName="deck" inverseEntity="Test"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -49,7 +49,7 @@
     <elements>
         <element name="Card" positionX="-214.8671875" positionY="218.49609375" width="128" height="178"/>
         <element name="Deck" positionX="-396.5234375" positionY="329.78125" width="128" height="118"/>
-        <element name="Test" positionX="-215.0625" positionY="402.86328125" width="128" height="118"/>
         <element name="History" positionX="-45.4140625" positionY="367.8515625" width="128" height="103"/>
+        <element name="Test" positionX="-217.07421875" positionY="411.7578125" width="128" height="118"/>
     </elements>
 </model>
