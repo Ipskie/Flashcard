@@ -14,6 +14,7 @@
 		220A6FA724C903C400132B9C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA624C903C400132B9C /* Card.swift */; };
 		220A6FA924C904BE00132B9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA824C904BE00132B9C /* Constants.swift */; };
 		221D6E1324CE1577004DE17D /* DeckSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D6E1224CE1577004DE17D /* DeckSelect.swift */; };
+		221D6E1624CE239B004DE17D /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D6E1524CE239B004DE17D /* CollectionExtension.swift */; };
 		224DFF3D24CBB55900A07932 /* Deck+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3524CBB55900A07932 /* Deck+CoreDataClass.swift */; };
 		224DFF3E24CBB55900A07932 /* Deck+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3624CBB55900A07932 /* Deck+CoreDataProperties.swift */; };
 		224DFF3F24CBB55900A07932 /* History+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3724CBB55900A07932 /* History+CoreDataClass.swift */; };
@@ -66,6 +67,7 @@
 		220A6FA624C903C400132B9C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		220A6FA824C904BE00132B9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		221D6E1224CE1577004DE17D /* DeckSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSelect.swift; sourceTree = "<group>"; };
+		221D6E1524CE239B004DE17D /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 		224DFF3524CBB55900A07932 /* Deck+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataClass.swift"; sourceTree = "<group>"; };
 		224DFF3624CBB55900A07932 /* Deck+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		224DFF3724CBB55900A07932 /* History+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -136,10 +138,18 @@
 				224DFF3B24CBB55900A07932 /* Card+CoreDataClass.swift */,
 				224DFF3C24CBB55900A07932 /* Card+CoreDataProperties.swift */,
 				220A6FA024C8AC9600132B9C /* CardSort.swift */,
-				22D1CCF224CE06CF00A0A632 /* DecoderExtension.swift */,
 				226A975B24C52CD900E3EA6F /* Model.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		221D6E1424CE238A004DE17D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				22D1CCF224CE06CF00A0A632 /* DecoderExtension.swift */,
+				221D6E1524CE239B004DE17D /* CollectionExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		226A976724C52F6A00E3EA6F /* Models */ = {
@@ -165,6 +175,7 @@
 		22B6FAB624C4A19B00DA4217 = {
 			isa = PBXGroup;
 			children = (
+				221D6E1424CE238A004DE17D /* Extensions */,
 				22B6FAC124C4A19B00DA4217 /* Flashcard */,
 				22ED237D24C66F0A00ABFFE8 /* Views */,
 				226A976724C52F6A00E3EA6F /* Models */,
@@ -380,6 +391,7 @@
 				22B6FAC524C4A19B00DA4217 /* ContentView.swift in Sources */,
 				224DFF4324CBB55900A07932 /* Card+CoreDataClass.swift in Sources */,
 				220A6FA924C904BE00132B9C /* Constants.swift in Sources */,
+				221D6E1624CE239B004DE17D /* CollectionExtension.swift in Sources */,
 				224DFF3E24CBB55900A07932 /* Deck+CoreDataProperties.swift in Sources */,
 				224DFF4224CBB55900A07932 /* Test+CoreDataProperties.swift in Sources */,
 				220A6FA724C903C400132B9C /* Card.swift in Sources */,

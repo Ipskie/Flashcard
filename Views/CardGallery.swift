@@ -17,6 +17,8 @@ struct CardGallery: View {
     
     let columns = [GridItem(.adaptive(minimum: 80))]
     
+    @State var editMode: EditMode = .inactive
+    
     init(deck: Deck) {
         self.deck = deck
         prompts = deck.chosenTest._prompts
@@ -26,16 +28,21 @@ struct CardGallery: View {
     var body: some View {
         ScrollView {
             LazyVGrid (columns: columns, spacing: 20) {
-                ForEach(deck._cards.sortedBy(.romaji), id: \.id) { card in
+                ForEach(deck._cards.sortedBy(.romaji).enumeratedArray(), id: \.element.id) { idx, card in
                     GalleryCard(
                         card: card,
+                        index: idx,
                         prompts: prompts,
-                        answers: answers
+                        answers: answers,
+                        editMode: $editMode
                     )
                 }
             }
             .padding()
         }
+        .navigationBarItems(trailing: EditButton())
         .navigationTitle("Cards")
+        /// detect when editing
+        .environment(\.editMode, $editMode)
     }
 }
