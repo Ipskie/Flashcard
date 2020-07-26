@@ -20,11 +20,18 @@ struct ScoreBar: View {
     }
     
     var body: some View {
-        if (pCorrect == .nan) {
-            Text("No Score")
-        } else {
+        switch pCorrect != .nan {
+        case true:
+            NoView
+        case false:
             ScoreView
         }
+    }
+    
+    var NoView: some View {
+        Text("No Score")
+            .font(.footnote)
+            .multilineTextAlignment(.center)
     }
     
     var ScoreView: some View {
