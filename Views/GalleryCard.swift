@@ -31,7 +31,6 @@ struct GalleryCard: View {
             ForEach(answers, id: \.self) { answer in
                 Text(flashcard.contents[answer, default: nil] ?? placeholder)
             }
-            #warning("not yet adapted")
             Text("\(card.corrects) correct")
             Text("\(card.wrongs) wrong")
         }
