@@ -9,13 +9,15 @@ import SwiftUI
 
 struct DeckView: View {
     
-    var deck: Deck
     @Environment(\.managedObjectContext) var moc
+    @State var deck: Deck
+    @State private var test: Test
     @State private var prompts: [Snippet]
     @State private var answers: [Snippet]
     
     init(deck: Deck) {
-        self.deck = deck
+        _deck = State(initialValue: deck)
+        _test = State(initialValue: deck.chosenTest)
         _prompts = State(initialValue: deck.chosenTest._prompts)
         _answers = State(initialValue: deck.chosenTest._answers)
     }
@@ -23,11 +25,25 @@ struct DeckView: View {
     var body: some View {
         List {
             Section(header: Text("Card Type: ")) {
-                NavigationLink(destination: SnippetPicker(deck: deck)) {
-                    Text(prompts.map{$0.name}.joined(separator: " + ")
+                NavigationLink(destination: SnippetPicker(
+                    prompts: $prompts,
+                    answers: $answers
+                )) {
+                    Text(test._prompts.map{$0.name}.joined(separator: " + ")
                          + " ➜ "
-                         + answers.map{$0.name}.joined(separator: " + ")
+                         + test._answers.map{$0.name}.joined(separator: " + ")
                     )
+                }
+                /// detect changes to state var
+                .onChange(of: prompts) {
+                    test._prompts = $0
+                    deck.chosenTest = test
+                    try! moc.save()
+                }
+                .onChange(of: answers) {
+                    test._answers = $0
+                    deck.chosenTest = test
+                    try! moc.save()
                 }
             }
             Section(header: Text("Practice")) {

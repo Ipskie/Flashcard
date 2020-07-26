@@ -12,15 +12,8 @@ struct SnippetPicker: View {
     
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @State var editMode: EditMode = .inactive
-    var test: Test
-    @State private var prompts: [Snippet]
-    @State private var answers: [Snippet]
-    
-    init(deck: Deck) {
-        test = deck.chosenTest
-        _prompts = State(initialValue: test._prompts)
-        _answers = State(initialValue: test._answers)
-    }
+    @Binding var prompts: [Snippet]
+    @Binding var answers: [Snippet]
     
     var body: some View {
         List {
@@ -32,14 +25,6 @@ struct SnippetPicker: View {
         .navigationTitle("Card Type")
         /// detect when editing
         .environment(\.editMode, $editMode)
-        .onChange(of: prompts) {
-            test._prompts = $0
-            try! moc.save()
-        }
-        .onChange(of: answers) {
-            test._answers = $0
-            try! moc.save()
-        }
     }
     
     func EditableList(snippets: Binding<[Snippet]>, name: String) -> some View {
