@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct DeckSelect: View {
+    
     @Environment(\.managedObjectContext) var moc
+    @Environment(\.importFiles) var importAction
+    @State var editMode: EditMode = .inactive
     @FetchRequest(
         entity: Deck.entity(),
         sortDescriptors: [
             NSSortDescriptor(keyPath: \Deck.name, ascending: true)
         ]
     ) var decks: FetchedResults<Deck>
-    
-    @Environment(\.importFiles) var importAction
     
     var body: some View {
         VStack {
@@ -41,9 +42,12 @@ struct DeckSelect: View {
                         loadDeck()
                     } label: {
                         Image(systemName: "plus")
-                            .padding()
+                            .padding([.top, .bottom, .leading]) /// increase touch target size
                     }
+                    .disabled(editMode == .active) /// prevent janky interaction between add and edit buttons
                 )
+                /// detect when editing
+                .environment(\.editMode, $editMode)
             }
         }
     }

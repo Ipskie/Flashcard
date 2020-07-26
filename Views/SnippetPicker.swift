@@ -31,7 +31,7 @@ struct SnippetPicker: View {
         .listStyle(InsetGroupedListStyle())
         .navigationTitle("Card Type")
         /// detect when editing
-        .environment(\.editMode, self.$editMode)
+        .environment(\.editMode, $editMode)
         .onChange(of: prompts) {
             test._prompts = $0
             try! moc.save()
