@@ -9,23 +9,31 @@ import SwiftUI
 
 struct GalleryCard: View {
     
-    var card: FlashCard
-    var promptTypes: [Snippet]
-    var answerTypes: [Snippet]
+    var card: Card
+    var flashcard: FlashCard
+    var prompts: [Snippet]
+    var answers: [Snippet]
+    
+    init(card: Card, prompts: [Snippet], answers: [Snippet]) {
+        self.card = card
+        self.flashcard = FlashCard(from: card)
+        self.prompts = prompts
+        self.answers = answers
+    }
     
     var body: some View {
         VStack(spacing: .zero) {
-            ForEach(promptTypes, id: \.self) { prompt in
-                Text(card.contents[prompt, default: nil] ?? placeholder)
+            ForEach(prompts, id: \.self) { prompt in
+                Text(flashcard.contents[prompt, default: nil] ?? placeholder)
             }
             Divider()
                 .padding([.leading, .trailing])
-            ForEach(answerTypes, id: \.self) { answer in
-                Text(card.contents[answer, default: nil] ?? placeholder)
+            ForEach(answers, id: \.self) { answer in
+                Text(flashcard.contents[answer, default: nil] ?? placeholder)
             }
             #warning("not yet adapted")
-//            Text("\(card.history.corrects) correct")
-//            Text("\(card.history.wrongs) wrong")
+            Text("\(card.corrects) correct")
+            Text("\(card.wrongs) wrong")
         }
         .background(CardBG())
         .shadow(radius: 5)
