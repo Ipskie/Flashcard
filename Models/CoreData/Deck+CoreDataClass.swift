@@ -12,7 +12,7 @@ import CoreData
 fileprivate struct RawDeck: Decodable {
     let name: String
     let cards: Set<Card>
-    let tests: Set<Test>
+    let tests: Set<Test>?
 }
 
 @objc(Deck)
@@ -46,11 +46,11 @@ public class Deck: NSManagedObject, Codable {
         let rawDeck = try RawDeck(from: decoder)
         name = rawDeck.name
         cards = rawDeck.cards as NSSet /// note: should assign inverse card -> deck relationship
-        if rawDeck.tests.isEmpty {
+        if let newTests = rawDeck.tests, !newTests.isEmpty {
+            tests = newTests as NSSet
+        } else {
             #warning("add automatic test construction in future")
             tests = [Test(moc: context)] /// throw it a simple test
-        } else {
-            tests = rawDeck.tests as NSSet
         }
         chosenTest = _tests.first!
     }
