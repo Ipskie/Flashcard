@@ -13,6 +13,7 @@
 		220A6FA524C903A300132B9C /* GalleryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA424C903A300132B9C /* GalleryCard.swift */; };
 		220A6FA724C903C400132B9C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA624C903C400132B9C /* Card.swift */; };
 		220A6FA924C904BE00132B9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA824C904BE00132B9C /* Constants.swift */; };
+		221D6E1324CE1577004DE17D /* DeckSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D6E1224CE1577004DE17D /* DeckSelect.swift */; };
 		224DFF3D24CBB55900A07932 /* Deck+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3524CBB55900A07932 /* Deck+CoreDataClass.swift */; };
 		224DFF3E24CBB55900A07932 /* Deck+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3624CBB55900A07932 /* Deck+CoreDataProperties.swift */; };
 		224DFF3F24CBB55900A07932 /* History+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3724CBB55900A07932 /* History+CoreDataClass.swift */; };
@@ -64,6 +65,7 @@
 		220A6FA424C903A300132B9C /* GalleryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCard.swift; sourceTree = "<group>"; };
 		220A6FA624C903C400132B9C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		220A6FA824C904BE00132B9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		221D6E1224CE1577004DE17D /* DeckSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSelect.swift; sourceTree = "<group>"; };
 		224DFF3524CBB55900A07932 /* Deck+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataClass.swift"; sourceTree = "<group>"; };
 		224DFF3624CBB55900A07932 /* Deck+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		224DFF3724CBB55900A07932 /* History+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				22D1CCF024CE04C500A0A632 /* LoadDeck.swift */,
+				221D6E1224CE1577004DE17D /* DeckSelect.swift */,
 				22ED237B24C66F0300ABFFE8 /* DeckView.swift */,
 				22ABF3B724C9E2A40040CE0A /* SnippetPicker.swift */,
 				22B6FAEF24C4C1C200DA4217 /* CardView.swift */,
@@ -392,6 +395,7 @@
 				22D1CCF124CE04C500A0A632 /* LoadDeck.swift in Sources */,
 				22ABF3B824C9E2A40040CE0A /* SnippetPicker.swift in Sources */,
 				224DFF3D24CBB55900A07932 /* Deck+CoreDataClass.swift in Sources */,
+				221D6E1324CE1577004DE17D /* DeckSelect.swift in Sources */,
 				220A6FA324C8D89000132B9C /* Snippet.swift in Sources */,
 				22ABF3C224CA09030040CE0A /* HistoryTransformer.swift in Sources */,
 				224DFF4124CBB55900A07932 /* Test+CoreDataClass.swift in Sources */,

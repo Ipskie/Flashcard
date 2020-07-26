@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension ContentView {
+extension DeckSelect {
     
     enum FileError: Error {
         case cancelled /// user cancelled out of the file dialog
