@@ -18,9 +18,11 @@ struct CardGallery: View {
     let columns = [GridItem(.adaptive(minimum: 80))]
     
     @State var editMode: EditMode = .inactive
+    @State var cards: [Card]
     
     init(deck: Deck) {
         self.deck = deck
+        _cards = State(initialValue: deck._cards.sortedBy(.romaji))
         prompts = deck.chosenTest._prompts
         answers = deck.chosenTest._answers
     }
@@ -28,13 +30,14 @@ struct CardGallery: View {
     var body: some View {
         ScrollView {
             LazyVGrid (columns: columns, spacing: 20) {
-                ForEach(deck._cards.sortedBy(.romaji).enumeratedArray(), id: \.element.id) { idx, card in
+                ForEach(cards.enumeratedArray(), id: \.element.id) { idx, card in
                     GalleryCard(
                         card: card,
                         index: idx,
                         prompts: prompts,
                         answers: answers,
-                        editMode: $editMode
+                        editMode: $editMode,
+                        removal: delete
                     )
                 }
             }
@@ -44,5 +47,11 @@ struct CardGallery: View {
         .navigationTitle("Cards")
         /// detect when editing
         .environment(\.editMode, $editMode)
+    }
+    
+    func delete(_ card: Card) -> Void {
+        cards.remove(at: cards.firstIndex(of: card)!)
+        moc.delete(card)
+        try! moc.save()
     }
 }

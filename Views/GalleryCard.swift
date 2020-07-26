@@ -15,6 +15,8 @@ struct GalleryCard: View {
     var answers: [Snippet]
     let index: Int
     
+    let remove: (Card) -> Void
+    
     @State var wiggle = Angle.zero
     @Binding var editMode: EditMode
     @Environment(\.managedObjectContext) var moc
@@ -24,7 +26,8 @@ struct GalleryCard: View {
         index: Int,
         prompts: [Snippet],
         answers: [Snippet],
-        editMode: Binding<EditMode>
+        editMode: Binding<EditMode>,
+        removal: @escaping (Card) -> Void
     ) {
         self.card = card
         self.index = index
@@ -32,6 +35,7 @@ struct GalleryCard: View {
         self.prompts = prompts
         self.answers = answers
         self._editMode = editMode
+        self.remove = removal
     }
     
     var body: some View {
@@ -50,8 +54,7 @@ struct GalleryCard: View {
             .background(CardBG().shadow(radius: 5))
             if editMode == .active {
                 Button {
-                    moc.delete(card)
-                    try! moc.save()
+                    remove(card)
                 } label: {
                     Image(systemName: "minus.circle.fill")
                         .foregroundColor(.red)
