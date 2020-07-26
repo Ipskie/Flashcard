@@ -27,7 +27,20 @@ extension Card {
     @NSManaged public var id: UUID?
     @NSManaged public var deck: Deck?
     @NSManaged public var history: NSSet?
-
+    
+    // MARK: - Accessors & Mutators
+    
+    var _history: Set<History> {
+        (history ?? []) as! Set<History>
+    }
+    
+    var corrects: Int {
+        _history.filter{$0.correct}.count
+    }
+    
+    var wrongs: Int {
+        _history.filter{!$0.correct}.count
+    }
 }
 
 // MARK: Generated accessors for history
