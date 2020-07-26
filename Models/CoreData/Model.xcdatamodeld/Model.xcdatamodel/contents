@@ -20,7 +20,7 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="deck" inverseEntity="Card"/>
-        <relationship name="chosenTest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Test"/>
+        <relationship name="chosenTest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Test" inverseName="chosenBy" inverseEntity="Test"/>
         <relationship name="tests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Test" inverseName="deck" inverseEntity="Test"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -38,6 +38,7 @@
         <attribute name="answers" attributeType="Transformable" valueTransformerName="SnippetTransformer"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="prompts" attributeType="Transformable" valueTransformerName="SnippetTransformer"/>
+        <relationship name="chosenBy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="chosenTest" inverseEntity="Deck"/>
         <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="tests" inverseEntity="Deck"/>
         <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="History" inverseName="test" inverseEntity="History"/>
         <uniquenessConstraints>
@@ -50,6 +51,6 @@
         <element name="Card" positionX="-214.8671875" positionY="218.49609375" width="128" height="178"/>
         <element name="Deck" positionX="-396.5234375" positionY="329.78125" width="128" height="118"/>
         <element name="History" positionX="-45.4140625" positionY="367.8515625" width="128" height="103"/>
-        <element name="Test" positionX="-217.07421875" positionY="411.7578125" width="128" height="118"/>
+        <element name="Test" positionX="-217.07421875" positionY="411.7578125" width="128" height="133"/>
     </elements>
 </model>
