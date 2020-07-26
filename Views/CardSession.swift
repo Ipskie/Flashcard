@@ -82,7 +82,7 @@ struct CardSession: View {
                 guard cards.count > 1 else { return }
                 /// re-insert the card at a random index
                 cards.insert(
-                    card.copy(),
+                    FlashCard(from: moc.object(with: card.objID!) as! Card),
                     at: Int.random(in: 1..<cards.count)
                 )
             }

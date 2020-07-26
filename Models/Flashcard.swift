@@ -52,21 +52,6 @@ struct FlashCard: Identifiable, Equatable, Hashable {
         comfortable = card.comfortable
     }
     
-    /** clone contents onto a new FlashCard
-        this tricks swiftUI into not persisting a CardView after we shuffle
-        a card back into the deck
-     */
-    func copy(with zone: NSZone? = nil) -> FlashCard {
-        return FlashCard(
-            hiragana: contents[.hiragana, default: nil],
-            katakana: contents[.katakana, default: nil],
-            romaji: contents[.romaji, default: nil],
-            kanji: contents[.kanji, default: nil],
-            english: contents[.english, default: nil],
-            comfortable: comfortable
-        )
-    }
-    
     /// shorthand for getting text of a particular type
     func snippet(_ type: Snippet) -> String? {
         return contents[type, default: nil]
