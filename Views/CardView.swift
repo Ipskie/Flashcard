@@ -54,11 +54,11 @@ struct CardView: View {
     
     func VCard(geo: GeometryProxy) -> some View {
         VStack(spacing: .zero) {
-            CardContents(for: prompts)
+            VStack { card.texts(for: prompts, font: .title) }
                 .frame(maxHeight: geo.size.height / 2)
             Divider()
                 .padding([.leading, .trailing])
-            CardContents(for: answers)
+            VStack { card.texts(for: answers, font: .title) }
                 .frame(maxHeight: geo.size.height / 2)
                 .blur(radius: showAnswer ? .zero : 10)
         }
@@ -66,23 +66,13 @@ struct CardView: View {
     
     func HCard(geo: GeometryProxy) -> some View {
         HStack(spacing: .zero) {
-            CardContents(for: prompts)
+            VStack { card.texts(for: prompts, font: .title) }
                 .frame(maxWidth: geo.size.width / 2)
             Divider()
                 .padding([.top, .bottom])
-            CardContents(for: answers)
+            VStack { card.texts(for: answers, font: .title) }
                 .frame(maxWidth: geo.size.width / 2)
                 .blur(radius: showAnswer ? .zero : 10)
-        }
-    }
-    
-    func CardContents(for snippets: [Snippet]) -> some View {
-        VStack {
-            ForEach(snippets, id: \.self) { type in
-                Text(card.snippet(type) ?? placeholder)
-                    .foregroundColor((card.snippet(type) == nil) ? Color(UIColor.placeholderText) : .primary)
-                    .font(.title)
-            }
         }
     }
 }

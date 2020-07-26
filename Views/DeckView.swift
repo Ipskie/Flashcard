@@ -53,7 +53,7 @@ struct DeckView: View {
                     destination: CardSession(deck: deck, sessionType: .nPull(10))
                 )
                 NavigationLink(
-                    "Marathon \(deck._cards.count) cards",
+                    "Marathon All \(deck._cards.count) Cards",
                     destination: CardSession(deck: deck, sessionType: .marathon)
                 )
             }

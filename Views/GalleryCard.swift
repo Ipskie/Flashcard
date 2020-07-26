@@ -41,13 +41,9 @@ struct GalleryCard: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             VStack {
-                ForEach(prompts, id: \.self) { prompt in
-                    Text(flashcard.contents[prompt, default: nil] ?? placeholder)
-                }
+                flashcard.texts(for: prompts)
                 Divider()
-                ForEach(answers, id: \.self) { answer in
-                    Text(flashcard.contents[answer, default: nil] ?? placeholder)
-                }
+                flashcard.texts(for: answers)
                 ScoreBar(corrects: card.corrects, wrongs: card.wrongs)
             }
             .padding()

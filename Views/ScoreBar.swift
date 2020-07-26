@@ -11,16 +11,19 @@ struct ScoreBar: View {
     
     let pCorrect: CGFloat
     
+    /// value indicating that no score is available
+    let flag = CGFloat.greatestFiniteMagnitude
+    
     init(corrects: Int, wrongs: Int) {
         if corrects + wrongs == .zero {
-            pCorrect = .greatestFiniteMagnitude
+            pCorrect = flag
         } else {
             pCorrect = CGFloat(corrects) / CGFloat(corrects + wrongs)
         }
     }
     
     var body: some View {
-        switch pCorrect == .greatestFiniteMagnitude {
+        switch pCorrect == flag {
         case true:
             Text("No Score")
                 .font(.footnote)
@@ -43,6 +46,6 @@ struct ScoreBar: View {
     }
     
     var percentage: String {
-        (pCorrect == .nan) ? "\(Int(pCorrect * 100))%" : " – "
+        (pCorrect != flag) ? "\(Int(pCorrect * 100))%" : " – "
     }
 }

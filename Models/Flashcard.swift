@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreData
-
+import SwiftUI
 
 
 struct FlashCard: Identifiable, Equatable, Hashable {
@@ -55,5 +55,25 @@ struct FlashCard: Identifiable, Equatable, Hashable {
     /// shorthand for getting text of a particular type
     func snippet(_ type: Snippet) -> String? {
         return contents[type, default: nil]
+    }
+    
+    /// return a collection of text views for this snippet
+    /// includes appropriate coloring for placeholders
+    func texts(for snippets: [Snippet], font: Font? = nil) -> some View {
+        func text(_ snippet: Snippet) -> Text {
+            if let string = contents[snippet, default: nil] {
+                return Text(string)
+                    .font(font)
+            } else {
+                return Text(placeholder)
+                    .font(font)
+                    .foregroundColor(Color(UIColor.placeholderText))
+            }
+        }
+        return Group {
+            ForEach(snippets, id: \.self) { snippet in
+                text(snippet)
+            }
+        }
     }
 }
