@@ -10,14 +10,24 @@ import SwiftUI
 struct ScoreBar: View {
     
     let pCorrect: CGFloat
-    let pWrong: CGFloat
     
     init(corrects: Int, wrongs: Int) {
-        pCorrect = CGFloat(corrects) / CGFloat(corrects + wrongs)
-        pWrong = CGFloat(wrongs) / CGFloat(corrects + wrongs)
+        if corrects + wrongs == .zero {
+            pCorrect = .nan
+        } else {
+            pCorrect = CGFloat(corrects) / CGFloat(corrects + wrongs)
+        }
     }
     
     var body: some View {
+        if (pCorrect == .nan) {
+            Text("No Score")
+        } else {
+            ScoreView
+        }
+    }
+    
+    var ScoreView: some View {
         VStack {
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
@@ -28,8 +38,12 @@ struct ScoreBar: View {
                         .stroke(Color.black)
                 }
             }
-            Text("\(Int(pCorrect * 100))%")
+            Text(percentage)
                 .font(.footnote)
         }
+    }
+    
+    var percentage: String {
+        (pCorrect == .nan) ? "\(Int(pCorrect * 100))%" : " – "
     }
 }
