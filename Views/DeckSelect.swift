@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct DeckSelect: View {
     
     @Environment(\.importFiles) var importAction
-    
+    @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
