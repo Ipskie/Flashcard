@@ -64,19 +64,23 @@ public class Card: NSManagedObject, Codable {
     }
     
     public required init(from decoder: Decoder) throws {
+        /// get required context
         guard let context = decoder.userInfo[.context] as? NSManagedObjectContext else { fatalError("NSManagedObjectContext is missing") }
         super.init(entity: Card.entity(), insertInto: context)
         
-    }
-    
-    init(from decoder: Decoder) throws {
-        let rawCard = try RawCard(from: decoder)
         id = UUID()
-        contents = [.hiragana: rawCard.hiragana,
-                    .katakana: rawCard.katakana,
-                    .romaji: rawCard.romaji,
-                    .kanji: rawCard.kanji,
-                    .english: rawCard.english]
         comfortable = false /// when decoding new deck, default to not comfortable
+        
+        /// pipe through RawCard
+        let rawCard = try RawCard(from: decoder)
+        
+        english = rawCard.english
+        hiragana = rawCard.hiragana
+        kanji = rawCard.kanji
+        katakana = rawCard.katakana
+        romaji = rawCard.romaji
+        
+        /// Note: Must assign a deck!
     }
 }
+
