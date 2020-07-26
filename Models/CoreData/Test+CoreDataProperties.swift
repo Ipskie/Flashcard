@@ -20,7 +20,8 @@ extension Test {
     @NSManaged public var answers: [Int]
     
     @NSManaged public var id: UUID?
-    @NSManaged public var deck: Deck?
+    @NSManaged public var deck: Deck!
+    @NSManaged public var chosenBy: Deck?
     @NSManaged public var history: NSSet?
 
     // MARK: - Accessors & Mutators
