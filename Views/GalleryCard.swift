@@ -17,6 +17,7 @@ struct GalleryCard: View {
     
     @State var wiggle = Angle.zero
     @Binding var editMode: EditMode
+    @Environment(\.managedObjectContext) var moc
     
     init(
         card: Card,
@@ -34,19 +35,31 @@ struct GalleryCard: View {
     }
     
     var body: some View {
-        VStack {
-            ForEach(prompts, id: \.self) { prompt in
-                Text(flashcard.contents[prompt, default: nil] ?? placeholder)
+        ZStack(alignment: .topLeading) {
+            VStack {
+                ForEach(prompts, id: \.self) { prompt in
+                    Text(flashcard.contents[prompt, default: nil] ?? placeholder)
+                }
+                Divider()
+                ForEach(answers, id: \.self) { answer in
+                    Text(flashcard.contents[answer, default: nil] ?? placeholder)
+                }
+                ScoreBar(corrects: card.corrects, wrongs: card.wrongs)
             }
-            Divider()
-            ForEach(answers, id: \.self) { answer in
-                Text(flashcard.contents[answer, default: nil] ?? placeholder)
+            .padding()
+            .background(CardBG().shadow(radius: 5))
+            if editMode == .active {
+                Button {
+                    moc.delete(card)
+                    try! moc.save()
+                } label: {
+                    Image(systemName: "minus.circle.fill")
+                        .foregroundColor(.red)
+                        .padding()
+                        .offset(x: -20, y: -20)
+                }
             }
-            ScoreBar(corrects: card.corrects, wrongs: card.wrongs)
         }
-        .padding()
-        .background(CardBG().shadow(radius: 5))
-        
         .rotationEffect(editMode == .active ? wiggle : .zero)
         .onChange(of: editMode, perform: wiggle)
     }
