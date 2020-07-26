@@ -13,7 +13,6 @@
 		220A6FA524C903A300132B9C /* GalleryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA424C903A300132B9C /* GalleryCard.swift */; };
 		220A6FA724C903C400132B9C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA624C903C400132B9C /* Card.swift */; };
 		220A6FA924C904BE00132B9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA824C904BE00132B9C /* Constants.swift */; };
-		221D16FD24C5473200C989FE /* BoolTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D16FC24C5473200C989FE /* BoolTransformer.swift */; };
 		224DFF3D24CBB55900A07932 /* Deck+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3524CBB55900A07932 /* Deck+CoreDataClass.swift */; };
 		224DFF3E24CBB55900A07932 /* Deck+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3624CBB55900A07932 /* Deck+CoreDataProperties.swift */; };
 		224DFF3F24CBB55900A07932 /* History+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3724CBB55900A07932 /* History+CoreDataClass.swift */; };
@@ -36,6 +35,9 @@
 		22B6FAF224C5000B00DA4217 /* CardSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAF124C5000B00DA4217 /* CardSession.swift */; };
 		22B6FAF424C5009F00DA4217 /* Characters.json in Resources */ = {isa = PBXBuildFile; fileRef = 22B6FAF324C5009F00DA4217 /* Characters.json */; };
 		22B6FAF724C500EA00DA4217 /* ParseJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B6FAF624C500EA00DA4217 /* ParseJSON.swift */; };
+		22D1CCEF24CE014800A0A632 /* DeckSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D1CCEE24CE014800A0A632 /* DeckSelect.swift */; };
+		22D1CCF124CE04C500A0A632 /* LoadDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D1CCF024CE04C500A0A632 /* LoadDeck.swift */; };
+		22D1CCF324CE06CF00A0A632 /* DecoderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D1CCF224CE06CF00A0A632 /* DecoderExtension.swift */; };
 		22ED237C24C66F0300ABFFE8 /* DeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ED237B24C66F0300ABFFE8 /* DeckView.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +65,6 @@
 		220A6FA424C903A300132B9C /* GalleryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCard.swift; sourceTree = "<group>"; };
 		220A6FA624C903C400132B9C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		220A6FA824C904BE00132B9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		221D16FC24C5473200C989FE /* BoolTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolTransformer.swift; sourceTree = "<group>"; };
 		224DFF3524CBB55900A07932 /* Deck+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataClass.swift"; sourceTree = "<group>"; };
 		224DFF3624CBB55900A07932 /* Deck+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Deck+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		224DFF3724CBB55900A07932 /* History+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -92,6 +93,9 @@
 		22B6FAF124C5000B00DA4217 /* CardSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSession.swift; sourceTree = "<group>"; };
 		22B6FAF324C5009F00DA4217 /* Characters.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Characters.json; sourceTree = "<group>"; };
 		22B6FAF624C500EA00DA4217 /* ParseJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseJSON.swift; sourceTree = "<group>"; };
+		22D1CCEE24CE014800A0A632 /* DeckSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSelect.swift; sourceTree = "<group>"; };
+		22D1CCF024CE04C500A0A632 /* LoadDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadDeck.swift; sourceTree = "<group>"; };
+		22D1CCF224CE06CF00A0A632 /* DecoderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecoderExtension.swift; sourceTree = "<group>"; };
 		22ED237B24C66F0300ABFFE8 /* DeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,7 +136,7 @@
 				224DFF3B24CBB55900A07932 /* Card+CoreDataClass.swift */,
 				224DFF3C24CBB55900A07932 /* Card+CoreDataProperties.swift */,
 				220A6FA024C8AC9600132B9C /* CardSort.swift */,
-				221D16FC24C5473200C989FE /* BoolTransformer.swift */,
+				22D1CCF224CE06CF00A0A632 /* DecoderExtension.swift */,
 				226A975B24C52CD900E3EA6F /* Model.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -231,6 +235,8 @@
 		22ED237D24C66F0A00ABFFE8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				22D1CCEE24CE014800A0A632 /* DeckSelect.swift */,
+				22D1CCF024CE04C500A0A632 /* LoadDeck.swift */,
 				22ED237B24C66F0300ABFFE8 /* DeckView.swift */,
 				22ABF3B724C9E2A40040CE0A /* SnippetPicker.swift */,
 				22B6FAEF24C4C1C200DA4217 /* CardView.swift */,
@@ -379,6 +385,7 @@
 				220A6FA724C903C400132B9C /* Card.swift in Sources */,
 				22ABF3BC24C9FAF90040CE0A /* SnippetTransformer.swift in Sources */,
 				220A6F9F24C8AAD000132B9C /* CardGallery.swift in Sources */,
+				22D1CCEF24CE014800A0A632 /* DeckSelect.swift in Sources */,
 				220A6FA524C903A300132B9C /* GalleryCard.swift in Sources */,
 				22B6FAF224C5000B00DA4217 /* CardSession.swift in Sources */,
 				220A6FA124C8AC9600132B9C /* CardSort.swift in Sources */,
@@ -386,13 +393,14 @@
 				224DFF3F24CBB55900A07932 /* History+CoreDataClass.swift in Sources */,
 				226A975D24C52CD900E3EA6F /* Model.xcdatamodeld in Sources */,
 				224DFF4024CBB55900A07932 /* History+CoreDataProperties.swift in Sources */,
+				22D1CCF124CE04C500A0A632 /* LoadDeck.swift in Sources */,
 				22ABF3B824C9E2A40040CE0A /* SnippetPicker.swift in Sources */,
 				224DFF3D24CBB55900A07932 /* Deck+CoreDataClass.swift in Sources */,
 				220A6FA324C8D89000132B9C /* Snippet.swift in Sources */,
 				22ABF3C224CA09030040CE0A /* HistoryTransformer.swift in Sources */,
 				224DFF4124CBB55900A07932 /* Test+CoreDataClass.swift in Sources */,
+				22D1CCF324CE06CF00A0A632 /* DecoderExtension.swift in Sources */,
 				22B6FAF024C4C1C200DA4217 /* CardView.swift in Sources */,
-				221D16FD24C5473200C989FE /* BoolTransformer.swift in Sources */,
 				22B6FAC324C4A19B00DA4217 /* FlashcardApp.swift in Sources */,
 				22B6FAF724C500EA00DA4217 /* ParseJSON.swift in Sources */,
 				22ED237C24C66F0300ABFFE8 /* DeckView.swift in Sources */,

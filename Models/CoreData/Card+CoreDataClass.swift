@@ -9,8 +9,12 @@
 import Foundation
 import CoreData
 
+fileprivate struct RawCard: Decodable {
+    
+}
+
 @objc(Card)
-public class Card: NSManagedObject {
+public class Card: NSManagedObject, Codable {
     
     static let entityName = "Card" /// for making entity calls
     
@@ -52,5 +56,10 @@ public class Card: NSManagedObject {
         kanji = flash.contents[.kanji] ?? nil
         hiragana = flash.contents[.hiragana] ?? nil
         katakana = flash.contents[.katakana] ?? nil
+    }
+    
+    init(from: Decoder) throws {
+        guard let context = decoder.userInfo[.context] as? NSManagedObjectContext else { fatalError("NSManagedObjectContext is missing") }
+        super.init(entity: Card.entity(), insertInto: context)
     }
 }
