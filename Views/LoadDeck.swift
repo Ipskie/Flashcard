@@ -14,18 +14,26 @@ extension DeckSelect {
         case other(Error)
     }
     
-    func loadDeck() -> Result<Deck, FileError> {
+    func loadDeck() -> Void {
         /// request a single JSON type file from the user
-        var deckResult: Result<Deck, FileError>!
         importAction(singleOfType: [.json]) { result in
-            switch(result){
+            var deckResult: Result<Deck, FileError>? = nil
+            switch result {
             case .success(let url):
                 precondition(url.isFileURL, "Received a non file URL!")
                 print("Success: \(url)")
                 do {
+                    /// ask for system permission to access secure resource
                     _ = url.startAccessingSecurityScopedResource()
-                    let s = try String(contentsOf: url)
-                    url.stopAccessingSecurityScopedResource()
+                    defer { url.stopAccessingSecurityScopedResource() }
+                    
+                    /// decode from JSON
+                    let data = try Data(contentsOf: url)
+                    let decoder = JSONDecoder(context: moc)
+                    let deck = try! decoder.decode(Deck.self, from: data)
+                    try! moc.save()
+                    
+                    deckResult = .success(deck)
                 } catch {
                     deckResult = .failure(.other(error))
                 }
@@ -34,7 +42,11 @@ extension DeckSelect {
             case .none:
                 deckResult = .failure(.cancelled)
             }
+            
+            /// if failed, show me what happened
+            if case let .failure(error) = deckResult {
+                print(error)
+            }
         }
-        return deckResult
     }
 }
