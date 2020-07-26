@@ -46,9 +46,6 @@ struct DeckView: View {
         }
         .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(Text(deck._name))
-        .onAppear {
-            onAppear()
-        }
     }
 }
 
