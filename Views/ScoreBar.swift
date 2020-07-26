@@ -13,40 +13,32 @@ struct ScoreBar: View {
     
     init(corrects: Int, wrongs: Int) {
         if corrects + wrongs == .zero {
-            pCorrect = .nan
+            pCorrect = .greatestFiniteMagnitude
         } else {
             pCorrect = CGFloat(corrects) / CGFloat(corrects + wrongs)
         }
     }
     
     var body: some View {
-        switch pCorrect != .nan {
+        switch pCorrect == .greatestFiniteMagnitude {
         case true:
-            NoView
-        case false:
-            ScoreView
-        }
-    }
-    
-    var NoView: some View {
-        Text("No Score")
-            .font(.footnote)
-            .multilineTextAlignment(.center)
-    }
-    
-    var ScoreView: some View {
-        VStack {
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: geo.size.height / 2)
-                        .foregroundColor(.green)
-                        .frame(width: geo.size.width * pCorrect)
-                    RoundedRectangle(cornerRadius: geo.size.height / 2)
-                        .stroke(Color.black)
-                }
-            }
-            Text(percentage)
+            Text("No Score")
                 .font(.footnote)
+                .multilineTextAlignment(.center)
+        case false:
+            VStack {
+                GeometryReader { geo in
+                    ZStack(alignment: .leading) {
+                        RoundedRectangle(cornerRadius: geo.size.height / 2)
+                            .foregroundColor(.green)
+                            .frame(width: geo.size.width * pCorrect)
+                        RoundedRectangle(cornerRadius: geo.size.height / 2)
+                            .stroke(Color.black)
+                    }
+                }
+                Text(percentage)
+                    .font(.footnote)
+            }
         }
     }
     
