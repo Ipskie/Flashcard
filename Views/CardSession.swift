@@ -32,17 +32,11 @@ struct CardSession: View {
         #warning("variable here for whether or not to cycle cards")
         
         /// NOTE: this direct binding was undocumented and hacky. Only here because this view does NOT need to update the parent.
-        _cards = State(initialValue: deck._cards.map{FlashCard(from: $0)})
+        _cards = State(initialValue: getCards(deck: deck, mode: sessionType))
         
         prompts = deck.chosenTest._prompts
         answers = deck.chosenTest._answers
     }
-    
-    /// occasionally this would fail on init in the simulator due to nil store coordinator
-    func onAppear() {
-        
-    }
-    
     
     var body: some View {
         ZStack {
@@ -66,7 +60,6 @@ struct CardSession: View {
             try! moc.save()
             presentationMode.wrappedValue.dismiss()
         }
-        .onAppear{ onAppear() }
     }
     
     func remove(card: FlashCard, correct: Bool) -> Void {
@@ -90,6 +83,14 @@ struct CardSession: View {
     }
 }
 
+/// return the appropriate number of cards, in shuffled order
+func getCards(deck: Deck, mode: CardSession.SessionType) -> [FlashCard] {
+    var cards = deck._cards.map{FlashCard(from: $0)}.shuffled()
+    if case let .nPull(count) = mode {
+        cards = Array(cards.prefix(upTo: count))
+    }
+    return cards
+}
 
 extension View {
     func stacked(at position: Int, in total: Int) -> some View {
