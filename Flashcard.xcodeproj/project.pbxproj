@@ -28,6 +28,7 @@
 		224DFF4324CBB55900A07932 /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3B24CBB55900A07932 /* Card+CoreDataClass.swift */; };
 		224DFF4424CBB55900A07932 /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3C24CBB55900A07932 /* Card+CoreDataProperties.swift */; };
 		226A975D24C52CD900E3EA6F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 226A975B24C52CD900E3EA6F /* Model.xcdatamodeld */; };
+		228AA6EF24CF52AC00809422 /* StackedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228AA6EE24CF52AC00809422 /* StackedCard.swift */; };
 		22ABF3B824C9E2A40040CE0A /* SnippetPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABF3B724C9E2A40040CE0A /* SnippetPicker.swift */; };
 		22ABF3BC24C9FAF90040CE0A /* SnippetTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABF3BB24C9FAF90040CE0A /* SnippetTransformer.swift */; };
 		22ABF3C224CA09030040CE0A /* HistoryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABF3C124CA09030040CE0A /* HistoryTransformer.swift */; };
@@ -85,6 +86,7 @@
 		224DFF3B24CBB55900A07932 /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataClass.swift"; sourceTree = "<group>"; };
 		224DFF3C24CBB55900A07932 /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		226A975C24C52CD900E3EA6F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		228AA6EE24CF52AC00809422 /* StackedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedCard.swift; sourceTree = "<group>"; };
 		22ABF3B724C9E2A40040CE0A /* SnippetPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetPicker.swift; sourceTree = "<group>"; };
 		22ABF3BB24C9FAF90040CE0A /* SnippetTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetTransformer.swift; sourceTree = "<group>"; };
 		22ABF3C124CA09030040CE0A /* HistoryTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTransformer.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				220A6FA624C903C400132B9C /* Card.swift */,
+				228AA6EE24CF52AC00809422 /* StackedCard.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				22ABF3C224CA09030040CE0A /* HistoryTransformer.swift in Sources */,
 				224DFF4124CBB55900A07932 /* Test+CoreDataClass.swift in Sources */,
 				22D1CCF324CE06CF00A0A632 /* DecoderExtension.swift in Sources */,
+				228AA6EF24CF52AC00809422 /* StackedCard.swift in Sources */,
 				22B6FAF024C4C1C200DA4217 /* CardView.swift in Sources */,
 				22B6FAC324C4A19B00DA4217 /* FlashcardApp.swift in Sources */,
 				2215AC7724CE61D90088EC5E /* DeleteButton.swift in Sources */,
