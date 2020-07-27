@@ -38,6 +38,7 @@ struct DeckView: View {
     
     /// update state when a test's snippets are changed
     func onTestChanged(test: Test) -> Void {
+        /// force an update by removing and reinserting the test
         tests.remove(at: tests.firstIndex(where: {$0.id == test.id})!)
         tests.append(test)
         
