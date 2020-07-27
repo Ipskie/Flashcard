@@ -81,7 +81,10 @@ struct CardSession: View {
     func remove(card: FlashCard, correct: Bool) -> Void {
         let oid = card.objID! /// get core data Object ID for corresponding Card
         
-        cardsStatus[oid] = correct ? .right : .wrong
+        withAnimation {
+            cardsStatus[oid] = correct ? .right : .wrong
+        }
+        
         /// fetch corresponding card from core data
         let CDcard = moc.object(with: oid) as! Card
         

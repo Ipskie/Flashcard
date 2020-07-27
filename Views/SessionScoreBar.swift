@@ -31,8 +31,9 @@ struct SessionScoreBar: View {
                 RoundedRectangle(cornerRadius: geo.size.height / 2)
                     .foregroundColor(.red)
                     .frame(width: geo.size.width * pWrong)
-                
             }
         }
+        .frame(maxHeight: 40)
+        .padding()
     }
 }
