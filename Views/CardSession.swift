@@ -13,6 +13,14 @@ struct CardSession: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
     @State private var cards: [FlashCard] = []
+    private var test: Test
+    enum CardStatus {
+        case right
+        case wrong
+        case fresh /// not yet encountered
+    }
+    
+    @State private var cardsStatus = [NSManagedObjectID:CardStatus]()
     
     enum SessionType {
         case nPull(Int) // pull only an integer number of cards. no repeats
@@ -20,22 +28,21 @@ struct CardSession: View {
         case training // pull any card in the deck, but allow repeats of wrong cards
     }
     
-    var deck: Deck
     var sessionType: SessionType
     
     private var prompts: [Snippet]
     private var answers: [Snippet]
     
-    init(deck: Deck, sessionType: SessionType) {
-        self.deck = deck
+    init(test: Test, cards: [Card], sessionType: SessionType) {
+        self.test = test
         self.sessionType = sessionType
         #warning("variable here for whether or not to cycle cards")
         
-        /// NOTE: this direct binding was undocumented and hacky. Only here because this view does NOT need to update the parent.
-        _cards = State(initialValue: getCards(deck: deck, mode: sessionType))
-        
-        prompts = deck.chosenTest._prompts
-        answers = deck.chosenTest._answers
+        _cards = State(initialValue: getCards(cards: cards, mode: sessionType))
+        prompts = test._prompts
+        answers = test._answers
+        /// assign every card as not yet encountered
+        cards.forEach{cardsStatus[$0.objectID] = .fresh}
     }
     
     var body: some View {
@@ -63,13 +70,16 @@ struct CardSession: View {
     }
     
     func remove(card: FlashCard, correct: Bool) -> Void {
+        let oid = card.objID! /// get core data Object ID for corresponding Card
+        
+        cardsStatus[oid] = correct ? .right : .wrong
         /// fetch corresponding card from core data
-        let CDcard = moc.object(with: card.objID!) as! Card
+        let CDcard = moc.object(with: oid) as! Card
         
         /// synthesize and insert new history entry
         let historyEntry = History(moc: moc, correct: correct)
         CDcard.addToHistory(historyEntry)
-        deck.chosenTest.addToHistory(historyEntry)
+        test.addToHistory(historyEntry)
         try! moc.save()
         
         withAnimation {
@@ -85,14 +95,16 @@ struct CardSession: View {
             }
         }
     }
+    
+    
 }
 
 /// return the appropriate number of cards, in shuffled order
-func getCards(deck: Deck, mode: CardSession.SessionType) -> [FlashCard] {
-    var cards = deck._cards.map{FlashCard(from: $0)}.shuffled()
+func getCards(cards: [Card], mode: CardSession.SessionType) -> [FlashCard] {
+    var flashcards = cards.map{FlashCard(from: $0)}.shuffled()
     if case let .nPull(count) = mode {
-        cards = Array(cards.prefix(upTo: count))
+        flashcards = Array(flashcards.prefix(upTo: min(count, flashcards.count))) /// pull at most `count` cards
     }
-    return cards
+    return flashcards
 }
 
