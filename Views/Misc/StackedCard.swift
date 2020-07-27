@@ -7,6 +7,8 @@
 
 import SwiftUI
 extension View {
+    
+    /// styling modifier to make cards look like they are "stacked" on top of each other
     func stacked(at position: Int, in total: Int) -> some View {
         var scale = CGFloat.zero
         switch total - position {

@@ -65,7 +65,11 @@ struct CardSession: View {
     func remove(card: FlashCard, correct: Bool) -> Void {
         /// fetch corresponding card from core data
         let CDcard = moc.object(with: card.objID!) as! Card
-        _ = History(moc: moc, test: deck.chosenTest, card: CDcard, correct: correct)
+        
+        /// synthesize and insert new history entry
+        let historyEntry = History(moc: moc, correct: correct)
+        CDcard.addToHistory(historyEntry)
+        deck.chosenTest.addToHistory(historyEntry)
         try! moc.save()
         
         withAnimation {
