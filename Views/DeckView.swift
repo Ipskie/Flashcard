@@ -10,7 +10,8 @@ import SwiftUI
 struct DeckView: View {
     
     @Environment(\.managedObjectContext) var moc
-    var deck: Deck
+    private var deck: Deck
+    @State var cards: [Card]
     @State private var chosenTest: Test
     @State private var tests: [Test]
     @State private var prompts: [Snippet]
@@ -19,6 +20,7 @@ struct DeckView: View {
     init(deck: Deck) {
         /// bind everything to State so that any changes are updated
         self.deck = deck
+        _cards = State(initialValue: deck._cards.sortedBy(.romaji))
         _chosenTest = State(initialValue: deck.chosenTest)
         _tests = State(initialValue: deck.testsByComplexity)
         _prompts = State(initialValue: deck.chosenTest._prompts)
@@ -30,7 +32,7 @@ struct DeckView: View {
             DeckSelection
             PracticeSelection
             Section(header: Text("Deck Information")) {
-                NavigationLink("Cards", destination: CardGallery(deck: deck))
+                NavigationLink("Cards", destination: CardGallery(cards: $cards, prompts: prompts, answers: answers, onDelete: onCardDeleted))
             }
         }
         .listStyle(InsetGroupedListStyle())
@@ -45,13 +47,14 @@ extension DeckView {
         Section(header: Text("Practice")) {
             NavigationLink(
                 "10 Pull",
-                destination: CardSession(deck: deck, sessionType: .nPull(10))
+                destination: CardSession(test: chosenTest, cards: cards, sessionType: .nPull(10))
             )
             NavigationLink(
                 "Marathon All \(deck._cards.count) Cards",
-                destination: CardSession(deck: deck, sessionType: .marathon)
+                destination: CardSession(test: chosenTest, cards: cards, sessionType: .marathon)
             )
         }
+        .disabled(deck._cards.count == 0)
     }
 }
 
@@ -142,6 +145,13 @@ extension DeckView {
             prompts = chosenTest._prompts
             answers = chosenTest._answers
         }
+        try! moc.save()
+    }
+    
+    /// update state when a card is deleted
+    func onCardDeleted(card: Card) -> Void {
+        deck.removeFromCards(card)
+        print(deck._cards.count, cards.count)
         try! moc.save()
     }
 }
