@@ -12,7 +12,6 @@ struct TestCreation: View {
     
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
-    @Binding var chosenTest: Test
     @State var prompts: [Snippet] = defaultPrompt
     @State var answers: [Snippet] = defaultAnswer
     @State var editMode: EditMode = .active

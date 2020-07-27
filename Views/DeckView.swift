@@ -10,7 +10,7 @@ import SwiftUI
 struct DeckView: View {
     
     @Environment(\.managedObjectContext) var moc
-    @State var deck: Deck
+    var deck: Deck
     @State private var chosenTest: Test
     @State private var tests: [Test]
     @State private var prompts: [Snippet]
@@ -18,7 +18,7 @@ struct DeckView: View {
     
     init(deck: Deck) {
         /// bind everything to State so that any changes are updated
-        _deck = State(initialValue: deck)
+        self.deck = deck
         _chosenTest = State(initialValue: deck.chosenTest)
         _tests = State(initialValue: deck.testsByComplexity)
         _prompts = State(initialValue: deck.chosenTest._prompts)
@@ -36,14 +36,28 @@ struct DeckView: View {
         try! moc.save()
     }
     
-    func onTestEdited(test: Test) -> Void {
-        if test.chosenBy == deck {
-            chosenTest = test
-            prompts = test._prompts
-            answers = test._answers
+    /// update state when a test's snippets are changed
+    func onTestChanged(test: Test) -> Void {
+        let idx = tests.firstIndex(where: {$0.id == test.id})!
+        tests[idx] = test /// update state copy
+        if deck.chosenTest.id == test.id {
+            chosenTest = test /// update state binding
+            prompts = chosenTest._prompts
+            answers = chosenTest._answers
         }
-        if let idx = tests.firstIndex(of: test) {
-            tests[idx] = test /// update value at index
+        try! moc.save()
+    }
+    
+    /// update state when a test is deleted
+    func onTestDeleted(test: Test) -> Void {
+        let idx = tests.firstIndex(of: test)!
+        tests.remove(at: idx) /// remove local copy
+        deck.removeFromTests(test) /// remove core data copy
+        if deck.chosenTest == test {
+            deck.chosenTest = tests.first! /// update chosen test
+            chosenTest = deck.chosenTest /// and state binding
+            prompts = chosenTest._prompts
+            answers = chosenTest._answers
         }
         try! moc.save()
     }
@@ -55,14 +69,14 @@ struct DeckView: View {
                     ForEach(tests, id: \.id) {
                         TestView($0)
                     }
-                    NavigationLink(destination: TestCreation(chosenTest: $chosenTest, completion: onTestCreated)) {
+                    NavigationLink(destination: TestCreation(completion: onTestCreated)) {
                         HStack {
                             Image(systemName: "plus")
                                 .foregroundColor(.blue)
                             Text("New Test")
                         }
                     }
-                    NavigationLink(destination: TestEdit(deck: $deck, tests: $tests, onEdited: onTestEdited)) {
+                    NavigationLink(destination: TestEdit(tests: $tests, onEdited: onTestChanged, onDeleted: onTestDeleted)) {
                         HStack {
                             Image(systemName: "pencil")
                                 .foregroundColor(.blue)

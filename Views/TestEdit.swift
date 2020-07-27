@@ -15,6 +15,7 @@ struct TestEdit: View {
     @State var editMode: EditMode = .inactive
     
     var onEdited: (Test) -> Void
+    var onDeleted: (Test) -> Void
     
     var body: some View {
         List {
@@ -26,20 +27,8 @@ struct TestEdit: View {
             }
             .onDelete { offsets in
                 offsets.forEach {
-                    /// terminate if this is only test left
-                    guard tests.count > 1 else { return }
-                    
-                    let test = tests[$0]
-                    tests.remove(at: $0) /// remove from collection
-                    if deck.chosenTest == test {
-                        deck.chosenTest = tests.first! /// need to adjust chosen test if it is deleted
-                    }
-                    moc.delete(test)
-                    try! moc.save()
-                    onEdited(deck.chosenTest) /// ask parent view to update
-                    
-                    /// turn off edits if only 1 view is left
-                    if tests.count == 1 { editMode = .inactive }
+                    onDeleted(tests[$0])
+                    tests.remove(at: $0)
                 }
             }
         }
