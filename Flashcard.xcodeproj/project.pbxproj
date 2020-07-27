@@ -29,6 +29,7 @@
 		224DFF4424CBB55900A07932 /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224DFF3C24CBB55900A07932 /* Card+CoreDataProperties.swift */; };
 		226A975D24C52CD900E3EA6F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 226A975B24C52CD900E3EA6F /* Model.xcdatamodeld */; };
 		228AA6EF24CF52AC00809422 /* StackedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228AA6EE24CF52AC00809422 /* StackedCard.swift */; };
+		228AA6F124CF54AD00809422 /* SessionScoreBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228AA6F024CF54AD00809422 /* SessionScoreBar.swift */; };
 		22ABF3B824C9E2A40040CE0A /* SnippetPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABF3B724C9E2A40040CE0A /* SnippetPicker.swift */; };
 		22ABF3BC24C9FAF90040CE0A /* SnippetTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABF3BB24C9FAF90040CE0A /* SnippetTransformer.swift */; };
 		22ABF3C224CA09030040CE0A /* HistoryTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABF3C124CA09030040CE0A /* HistoryTransformer.swift */; };
@@ -87,6 +88,7 @@
 		224DFF3C24CBB55900A07932 /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		226A975C24C52CD900E3EA6F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		228AA6EE24CF52AC00809422 /* StackedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedCard.swift; sourceTree = "<group>"; };
+		228AA6F024CF54AD00809422 /* SessionScoreBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionScoreBar.swift; sourceTree = "<group>"; };
 		22ABF3B724C9E2A40040CE0A /* SnippetPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetPicker.swift; sourceTree = "<group>"; };
 		22ABF3BB24C9FAF90040CE0A /* SnippetTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnippetTransformer.swift; sourceTree = "<group>"; };
 		22ABF3C124CA09030040CE0A /* HistoryTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTransformer.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				22ABF3B724C9E2A40040CE0A /* SnippetPicker.swift */,
 				22B6FAEF24C4C1C200DA4217 /* CardView.swift */,
 				22B6FAF124C5000B00DA4217 /* CardSession.swift */,
+				228AA6F024CF54AD00809422 /* SessionScoreBar.swift */,
 				220A6F9E24C8AAD000132B9C /* CardGallery.swift */,
 				220A6FA424C903A300132B9C /* GalleryCard.swift */,
 				221D6E1724CE259A004DE17D /* ScoreBar.swift */,
@@ -422,6 +425,7 @@
 				220A6FA724C903C400132B9C /* Card.swift in Sources */,
 				22ABF3BC24C9FAF90040CE0A /* SnippetTransformer.swift in Sources */,
 				220A6F9F24C8AAD000132B9C /* CardGallery.swift in Sources */,
+				228AA6F124CF54AD00809422 /* SessionScoreBar.swift in Sources */,
 				220A6FA524C903A300132B9C /* GalleryCard.swift in Sources */,
 				22B6FAF224C5000B00DA4217 /* CardSession.swift in Sources */,
 				220A6FA124C8AC9600132B9C /* CardSort.swift in Sources */,
