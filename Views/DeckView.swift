@@ -25,27 +25,7 @@ struct DeckView: View {
     
     var body: some View {
         List {
-            Section(header: Text("Card Type: ")) {
-                NavigationLink(destination: SnippetPicker(
-                    prompts: $prompts,
-                    answers: $answers
-                )) {
-                    Text(test._prompts.map{$0.name}.joined(separator: " + ")
-                         + " ➜ "
-                         + test._answers.map{$0.name}.joined(separator: " + ")
-                    )
-                }
-                /// detect changes through binding
-                .onChange(of: prompts) {
-                    test._prompts = $0
-                    deck.chosenTest = test
-                    try! moc.save()
-                }
-                .onChange(of: answers) {
-                    test._answers = $0
-                    deck.chosenTest = test
-                    try! moc.save()
-                }
+            Section(header: Text("Card Type")) {
             }
             Section(header: Text("Practice")) {
                 NavigationLink(
