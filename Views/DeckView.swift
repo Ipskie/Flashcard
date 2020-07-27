@@ -150,8 +150,8 @@ extension DeckView {
     
     /// update state when a card is deleted
     func onCardDeleted(card: Card) -> Void {
-        deck.removeFromCards(card)
-        print(deck._cards.count, cards.count)
+        deck.removeFromCards(card) /// delete core data card
+        cards.remove(at: cards.firstIndex(of: card)!) /// delete state card
         try! moc.save()
     }
 }

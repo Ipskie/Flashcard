@@ -31,7 +31,7 @@ struct CardGallery: View {
                         prompts: prompts,
                         answers: answers,
                         editMode: $editMode,
-                        removal: delete
+                        removal: onDelete
                     )
                 }
             }
@@ -41,10 +41,5 @@ struct CardGallery: View {
         .navigationTitle("Cards")
         /// detect when editing
         .environment(\.editMode, $editMode)
-    }
-    
-    func delete(_ card: Card) -> Void {
-        cards.remove(at: cards.firstIndex(of: card)!)
-        onDelete(card)
     }
 }
