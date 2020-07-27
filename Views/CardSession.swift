@@ -20,7 +20,7 @@ struct CardSession: View {
         case fresh /// not yet encountered
     }
     
-    @State private var cardsStatus = [NSManagedObjectID:CardStatus]()
+    @State private var cardsStatus: [NSManagedObjectID:CardStatus]
     
     enum SessionType {
         case nPull(Int) // pull only an integer number of cards. no repeats
@@ -42,23 +42,32 @@ struct CardSession: View {
         prompts = test._prompts
         answers = test._answers
         /// assign every card as not yet encountered
-        cards.forEach{cardsStatus[$0.objectID] = .fresh}
+        var cDict = [NSManagedObjectID:CardStatus]()
+        cards.forEach{cDict[$0.objectID] = .fresh}
+        _cardsStatus = State(initialValue: cDict)
     }
     
     var body: some View {
-        ZStack {
-            ForEach(cards, id: \.id) { card in
-                CardView(
-                    card: card,
-                    prompts: prompts,
-                    answers: answers,
-                    removal: remove
-                )
-                    .stacked(
-                        at: cards.firstIndex(where: {$0.id == card.id})!,
-                        in: cards.count
+        VStack {
+            ZStack {
+                ForEach(cards, id: \.id) { card in
+                    CardView(
+                        card: card,
+                        prompts: prompts,
+                        answers: answers,
+                        removal: remove
                     )
+                        .stacked(
+                            at: cards.firstIndex(where: {$0.id == card.id})!,
+                            in: cards.count
+                        )
+                }
             }
+            SessionScoreBar(
+                rights: cardsStatus.filter{$0.value == .right}.count,
+                wrongs: cardsStatus.filter{$0.value == .wrong}.count,
+                freshs: cardsStatus.filter{$0.value == .fresh}.count
+            )
         }
         .navigationBarHidden(true)
         .onChange(of: cards){
