@@ -13,19 +13,19 @@ struct SnippetPicker: View {
     @Environment(\.managedObjectContext) var moc: NSManagedObjectContext
     @Environment(\.presentationMode) var presentationMode
     @State var editMode: EditMode = .active
-    @Binding var test: Test
+    var test: Test
     var onEdited: (Test) -> Void
     @State var prompts: [Snippet]
     @State var answers: [Snippet]
     
     init(
-        test: Binding<Test>,
+        test: Test,
         onEdited: @escaping (Test) -> Void
     ) {
-        _test = test
+        self.test = test
         self.onEdited = onEdited
-        _prompts = State(initialValue: test.wrappedValue._prompts)
-        _answers = State(initialValue: test.wrappedValue._answers)
+        _prompts = State(initialValue: test._prompts)
+        _answers = State(initialValue: test._answers)
     }
     
     var body: some View {
