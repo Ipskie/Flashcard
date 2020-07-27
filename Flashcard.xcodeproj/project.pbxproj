@@ -15,6 +15,7 @@
 		220A6FA924C904BE00132B9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA824C904BE00132B9C /* Constants.swift */; };
 		2215AC7424CE5D6A0088EC5E /* TestCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215AC7324CE5D6A0088EC5E /* TestCreation.swift */; };
 		2215AC7724CE61D90088EC5E /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215AC7624CE61D90088EC5E /* DeleteButton.swift */; };
+		2215AC7924CE65790088EC5E /* TestEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215AC7824CE65790088EC5E /* TestEdit.swift */; };
 		221D6E1324CE1577004DE17D /* DeckSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D6E1224CE1577004DE17D /* DeckSelect.swift */; };
 		221D6E1624CE239B004DE17D /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D6E1524CE239B004DE17D /* CollectionExtension.swift */; };
 		221D6E1824CE259A004DE17D /* ScoreBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D6E1724CE259A004DE17D /* ScoreBar.swift */; };
@@ -71,6 +72,7 @@
 		220A6FA824C904BE00132B9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2215AC7324CE5D6A0088EC5E /* TestCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCreation.swift; sourceTree = "<group>"; };
 		2215AC7624CE61D90088EC5E /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
+		2215AC7824CE65790088EC5E /* TestEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEdit.swift; sourceTree = "<group>"; };
 		221D6E1224CE1577004DE17D /* DeckSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSelect.swift; sourceTree = "<group>"; };
 		221D6E1524CE239B004DE17D /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 		221D6E1724CE259A004DE17D /* ScoreBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBar.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				221D6E1224CE1577004DE17D /* DeckSelect.swift */,
 				22ED237B24C66F0300ABFFE8 /* DeckView.swift */,
 				2215AC7324CE5D6A0088EC5E /* TestCreation.swift */,
+				2215AC7824CE65790088EC5E /* TestEdit.swift */,
 				22ABF3B724C9E2A40040CE0A /* SnippetPicker.swift */,
 				22B6FAEF24C4C1C200DA4217 /* CardView.swift */,
 				22B6FAF124C5000B00DA4217 /* CardSession.swift */,
@@ -406,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22B6FAC524C4A19B00DA4217 /* ContentView.swift in Sources */,
+				2215AC7924CE65790088EC5E /* TestEdit.swift in Sources */,
 				224DFF4324CBB55900A07932 /* Card+CoreDataClass.swift in Sources */,
 				220A6FA924C904BE00132B9C /* Constants.swift in Sources */,
 				221D6E1624CE239B004DE17D /* CollectionExtension.swift in Sources */,

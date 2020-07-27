@@ -36,10 +36,16 @@ struct DeckView: View {
         try! moc.save()
     }
     
+    func onEdited() -> Void {
+        /// re-fetch from core data
+        chosenTest = deck.chosenTest
+        tests = deck._tests
+    }
+    
     var body: some View {
         List {
             Section(header: Text("Card Type")) {
-                DisclosureGroup("Test") {
+                DisclosureGroup(chosenTest.text) {
                     ForEach(tests.sorted(by: {$0.prompts.count < $1.prompts.count}), id: \.id) {
                         TestView($0)
                     }
@@ -50,10 +56,12 @@ struct DeckView: View {
                             Text("New Test")
                         }
                     }
-                    HStack {
-                        Image(systemName: "pencil")
-                            .foregroundColor(.blue)
-                        Text("Edit Tests")
+                    NavigationLink(destination: TestEdit(tests: $tests, onEdited: onEdited)) {
+                        HStack {
+                            Image(systemName: "pencil")
+                                .foregroundColor(.blue)
+                            Text("Edit Tests")
+                        }
                     }
                 }
             }
@@ -84,17 +92,10 @@ struct DeckView: View {
             HStack {
                 Image(systemName: "checkmark")
                     .foregroundColor(test.id == chosenTest.id ? .blue : .clear)
-                Text(description(of: test))
+                Text(test.text)
             }
         }
         .buttonStyle(PlainButtonStyle())
     }
-    
-    func description(of test: Test) -> String {
-        test._prompts.map{$0.name}.joined(separator: " + ")
-        + " ➜ "
-        + test._answers.map{$0.name}.joined(separator: " + ")
-    }
-    
 }
 

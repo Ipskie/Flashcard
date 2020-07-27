@@ -27,7 +27,6 @@ struct DeckSelect: View {
                         NavigationLink(
                             deck._name,
                             destination: DeckView(deck: deck)
-                                .environment(\.managedObjectContext, moc)
                         )
                     }
                     .onDelete { offsets in

@@ -42,6 +42,12 @@ extension Test {
             answers = newValue.map{$0.rawValue}
         }
     }
+    
+    var text: String {
+        _prompts.map{$0.name}.joined(separator: " + ")
+        + " ➜ "
+        + _answers.map{$0.name}.joined(separator: " + ")
+    }
 }
 
 // MARK: Generated accessors for history
