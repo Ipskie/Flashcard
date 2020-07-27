@@ -10,7 +10,6 @@ import SwiftUI
 struct TestEdit: View {
     
     @Environment(\.managedObjectContext) var moc
-    @Binding var deck: Deck
     @Binding var tests: [Test]
     @State var editMode: EditMode = .inactive
     
@@ -19,16 +18,15 @@ struct TestEdit: View {
     
     var body: some View {
         List {
-            ForEach(tests.sorted(by: {$0.prompts.count < $1.prompts.count}), id: \.id) { test in
+            ForEach(tests.enumeratedArray(), id: \.element.id) { idx, test in
                 NavigationLink(
                     test.text,
-                    destination: SnippetPicker(test: test, onEdited: onEdited)
+                    destination: SnippetPicker(test: $tests[idx], onEdited: onEdited)
                 )
             }
             .onDelete { offsets in
                 offsets.forEach {
-                    onDeleted(tests[$0])
-                    tests.remove(at: $0)
+                    onDeleted(tests[$0]) /// also handles deletion from the bound list
                 }
             }
         }

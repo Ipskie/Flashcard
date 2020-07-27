@@ -38,9 +38,9 @@ struct DeckView: View {
     
     /// update state when a test's snippets are changed
     func onTestChanged(test: Test) -> Void {
-        let idx = tests.firstIndex(where: {$0.id == test.id})!
-        tests[idx] = test /// update state copy
         if deck.chosenTest.id == test.id {
+            print("fired")
+            
             chosenTest = test /// update state binding
             prompts = chosenTest._prompts
             answers = chosenTest._answers
@@ -50,6 +50,9 @@ struct DeckView: View {
     
     /// update state when a test is deleted
     func onTestDeleted(test: Test) -> Void {
+        /// terminate if this would delete only test
+        guard tests.count > 1 else { return }
+        
         let idx = tests.firstIndex(of: test)!
         tests.remove(at: idx) /// remove local copy
         deck.removeFromTests(test) /// remove core data copy
