@@ -52,8 +52,7 @@ struct GalleryCard: View {
                 Button {
                     remove(card)
                 } label: {
-                    Image(systemName: "minus.circle.fill")
-                        .foregroundColor(.red)
+                    DeleteButton()
                         .padding()
                         .offset(x: -20, y: -20)
                 }

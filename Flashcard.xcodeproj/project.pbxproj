@@ -14,6 +14,7 @@
 		220A6FA724C903C400132B9C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA624C903C400132B9C /* Card.swift */; };
 		220A6FA924C904BE00132B9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220A6FA824C904BE00132B9C /* Constants.swift */; };
 		2215AC7424CE5D6A0088EC5E /* TestCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215AC7324CE5D6A0088EC5E /* TestCreation.swift */; };
+		2215AC7724CE61D90088EC5E /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2215AC7624CE61D90088EC5E /* DeleteButton.swift */; };
 		221D6E1324CE1577004DE17D /* DeckSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D6E1224CE1577004DE17D /* DeckSelect.swift */; };
 		221D6E1624CE239B004DE17D /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D6E1524CE239B004DE17D /* CollectionExtension.swift */; };
 		221D6E1824CE259A004DE17D /* ScoreBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D6E1724CE259A004DE17D /* ScoreBar.swift */; };
@@ -69,6 +70,7 @@
 		220A6FA624C903C400132B9C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		220A6FA824C904BE00132B9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2215AC7324CE5D6A0088EC5E /* TestCreation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCreation.swift; sourceTree = "<group>"; };
+		2215AC7624CE61D90088EC5E /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
 		221D6E1224CE1577004DE17D /* DeckSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSelect.swift; sourceTree = "<group>"; };
 		221D6E1524CE239B004DE17D /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 		221D6E1724CE259A004DE17D /* ScoreBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBar.swift; sourceTree = "<group>"; };
@@ -130,6 +132,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2215AC7524CE61CD0088EC5E /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				220A6FA624C903C400132B9C /* Card.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		221D16FB24C533E600C989FE /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +189,7 @@
 		22B6FAB624C4A19B00DA4217 = {
 			isa = PBXGroup;
 			children = (
+				2215AC7624CE61D90088EC5E /* DeleteButton.swift */,
 				221D6E1424CE238A004DE17D /* Extensions */,
 				22B6FAC124C4A19B00DA4217 /* Flashcard */,
 				22ED237D24C66F0A00ABFFE8 /* Views */,
@@ -260,7 +271,7 @@
 				220A6F9E24C8AAD000132B9C /* CardGallery.swift */,
 				220A6FA424C903A300132B9C /* GalleryCard.swift */,
 				221D6E1724CE259A004DE17D /* ScoreBar.swift */,
-				220A6FA624C903C400132B9C /* Card.swift */,
+				2215AC7524CE61CD0088EC5E /* Misc */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -422,6 +433,7 @@
 				22D1CCF324CE06CF00A0A632 /* DecoderExtension.swift in Sources */,
 				22B6FAF024C4C1C200DA4217 /* CardView.swift in Sources */,
 				22B6FAC324C4A19B00DA4217 /* FlashcardApp.swift in Sources */,
+				2215AC7724CE61D90088EC5E /* DeleteButton.swift in Sources */,
 				22B6FAF724C500EA00DA4217 /* ParseJSON.swift in Sources */,
 				22ED237C24C66F0300ABFFE8 /* DeckView.swift in Sources */,
 				224DFF4424CBB55900A07932 /* Card+CoreDataProperties.swift in Sources */,

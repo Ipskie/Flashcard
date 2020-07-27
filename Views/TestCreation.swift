@@ -15,32 +15,39 @@ struct TestCreation: View {
     @Binding var chosenTest: Test
     @State var prompts: [Snippet] = defaultPrompt
     @State var answers: [Snippet] = defaultAnswer
+    @State var editMode: EditMode = .active
     var completion: (Test) -> Void 
     
     var body: some View {
         List {
             EditableList(snippets: $prompts, name: "Prompts")
             EditableList(snippets: $answers, name: "Answers")
-            Button {
-                completion(Test(moc: moc, prompts: prompts, answers: answers))
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                Text("Done")
-                    .bold()
+            Section {
+                CancelButton
             }
         }
-        .navigationBarItems(trailing: CancelButton)
+        .navigationBarItems(trailing: DoneButton)
         .listStyle(InsetGroupedListStyle())
         .navigationTitle("New Test")
+        .environment(\.editMode, $editMode)
+    }
+    
+    var DoneButton: some View {
+        Button {
+            completion(Test(moc: moc, prompts: prompts, answers: answers))
+            presentationMode.wrappedValue.dismiss()
+        } label: {
+            Text("Done")
+                .bold()
+        }
     }
     
     var CancelButton: some View {
-        Button {
-            presentationMode.wrappedValue.dismiss()
-        } label: {
-            Text("Cancel")
-                .foregroundColor(.red)
-        }
+        Text("Cancel")
+            .foregroundColor(.red)
+            .onTapGesture {
+                presentationMode.wrappedValue.dismiss()
+            }
     }
     
     /// lifted from editing screen

@@ -28,8 +28,9 @@ struct DeckView: View {
     /// things to do after a new test is created
     func onTestCreated(test: Test) -> Void {
         deck.chosenTest = test
+        deck.addToTests(test)
+        tests = deck._tests
         chosenTest = test
-        tests.insert(test)
         prompts = test._prompts
         answers = test._answers
         try! moc.save()
