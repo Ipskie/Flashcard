@@ -27,37 +27,8 @@ struct DeckView: View {
     
     var body: some View {
         List {
-            Section(header: Text("Card Type")) {
-                DisclosureGroup(chosenTest.text) {
-                    ForEach(tests, id: \.id) {
-                        TestView($0)
-                    }
-                    NavigationLink(destination: TestCreation(completion: onTestCreated)) {
-                        HStack {
-                            Image(systemName: "plus")
-                                .foregroundColor(.blue)
-                            Text("New Test")
-                        }
-                    }
-                    NavigationLink(destination: TestEdit(tests: $tests, onEdited: onTestChanged, onDeleted: onTestDeleted)) {
-                        HStack {
-                            Image(systemName: "pencil")
-                                .foregroundColor(.blue)
-                            Text("Edit Tests")
-                        }
-                    }
-                }
-            }
-            Section(header: Text("Practice")) {
-                NavigationLink(
-                    "10 Pull",
-                    destination: CardSession(deck: deck, sessionType: .nPull(10))
-                )
-                NavigationLink(
-                    "Marathon All \(deck._cards.count) Cards",
-                    destination: CardSession(deck: deck, sessionType: .marathon)
-                )
-            }
+            DeckSelection
+            PracticeSelection
             Section(header: Text("Deck Information")) {
                 NavigationLink("Cards", destination: CardGallery(deck: deck))
             }
@@ -65,12 +36,56 @@ struct DeckView: View {
         .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(Text(deck._name))
     }
+}
+
+// MARK: - Practice Selection
+
+extension DeckView {
+    var PracticeSelection: some View {
+        Section(header: Text("Practice")) {
+            NavigationLink(
+                "10 Pull",
+                destination: CardSession(deck: deck, sessionType: .nPull(10))
+            )
+            NavigationLink(
+                "Marathon All \(deck._cards.count) Cards",
+                destination: CardSession(deck: deck, sessionType: .marathon)
+            )
+        }
+    }
+}
+
+// MARK: - Deck Selection
+
+extension DeckView {
+    var DeckSelection: some View {
+        Section(header: Text("Card Type")) {
+            DisclosureGroup(chosenTest.text) {
+                ForEach(tests, id: \.id) {
+                    TestView($0)
+                }
+                NavigationLink(destination: TestCreation(completion: onTestCreated)) {
+                    HStack {
+                        Image(systemName: "plus")
+                            .foregroundColor(.blue)
+                        Text("New Test")
+                    }
+                }
+                NavigationLink(destination: TestEdit(tests: $tests, onEdited: onTestChanged, onDeleted: onTestDeleted)) {
+                    HStack {
+                        Image(systemName: "pencil")
+                            .foregroundColor(.blue)
+                        Text("Edit Tests")
+                    }
+                }
+            }
+        }
+    }
     
     func TestView(_ test: Test) -> some View {
         Button {
             chosenTest = test
             deck.chosenTest = test
-            print("chsen")
         } label: {
             HStack {
                 Image(systemName: "checkmark")
@@ -81,6 +96,7 @@ struct DeckView: View {
         .buttonStyle(PlainButtonStyle())
     }
 }
+
 
 // MARK: - Update Methods
 
