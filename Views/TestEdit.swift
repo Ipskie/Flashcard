@@ -10,7 +10,7 @@ import SwiftUI
 struct TestEdit: View {
     
     @Environment(\.managedObjectContext) var moc
-    @Binding var tests: Set<Test>
+    @Binding var tests: [Test]
     @State var editMode: EditMode = .inactive
     
     var onEdited: () -> Void
@@ -24,7 +24,7 @@ struct TestEdit: View {
                 )
             }
             .onDelete { offsets in
-                offsets.forEach { moc.delete(tests.sorted(by: {$0.prompts.count < $1.prompts.count}[$0]) }
+                offsets.forEach { moc.delete(tests[$0]) }
             }
         }
         .listStyle(InsetGroupedListStyle())

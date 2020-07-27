@@ -36,6 +36,14 @@ extension Deck {
     var _tests: Set<Test> {
         (tests ?? []) as! Set<Test>
     }
+    
+    var testsByComplexity: [Test] {
+        _tests.sorted(by: {
+            $0.prompts.count < $1.prompts.count ||
+            $0.answers.count < $1.answers.count
+        })
+    }
+    
 }
 
 // MARK: Generated accessors for cards

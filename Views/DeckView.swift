@@ -12,7 +12,7 @@ struct DeckView: View {
     @Environment(\.managedObjectContext) var moc
     @State var deck: Deck
     @State private var chosenTest: Test
-    @State private var tests: Set<Test>
+    @State private var tests: [Test]
     @State private var prompts: [Snippet]
     @State private var answers: [Snippet]
     
@@ -20,7 +20,7 @@ struct DeckView: View {
         /// bind everything to State so that any changes are updated
         _deck = State(initialValue: deck)
         _chosenTest = State(initialValue: deck.chosenTest)
-        _tests = State(initialValue: deck._tests)
+        _tests = State(initialValue: deck.testsByComplexity)
         _prompts = State(initialValue: deck.chosenTest._prompts)
         _answers = State(initialValue: deck.chosenTest._answers)
     }
@@ -29,7 +29,7 @@ struct DeckView: View {
     func onTestCreated(test: Test) -> Void {
         deck.chosenTest = test
         deck.addToTests(test)
-        tests = deck._tests
+        tests = deck.testsByComplexity
         chosenTest = test
         prompts = test._prompts
         answers = test._answers
@@ -39,14 +39,14 @@ struct DeckView: View {
     func onEdited() -> Void {
         /// re-fetch from core data
         chosenTest = deck.chosenTest
-        tests = deck._tests
+        tests = deck.testsByComplexity
     }
     
     var body: some View {
         List {
             Section(header: Text("Card Type")) {
                 DisclosureGroup(chosenTest.text) {
-                    ForEach(tests.sorted(by: {$0.prompts.count < $1.prompts.count}), id: \.id) {
+                    ForEach(tests, id: \.id) {
                         TestView($0)
                     }
                     NavigationLink(destination: TestCreation(chosenTest: $chosenTest, completion: onTestCreated)) {
