@@ -11,21 +11,50 @@ struct DeckView: View {
     
     @Environment(\.managedObjectContext) var moc
     @State var deck: Deck
-    @State private var test: Test
+    @State private var chosenTest: Test
+    @State private var tests: Set<Test>
     @State private var prompts: [Snippet]
     @State private var answers: [Snippet]
     
     init(deck: Deck) {
         /// bind everything to State so that any changes are updated
         _deck = State(initialValue: deck)
-        _test = State(initialValue: deck.chosenTest)
+        _chosenTest = State(initialValue: deck.chosenTest)
+        _tests = State(initialValue: deck._tests)
         _prompts = State(initialValue: deck.chosenTest._prompts)
         _answers = State(initialValue: deck.chosenTest._answers)
+    }
+    
+    /// things to do after a new test is created
+    func onTestCreated(test: Test) -> Void {
+        deck.chosenTest = test
+        chosenTest = test
+        tests.insert(test)
+        prompts = test._prompts
+        answers = test._answers
+        try! moc.save()
     }
     
     var body: some View {
         List {
             Section(header: Text("Card Type")) {
+                DisclosureGroup("Test") {
+                    ForEach(tests.sorted(by: {$0.prompts.count < $1.prompts.count}), id: \.id) {
+                        TestView($0)
+                    }
+                    NavigationLink(destination: TestCreation(chosenTest: $chosenTest, completion: onTestCreated)) {
+                        HStack {
+                            Image(systemName: "plus")
+                                .foregroundColor(.blue)
+                            Text("New Test")
+                        }
+                    }
+                    HStack {
+                        Image(systemName: "pencil")
+                            .foregroundColor(.blue)
+                        Text("Edit Tests")
+                    }
+                }
             }
             Section(header: Text("Practice")) {
                 NavigationLink(
@@ -44,5 +73,27 @@ struct DeckView: View {
         .listStyle(InsetGroupedListStyle())
         .navigationBarTitle(Text(deck._name))
     }
+    
+    func TestView(_ test: Test) -> some View {
+        Button {
+            chosenTest = test
+            deck.chosenTest = test
+            print("chsen")
+        } label: {
+            HStack {
+                Image(systemName: "checkmark")
+                    .foregroundColor(test.id == chosenTest.id ? .blue : .clear)
+                Text(description(of: test))
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    func description(of test: Test) -> String {
+        test._prompts.map{$0.name}.joined(separator: " + ")
+        + " ➜ "
+        + test._answers.map{$0.name}.joined(separator: " + ")
+    }
+    
 }
 
