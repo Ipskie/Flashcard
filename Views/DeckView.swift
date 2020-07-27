@@ -38,6 +38,9 @@ struct DeckView: View {
     
     /// update state when a test's snippets are changed
     func onTestChanged(test: Test) -> Void {
+        tests.remove(at: tests.firstIndex(where: {$0.id == test.id})!)
+        tests.append(test)
+        
         if deck.chosenTest.id == test.id {
             print("fired")
             

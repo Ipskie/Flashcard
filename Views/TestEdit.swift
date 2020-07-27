@@ -11,7 +11,6 @@ struct TestEdit: View {
     
     @Environment(\.managedObjectContext) var moc
     @Binding var tests: [Test]
-    @State var localTests: [Test]
     @State var editMode: EditMode = .inactive
     
     var onEdited: (Test) -> Void
@@ -23,23 +22,17 @@ struct TestEdit: View {
         onDeleted: @escaping (Test) -> Void
     ) {
         _tests = tests
-        _localTests = State(initialValue: _tests.wrappedValue)
         self.onEdited = onEdited
         self.onDeleted = onDeleted
     }
     
-    func locallyEdited(test: Test) -> Void {
-        tests.remove(at: tests.firstIndex(where: {$0.id == test.id})!)
-        tests.append(test)
-        onEdited(test)
-    }
     
     var body: some View {
         List {
-            ForEach(localTests, id: \.id) { test in
+            ForEach(tests, id: \.id) { test in
                 NavigationLink(
                     test.text,
-                    destination: SnippetPicker(test: test, onEdited: locallyEdited)
+                    destination: SnippetPicker(test: test, onEdited: onEdited)
                 )
             }
             .onDelete { offsets in
