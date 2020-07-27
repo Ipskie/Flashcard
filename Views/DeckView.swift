@@ -36,10 +36,16 @@ struct DeckView: View {
         try! moc.save()
     }
     
-    func onEdited() -> Void {
-        /// re-fetch from core data
-        chosenTest = deck.chosenTest
-        tests = deck.testsByComplexity
+    func onTestEdited(test: Test) -> Void {
+        if test.chosenBy == deck {
+            chosenTest = test
+            prompts = test._prompts
+            answers = test._answers
+        }
+        if let idx = tests.firstIndex(of: test) {
+            tests[idx] = test /// update value at index
+        }
+        try! moc.save()
     }
     
     var body: some View {
@@ -56,7 +62,7 @@ struct DeckView: View {
                             Text("New Test")
                         }
                     }
-                    NavigationLink(destination: TestEdit(tests: $tests, onEdited: onEdited)) {
+                    NavigationLink(destination: TestEdit(deck: $deck, tests: $tests, onEdited: onTestEdited)) {
                         HStack {
                             Image(systemName: "pencil")
                                 .foregroundColor(.blue)

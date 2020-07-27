@@ -14,13 +14,13 @@ struct SnippetPicker: View {
     @Environment(\.presentationMode) var presentationMode
     @State var editMode: EditMode = .active
     var test: Test
-    var onEdited: () -> Void
+    var onEdited: (Test) -> Void
     @State var prompts: [Snippet]
     @State var answers: [Snippet]
     
     init(
         test: Test,
-        onEdited: @escaping () -> Void
+        onEdited: @escaping (Test) -> Void
     ) {
         self.test = test
         self.onEdited = onEdited
@@ -33,13 +33,18 @@ struct SnippetPicker: View {
             EditableList(snippets: $prompts, name: "Prompts")
             EditableList(snippets: $answers, name: "Answers")
         }
-        .navigationBarItems(trailing: EditButton())
         .listStyle(InsetGroupedListStyle())
         .navigationTitle("Card Type")
         /// detect when editing
         .environment(\.editMode, $editMode)
-        .onChange(of: prompts) { _ in onEdited() }
-        .onChange(of: answers) { _ in onEdited() }
+        .onChange(of: prompts) {
+            test._prompts = $0
+            onEdited(test)
+        }
+        .onChange(of: answers) {
+            test._answers = $0
+            onEdited(test)
+        }
     }
     
     var DoneButton: some View {
@@ -64,20 +69,22 @@ struct SnippetPicker: View {
                     snippets.wrappedValue.remove(atOffsets: offsets)
                 }
             }
-            Section (header: Text("Add \(name)")) {
-                ForEach(Snippet.allCases.filter{!snippets.wrappedValue.contains($0)}, id: \.self) { snippet in
-                    Button {
-                        withAnimation {
-                            snippets.wrappedValue.append(snippet)
+            if editMode == .active {
+                Section (header: Text("Add \(name)")) {
+                    ForEach(Snippet.allCases.filter{!snippets.wrappedValue.contains($0)}, id: \.self) { snippet in
+                        Button {
+                            withAnimation {
+                                snippets.wrappedValue.append(snippet)
+                            }
+                        } label: {
+                            HStack {
+                                Image(systemName: "plus.circle.fill")
+                                    .foregroundColor(.green)
+                                Text(snippet.name)
+                            }
                         }
-                    } label: {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                                .foregroundColor(.green)
-                            Text(snippet.name)
-                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
-                    .buttonStyle(PlainButtonStyle())
                 }
             }
         }
