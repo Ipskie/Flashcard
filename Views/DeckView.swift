@@ -25,50 +25,6 @@ struct DeckView: View {
         _answers = State(initialValue: deck.chosenTest._answers)
     }
     
-    /// things to do after a new test is created
-    func onTestCreated(test: Test) -> Void {
-        deck.chosenTest = test
-        deck.addToTests(test)
-        tests = deck.testsByComplexity
-        chosenTest = test
-        prompts = test._prompts
-        answers = test._answers
-        try! moc.save()
-    }
-    
-    /// update state when a test's snippets are changed
-    func onTestChanged(test: Test) -> Void {
-        /// force an update by removing and reinserting the test
-        tests.remove(at: tests.firstIndex(where: {$0.id == test.id})!)
-        tests.append(test)
-        
-        if deck.chosenTest.id == test.id {
-            print("fired")
-            
-            chosenTest = test /// update state binding
-            prompts = chosenTest._prompts
-            answers = chosenTest._answers
-        }
-        try! moc.save()
-    }
-    
-    /// update state when a test is deleted
-    func onTestDeleted(test: Test) -> Void {
-        /// terminate if this would delete only test
-        guard tests.count > 1 else { return }
-        
-        let idx = tests.firstIndex(of: test)!
-        tests.remove(at: idx) /// remove local copy
-        deck.removeFromTests(test) /// remove core data copy
-        if deck.chosenTest == test {
-            deck.chosenTest = tests.first! /// update chosen test
-            chosenTest = deck.chosenTest /// and state binding
-            prompts = chosenTest._prompts
-            answers = chosenTest._answers
-        }
-        try! moc.save()
-    }
-    
     var body: some View {
         List {
             Section(header: Text("Card Type")) {
@@ -126,3 +82,50 @@ struct DeckView: View {
     }
 }
 
+// MARK: - Update Methods
+
+extension DeckView {
+    /// things to do after a new test is created
+    func onTestCreated(test: Test) -> Void {
+        deck.chosenTest = test
+        deck.addToTests(test)
+        tests = deck.testsByComplexity
+        chosenTest = test
+        prompts = test._prompts
+        answers = test._answers
+        try! moc.save()
+    }
+    
+    /// update state when a test's snippets are changed
+    func onTestChanged(test: Test) -> Void {
+        /// force an update by removing and reinserting the test
+        tests.remove(at: tests.firstIndex(where: {$0.id == test.id})!)
+        tests.append(test)
+        
+        if deck.chosenTest.id == test.id {
+            print("fired")
+            
+            chosenTest = test /// update state binding
+            prompts = chosenTest._prompts
+            answers = chosenTest._answers
+        }
+        try! moc.save()
+    }
+    
+    /// update state when a test is deleted
+    func onTestDeleted(test: Test) -> Void {
+        /// terminate if this would delete only test
+        guard tests.count > 1 else { return }
+        
+        let idx = tests.firstIndex(of: test)!
+        tests.remove(at: idx) /// remove local copy
+        deck.removeFromTests(test) /// remove core data copy
+        if deck.chosenTest == test {
+            deck.chosenTest = tests.first! /// update chosen test
+            chosenTest = deck.chosenTest /// and state binding
+            prompts = chosenTest._prompts
+            answers = chosenTest._answers
+        }
+        try! moc.save()
+    }
+}
